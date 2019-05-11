@@ -1,7 +1,7 @@
 # Tujian-X-daily-pics
 Tujian X Offical application on Android,editing with Lua
 
-[[License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/tupics/Tujian-X-daily-pics/blob/master/LICENSE)
+[![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/tupics/Tujian-X-daily-pics/blob/master/LICENSE)
 
 *开源协议：[Apache License,Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.html)*
 
