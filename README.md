@@ -8,7 +8,7 @@ Tujian X Offical application on Android,editing with Lua
 It was written with [Mlua](https://www.coolapk.com/apk/com.mlua)
 and requires some Chinese function in it so  **you must edit the Project with Mlua.**
 
-***请务必使用[Mlua](https://www.coolapk.com/apk/com.mlua)编辑**因为本项目使用到了部分中文函数，否则会运行失败*
+***请务必使用[Mlua](https://www.coolapk.com/apk/com.mlua)编辑*** *因为本项目使用到了部分中文函数，否则会运行失败*
 
 From the [Tujian X](https://www.coolapk.com/apk/ml.cerasus.pics) App,you can get it on Coolapk:
 [https://www.coolapk.com/apk/ml.cerasus.pics](https://www.coolapk.com/apk/ml.cerasus.pics)
