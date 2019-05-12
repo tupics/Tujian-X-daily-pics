@@ -1209,9 +1209,13 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
       控件隐藏(必应)
       控件可见(loading)
      elseif s=="关于" then
+      --[[
       kbl="空变量"--设置这个是为了进入退出动画
       activity.newActivity("ceshi/main.lua",android.R.anim.fade_in,android.R.anim.fade_out,{kbl})
-      activity.finish()
+      activity.finish()      
+      ]]
+      --代码不稳定，未开放，可以自己了解
+      activity.newActivity("ceshi/main.lua")
      elseif s=="句子" then
       句子()
      elseif s=="交流" then
@@ -1320,9 +1324,13 @@ MLua模板 by MUK
 
 ]]
 
---接受关于传来的空变量
+--接受关于/归档传来的空变量
 kbl1=...
-if kbl1=="空变量"
+kbk2=...
+if
+  kbl1=="空变量"
+  or
+  kbl2=="空变量"
   then
   --打开侧栏
   _drawer.openDrawer(3)
@@ -1542,8 +1550,13 @@ function 加载菜单()
     pop=PopupMenu(activity,more)
     menu=pop.Menu
     menu.add("查看归档").onMenuItemClick=function(a)
-      --  activity.newActivity("guidang/main.lua")
-      activity.newActivity("guidang/main.lua",{ThemeColor,TextColor})
+      activity.newActivity("guidang/main.lua",{ThemeColor,TextColor,kbl3})
+      --[[  
+    kbl3="空变量"
+      activity.newActivity("guidang/main.lua",android.R.anim.fade_in,android.R.anim.fade_out,{ThemeColor,TextColor,kbl3})
+      activity.close()
+      ]]
+      --代码不稳定，暂时未发布，开发者可以自己了解
     end
     menu.add("设为壁纸").onMenuItemClick=function(a)
       setWallpaper(p_link,biaoti)

@@ -379,6 +379,24 @@ _title.getPaint().setFakeBoldText(true)
 ThemeColor,TextColor=...--载入参数
 --print(ThemeColor,TextColor)--测试
 
+--[[
+kbl3=...--接受在杂烩设置的空变量
+参数=0
+function onKeyDown(code,event)
+  if string.find(tostring(event),"KEYCODE_BACK") ~= nil then
+    if 参数+2 > tonumber(os.time()) then
+      activity.finish()
+     else
+      kbl2="空变量"
+      activity.newActivity("zahui/main.lua",android.R.anim.fade_in,android.R.anim.fade_out,{kbl2})
+      activity.finish()
+      参数=tonumber(os.time())
+    end
+    return true
+  end
+end
+]]
+--动画代码不稳定，未开放
 
 --杂烩设置
 杂烩.loadUrl("https://dp.chimon.me/fapp/old.php?sort=杂烩")--加载网页

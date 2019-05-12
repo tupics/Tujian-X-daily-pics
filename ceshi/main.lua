@@ -587,6 +587,7 @@ PS：Tujian 所选用的图片来自于 Unsplash、Pixiv、Cookapk 等社区、�
 若您认为我们侵犯了您的合法知识产权，请发送邮件至 Chimon@Chimon.me，我们会第一时间配合处理。
 ]]
 
+--[[
 --退出动画开始
 kbl=...--接受在杂烩设置的空变量
 参数=0
@@ -603,6 +604,8 @@ function onKeyDown(code,event)
     return true
   end
 end
+--动画代码不稳定，未开放
+]]
 
 --语言设置开始
 if
