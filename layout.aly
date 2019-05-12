@@ -1,0 +1,7 @@
+{
+  LinearLayout,
+  orientation="vertical",
+  layout_width="fill",
+  layout_height="fill",
+  gravity="center",
+}
