@@ -586,6 +586,7 @@ QQ群.getPaint().setFakeBoldText(true)
 PS：Tujian 所选用的图片来自于 Unsplash、Pixiv、Cookapk 等社区、网站及论坛，且并非用于商业行为。
 若您认为我们侵犯了您的合法知识产权，请发送邮件至 Chimon@Chimon.me，我们会第一时间配合处理。
 ]]
+<<<<<<< HEAD
 
 --[[
 --退出动画开始
@@ -607,6 +608,8 @@ end
 --动画代码不稳定，未开放
 ]]
 
+=======
+>>>>>>> e273098013159a643f5f2d240175496b8fe91751
 --语言设置开始
 if
   语言=="zh"==false

@@ -379,6 +379,7 @@ _title.getPaint().setFakeBoldText(true)
 ThemeColor,TextColor=...--载入参数
 --print(ThemeColor,TextColor)--测试
 
+<<<<<<< HEAD
 --[[
 kbl3=...--接受在杂烩设置的空变量
 参数=0
@@ -397,6 +398,8 @@ function onKeyDown(code,event)
 end
 ]]
 --动画代码不稳定，未开放
+=======
+>>>>>>> e273098013159a643f5f2d240175496b8fe91751
 
 --杂烩设置
 杂烩.loadUrl("https://dp.chimon.me/fapp/old.php?sort=杂烩")--加载网页
