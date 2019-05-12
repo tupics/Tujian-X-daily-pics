@@ -1209,15 +1209,12 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
       控件隐藏(必应)
       控件可见(loading)
      elseif s=="关于" then
-<<<<<<< HEAD
       --[[
       kbl="空变量"--设置这个是为了进入退出动画
       activity.newActivity("ceshi/main.lua",android.R.anim.fade_in,android.R.anim.fade_out,{kbl})
       activity.finish()      
       ]]
       --代码不稳定，未开放，可以自己了解
-=======
->>>>>>> e273098013159a643f5f2d240175496b8fe91751
       activity.newActivity("ceshi/main.lua")
      elseif s=="句子" then
       句子()
@@ -1327,7 +1324,8 @@ MLua模板 by MUK
 
 ]]
 
-<<<<<<< HEAD
+--[[
+动画代码不稳定，未开放
 --接受关于/归档传来的空变量
 kbl1=...
 kbk2=...
@@ -1339,9 +1337,8 @@ if
   --打开侧栏
   _drawer.openDrawer(3)
 end
+]]
 
-=======
->>>>>>> e273098013159a643f5f2d240175496b8fe91751
 UA=HashMap{}
 iPhoneUA=[[Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_0 like Mac OS X; en-us) AppleWebKit/532.9 (KHTML, like Gecko) Version/4.0.5 Mobile/8A293 Safari/6531.22.7]]
 UA.put("User-Agent:",iPhoneUA)
@@ -1556,7 +1553,6 @@ function 加载菜单()
     pop=PopupMenu(activity,more)
     menu=pop.Menu
     menu.add("查看归档").onMenuItemClick=function(a)
-<<<<<<< HEAD
       activity.newActivity("guidang/main.lua",{ThemeColor,TextColor,kbl3})
       --[[  
     kbl3="空变量"
@@ -1564,10 +1560,8 @@ function 加载菜单()
       activity.close()
       ]]
       --代码不稳定，暂时未发布，开发者可以自己了解
-=======
       --  activity.newActivity("guidang/main.lua")
       activity.newActivity("guidang/main.lua",{ThemeColor,TextColor})
->>>>>>> e273098013159a643f5f2d240175496b8fe91751
     end
     menu.add("设为壁纸").onMenuItemClick=function(a)
       setWallpaper(p_link,biaoti)
@@ -1968,10 +1962,9 @@ function onKeyDown(code,event)
       activity.finish()
      else
       snakebar("再按一次返回键退出")
-<<<<<<< HEAD
+--[[
       _drawer.closeDrawer(3)
-=======
->>>>>>> e273098013159a643f5f2d240175496b8fe91751
+]]
       参数=tonumber(os.time())
     end
     return true
@@ -2017,10 +2010,7 @@ if dq==os.date("%Y%m%d") then
   Http.get("http://wz4.in/0tx4",nil,nil,nil,function(code,content,cookie,header)end)
   io.open("/sdcard/Android/data/ml.cerasus.pics/cachemain/add.tj","w+"):write("20190511"):close()
 end
-<<<<<<< HEAD
-=======
 
->>>>>>> e273098013159a643f5f2d240175496b8fe91751
 --设置壁纸函数
 function setWallpaper(url,title) --直接传入下载链接和标题就行
   require "import"

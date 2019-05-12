@@ -214,7 +214,8 @@ layout={--页面布局
 设置视图(layout)
 
 品牌=Build.BRAND
-if 品牌 == "Smartisan" ==false then
+if 品牌 == "Smartisan"  then
+  else
   波纹({jc1,jc2},"方黑")
 end
 

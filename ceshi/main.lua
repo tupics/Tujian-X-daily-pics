@@ -169,6 +169,37 @@ layout={--页面布局
               };
             };
           };
+          {--卡片
+            CardView;
+            background=write;
+            layout_height="-2";
+            layout_width="-1";
+            onClick=function()end;
+            layout_margin="8dp";
+            {
+              LinearLayout;
+              layout_height="-1";
+              layout_width="-1";
+              orientation="vertical";
+              padding="16dp";
+              id="cv11_lay";
+              {
+                TextView;
+                Text="查看官网";
+                textColor=primaryc;
+                textSize="16sp";
+                id="官网"
+              };
+              {
+                TextView;
+                Text=[[点按了解更多信息]];
+                textColor=textc;
+                textSize="14sp";
+                paddingTop="4dp";
+                id="官网内容";
+              };
+            };
+          };
 
           {--卡片
             CardView;
@@ -465,7 +496,8 @@ layout={--页面布局
 
 设置视图(layout)
 品牌=Build.BRAND
-if 品牌 == "Smartisan" ==false then
+if 品牌 == "Smartisan" then
+ else
   波纹({cv1_lay},"方黑")
   波纹({cv2_lay},"方白")
   波纹({cv3_lay},"方黑")
@@ -475,6 +507,7 @@ if 品牌 == "Smartisan" ==false then
   波纹({cv7_lay},"方黑")
   波纹({cv8_lay},"方黑")
   波纹({cv10_lay},"方黑")
+  波纹({cv11_lay},"方黑")
   波纹({_back},"圆白")
 end
 _topbar.alpha=0
@@ -546,16 +579,9 @@ obs_1.setScrollViewCallbacks(ObservableScrollViewCallbacks{
 })
 
 _mfb.onClick=function()
-  if
-    语言=="zh"or
-    语言=="zh_CN"or
-    语言=="zh_HK"or
-    语言=="zh_TW"
-    then
-    snakebar("官网暂未编写完成，敬请期待")
-   else
-    snakebar("Please waiting...")
-  end
+  url="https://tupics.github.io/"
+  viewIntent = Intent("android.intent.action.VIEW",Uri.parse(url))
+  activity.startActivity(viewIntent)
 end
 
 function 返回顶部()--平滑返回顶部
@@ -586,7 +612,7 @@ QQ群.getPaint().setFakeBoldText(true)
 PS：Tujian 所选用的图片来自于 Unsplash、Pixiv、Cookapk 等社区、网站及论坛，且并非用于商业行为。
 若您认为我们侵犯了您的合法知识产权，请发送邮件至 Chimon@Chimon.me，我们会第一时间配合处理。
 ]]
-<<<<<<< HEAD
+
 
 --[[
 --退出动画开始
@@ -608,8 +634,7 @@ end
 --动画代码不稳定，未开放
 ]]
 
-=======
->>>>>>> e273098013159a643f5f2d240175496b8fe91751
+
 --语言设置开始
 if
   语言=="zh"==false
@@ -624,6 +649,7 @@ if
   _title.Text="About"
   概述.Text="Main"
   推送.Text="Push"
+  官网.Text="Official Website"
   Tg群.Text="Telegram Group"
   开源.Text="Open Source"
   QQ群.Text="QQ Group"
@@ -642,6 +668,7 @@ Well, Enjoy the meaning of the pictures now!]]
   绿色公约内容.Text=[[Green-Android Project is held to make Android phones in China can have a longer using time and it is founded by oasisfeng,who is the developer of Greenify.
 
 Now Tujian X has already supported the Project and pass the authentication.]]
+  官网内容.Text="Click to learn more information"
   隐私政策内容.Text="Click to learn more information"
   开源内容.Text="Click to learn more about Open Tujian-Tujian Open source"
 end
