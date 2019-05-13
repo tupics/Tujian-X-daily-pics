@@ -6,7 +6,7 @@ Tujian X Offical application on Android,editing with Lua
 *开源协议：[Apache License,Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.html)*
 
 It was written with [Mlua](https://www.coolapk.com/apk/com.mlua)
-and requires some Chinese function in it so  **you must edit the Project with Mlua.**
+and requires some Chinese functions in it so  **you must edit the Project with Mlua.**
 
 ***请务必使用[Mlua](https://www.coolapk.com/apk/com.mlua)编辑*** *因为本项目使用到了部分中文函数，否则会运行失败*
 
