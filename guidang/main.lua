@@ -38,7 +38,12 @@ b=TextColor
 状态栏沉浸，Android SDK>19时生效
 activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 ]]
-activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS).setStatusBarColor(转0x(ThemeColor));
+--完全沉浸，SDK>21
+if ThemeColor == "FF000000" then--防止全白
+  activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS).setStatusBarColor(转0x("#FF757575"));
+ else
+  activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS).setStatusBarColor(转0x(ThemeColor));
+end
 
 状态栏高度=activity.getResources().getDimensionPixelSize(luajava.bindClass("com.android.internal.R$dimen")().status_bar_height)
 
@@ -123,13 +128,14 @@ layout={--页面布局
         elevation="4dp";
         orientation="vertical";
         id="_topbar";
---[[
+        --[[
         {--状态栏占位布局
           TextView;
           layout_height=状态栏高度;
           layout_width="-1";
           background=w;
         };
+      --启用请配合sdk19的状态栏
       ]]
         {--标题栏布局
           LinearLayout;

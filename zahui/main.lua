@@ -75,6 +75,10 @@ end
 
 品牌=Build.BRAND
 
+--[[
+状态栏沉浸，Android SDK>19时生效
+activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+]]
 os.execute("rm -r ".."/storage/emulated/0/Android/data/ml.cerasus.pics/cache")--清除缓存目录
 
 --设置颜色变量便于调用
@@ -123,6 +127,7 @@ layout={--侧滑根布局
           TextView;
           layout_height=状态栏高度;
           layout_width="-1";
+              --启用请配合sdk19的状态栏
         };
       ]]
         {
@@ -142,6 +147,7 @@ layout={--侧滑根布局
           layout_height=状态栏高度;
           layout_width="-1";
           id="状态栏";
+              --启用请配合sdk19的状态栏
         };
 ]]
         {--标题栏布局
@@ -528,7 +534,11 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
         subtitle.textColor=(转0x(TextColor))
         more.setColorFilter(转0x(TextColor))
         bing.setColorFilter(转0x(TextColor))
-        if ThemeColor == "FF000000" then activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS).setStatusBarColor(转0x("#FF757575")); else activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS).setStatusBarColor(转0x(ThemeColor)); end
+        if ThemeColor == "FF000000" then--防止全白
+          activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS).setStatusBarColor(转0x("#FF757575"));
+         else
+          activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS).setStatusBarColor(转0x(ThemeColor));
+        end
         loading.IndeterminateDrawable.setColorFilter(PorterDuffColorFilter((转0x(ThemeColor)),PorterDuff.Mode.SRC_ATOP))
 
         import "java.io.File"--导入File类
@@ -761,7 +771,11 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
         _menu_3.BackgroundColor=(转0x(TextColor))
         subtitle.textColor=(转0x(TextColor))
         more.setColorFilter(转0x(TextColor))
-        if ThemeColor == "FF000000" then activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS).setStatusBarColor(转0x("#FF757575")); else activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS).setStatusBarColor(转0x(ThemeColor)); end
+        if ThemeColor == "FF000000" then--防止全白
+          activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS).setStatusBarColor(转0x("#FF757575"));
+         else
+          activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS).setStatusBarColor(转0x(ThemeColor));
+        end
         bing.setColorFilter(转0x(TextColor))
         loading.IndeterminateDrawable.setColorFilter(PorterDuffColorFilter((转0x(ThemeColor)),PorterDuff.Mode.SRC_ATOP))
 
@@ -1392,7 +1406,11 @@ Http.get(pxinxi,nil,"UTF-8",UA,function(http_code,content)
 
   _title.textColor=(转0x(TextColor))
   Tujian.textColor=(转0x(TextColor))
-if ThemeColor == "FF000000" then activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS).setStatusBarColor(转0x("#FF757575")); else activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS).setStatusBarColor(转0x(ThemeColor)); end
+  if ThemeColor == "FF000000" then--防止全白
+    activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS).setStatusBarColor(转0x("#FF757575"));
+   else
+    activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS).setStatusBarColor(转0x(ThemeColor));
+  end
   sologen.textColor=(转0x(TextColor))
   _menu_1.BackgroundColor=(转0x(TextColor))
   _menu_2.BackgroundColor=(转0x(TextColor))
@@ -1560,7 +1578,7 @@ function 加载菜单()
     pop=PopupMenu(activity,more)
     menu=pop.Menu
     menu.add("查看归档").onMenuItemClick=function(a)
---[[
+      --[[
       activity.newActivity("guidang/main.lua",{ThemeColor,TextColor,kbl3})     
     kbl3="空变量"
       activity.newActivity("guidang/main.lua",android.R.anim.fade_in,android.R.anim.fade_out,{ThemeColor,TextColor,kbl3})
@@ -1969,9 +1987,7 @@ function onKeyDown(code,event)
       activity.finish()
      else
       snakebar("再按一次返回键退出")
-      --[[
       _drawer.closeDrawer(3)
-]]
       参数=tonumber(os.time())
     end
     return true
