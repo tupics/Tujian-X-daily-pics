@@ -91,13 +91,12 @@ t="#ff000000"
 
 --状态栏颜色(0x3f000000)
 
---状态栏沉浸，Android SDK>19时生效
-activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-
+--状态栏沉浸，Android SDK>21时生效
+activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS).setStatusBarColor(0xff757575);
 --布局表
 layout={--侧滑根布局
   DrawerLayout;
-  background=write;
+  background=barcolor;
   id="_drawer";
   {--页面布局
     LinearLayout;
@@ -119,11 +118,13 @@ layout={--侧滑根布局
         id="顶栏_b1";
         background=barcolor;
         orientation="vertical";
+        --[[
         {
           TextView;
           layout_height=状态栏高度;
           layout_width="-1";
         };
+      ]]
         {
           LinearLayout;
           layout_height="56dp";
@@ -135,12 +136,14 @@ layout={--侧滑根布局
         layout_height="-2";
         layout_width="-1";
         orientation="vertical";
+        --[[
         {--状态栏占位布局
           TextView;
           layout_height=状态栏高度;
           layout_width="-1";
           id="状态栏";
         };
+]]
         {--标题栏布局
           LinearLayout;
           layout_height="56dp";
@@ -525,6 +528,7 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
         subtitle.textColor=(转0x(TextColor))
         more.setColorFilter(转0x(TextColor))
         bing.setColorFilter(转0x(TextColor))
+        if ThemeColor == "FF000000" then activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS).setStatusBarColor(转0x("#FF757575")); else activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS).setStatusBarColor(转0x(ThemeColor)); end
         loading.IndeterminateDrawable.setColorFilter(PorterDuffColorFilter((转0x(ThemeColor)),PorterDuff.Mode.SRC_ATOP))
 
         import "java.io.File"--导入File类
@@ -757,6 +761,7 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
         _menu_3.BackgroundColor=(转0x(TextColor))
         subtitle.textColor=(转0x(TextColor))
         more.setColorFilter(转0x(TextColor))
+        if ThemeColor == "FF000000" then activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS).setStatusBarColor(转0x("#FF757575")); else activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS).setStatusBarColor(转0x(ThemeColor)); end
         bing.setColorFilter(转0x(TextColor))
         loading.IndeterminateDrawable.setColorFilter(PorterDuffColorFilter((转0x(ThemeColor)),PorterDuff.Mode.SRC_ATOP))
 
@@ -1339,6 +1344,7 @@ if
 end
 ]]
 
+
 UA=HashMap{}
 iPhoneUA=[[Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_0 like Mac OS X; en-us) AppleWebKit/532.9 (KHTML, like Gecko) Version/4.0.5 Mobile/8A293 Safari/6531.22.7]]
 UA.put("User-Agent:",iPhoneUA)
@@ -1386,6 +1392,7 @@ Http.get(pxinxi,nil,"UTF-8",UA,function(http_code,content)
 
   _title.textColor=(转0x(TextColor))
   Tujian.textColor=(转0x(TextColor))
+if ThemeColor == "FF000000" then activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS).setStatusBarColor(转0x("#FF757575")); else activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS).setStatusBarColor(转0x(ThemeColor)); end
   sologen.textColor=(转0x(TextColor))
   _menu_1.BackgroundColor=(转0x(TextColor))
   _menu_2.BackgroundColor=(转0x(TextColor))
@@ -1553,8 +1560,8 @@ function 加载菜单()
     pop=PopupMenu(activity,more)
     menu=pop.Menu
     menu.add("查看归档").onMenuItemClick=function(a)
-      activity.newActivity("guidang/main.lua",{ThemeColor,TextColor,kbl3})
-      --[[  
+--[[
+      activity.newActivity("guidang/main.lua",{ThemeColor,TextColor,kbl3})     
     kbl3="空变量"
       activity.newActivity("guidang/main.lua",android.R.anim.fade_in,android.R.anim.fade_out,{ThemeColor,TextColor,kbl3})
       activity.close()
@@ -1962,7 +1969,7 @@ function onKeyDown(code,event)
       activity.finish()
      else
       snakebar("再按一次返回键退出")
---[[
+      --[[
       _drawer.closeDrawer(3)
 ]]
       参数=tonumber(os.time())

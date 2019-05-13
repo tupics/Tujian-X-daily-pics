@@ -34,8 +34,11 @@ textc="#212121"
 w=ThemeColor
 b=TextColor
 
---状态栏沉浸，Android SDK>19时生效
+--[[
+状态栏沉浸，Android SDK>19时生效
 activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+]]
+activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS).setStatusBarColor(转0x(ThemeColor));
 
 状态栏高度=activity.getResources().getDimensionPixelSize(luajava.bindClass("com.android.internal.R$dimen")().status_bar_height)
 
@@ -120,12 +123,14 @@ layout={--页面布局
         elevation="4dp";
         orientation="vertical";
         id="_topbar";
+--[[
         {--状态栏占位布局
           TextView;
           layout_height=状态栏高度;
           layout_width="-1";
           background=w;
         };
+      ]]
         {--标题栏布局
           LinearLayout;
           layout_height="56dp";
@@ -214,8 +219,8 @@ layout={--页面布局
 设置视图(layout)
 
 品牌=Build.BRAND
-if 品牌 == "Smartisan"  then
-  else
+if 品牌 == "Smartisan" then
+ else
   波纹({jc1,jc2},"方黑")
 end
 

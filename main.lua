@@ -29,4 +29,6 @@ activity.newActivity("zahui/main.lua")
 --关闭页面()
 activity.finish()
 
-activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE)
+if Build.VERSION.SDK_INT >= 21 then
+  activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS).setStatusBarColor(0xff4285f4);
+end
