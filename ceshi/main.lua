@@ -54,7 +54,7 @@ activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
 --完全沉浸，SDK>21
 if ThemeColor == "#FFFFFFFF" or ThemeColor == "#ffffffff" or ThemeColor==nil then--防止全白
   activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS).setStatusBarColor(转0x("#FF757575"));
-   else
+ else
   activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS).setStatusBarColor(转0x(ThemeColor));
 end
 
@@ -415,11 +415,14 @@ layout={
       elevation="4dp";
       orientation="vertical";
       id="_topbar";
+      --[[
       {--状态栏占位布局
         TextView;
         layout_height=状态栏高度;
-        layout_width="-1";
+        layout_width="-1";       
+        --开启请配合SDK19状态栏
       };
+    ]]
       {--标题栏布局（背景)
         LinearLayout;
         layout_height="56dp";
@@ -436,11 +439,14 @@ layout={
       orientation="vertical";
       --     background=ThemeColor;
       id="_topbar2";
+      --[[ 
       {--状态栏占位布局
         TextView;
         layout_height=状态栏高度;
         layout_width="-1";
       };
+    --开启请配合SDK19状态栏
+    ]]
       {--标题栏布局
         LinearLayout;
         layout_height="-1";
@@ -462,7 +468,7 @@ layout={
             src="ceshi/res/back";
             onClick=function()
               关闭页面()
-              end;
+            end;
             id="_back";
           };
         };
