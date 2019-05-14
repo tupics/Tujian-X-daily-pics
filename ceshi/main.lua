@@ -52,12 +52,13 @@ activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
 ]]
 
 --完全沉浸，SDK>21
-if ThemeColor == "FF000000" or ThemeColor == "ff000000" then--防止全白
+if ThemeColor == "#FFFFFFFF" or ThemeColor == "#ffffffff" or ThemeColor==nil then--防止全白
   activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS).setStatusBarColor(转0x("#FF757575"));
-  ThemeColor="#FF757575"
- else
+   else
   activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS).setStatusBarColor(转0x(ThemeColor));
 end
+
+
 
 状态栏高度=activity.getResources().getDimensionPixelSize(luajava.bindClass("com.android.internal.R$dimen")().status_bar_height)
 
@@ -440,7 +441,6 @@ layout={
         layout_height=状态栏高度;
         layout_width="-1";
       };
-
       {--标题栏布局
         LinearLayout;
         layout_height="-1";
@@ -460,7 +460,9 @@ layout={
             padding="16dp";
             ColorFilter=TextColor;
             src="ceshi/res/back";
-            onClick=function()关闭页面()end;
+            onClick=function()
+              关闭页面()
+              end;
             id="_back";
           };
         };

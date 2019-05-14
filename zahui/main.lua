@@ -537,11 +537,11 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
         subtitle.textColor=(转0x(TextColor))
         more.setColorFilter(转0x(TextColor))
         bing.setColorFilter(转0x(TextColor))
-        if ThemeColor == "FF000000" then--防止全白
-          activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS).setStatusBarColor(转0x("#FF757575"));
-         else
-          activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS).setStatusBarColor(转0x(ThemeColor));
-        end
+        if ThemeColor == "#FFFFFFFF" or ThemeColor == "#ffffffff" or ThemeColor==nil then--防止全白
+  activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS).setStatusBarColor(转0x("#FF757575"));
+   else
+  activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS).setStatusBarColor(转0x(ThemeColor));
+end
         loading.IndeterminateDrawable.setColorFilter(PorterDuffColorFilter((转0x(ThemeColor)),PorterDuff.Mode.SRC_ATOP))
 
         import "java.io.File"--导入File类
@@ -774,11 +774,11 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
         _menu_3.BackgroundColor=(转0x(TextColor))
         subtitle.textColor=(转0x(TextColor))
         more.setColorFilter(转0x(TextColor))
-        if ThemeColor == "FF000000" then--防止全白
-          activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS).setStatusBarColor(转0x("#FF757575"));
-         else
-          activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS).setStatusBarColor(转0x(ThemeColor));
-        end
+       if ThemeColor == "#FFFFFFFF" or ThemeColor == "#ffffffff" or ThemeColor==nil then--防止全白
+  activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS).setStatusBarColor(转0x("#FF757575"));
+   else
+  activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS).setStatusBarColor(转0x(ThemeColor));
+end
         bing.setColorFilter(转0x(TextColor))
         loading.IndeterminateDrawable.setColorFilter(PorterDuffColorFilter((转0x(ThemeColor)),PorterDuff.Mode.SRC_ATOP))
 
@@ -1409,11 +1409,11 @@ Http.get(pxinxi,nil,"UTF-8",UA,function(http_code,content)
 
   _title.textColor=(转0x(TextColor))
   Tujian.textColor=(转0x(TextColor))
-  if ThemeColor == "FF000000" then--防止全白
-    activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS).setStatusBarColor(转0x("#FF757575"));
+  if ThemeColor == "#FFFFFFFF" or ThemeColor == "#ffffffff" or ThemeColor==nil then--防止全白
+  activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS).setStatusBarColor(转0x("#FF757575"));
    else
-    activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS).setStatusBarColor(转0x(ThemeColor));
-  end
+  activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS).setStatusBarColor(转0x(ThemeColor));
+end
   sologen.textColor=(转0x(TextColor))
   _menu_1.BackgroundColor=(转0x(TextColor))
   _menu_2.BackgroundColor=(转0x(TextColor))
