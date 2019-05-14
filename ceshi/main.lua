@@ -18,11 +18,8 @@ import "android.app.*"
 import "android.os.*"
 import "android.widget.*"
 import "android.view.*"
-
 import "ceshi.mluafloatingbutton"--此悬浮按钮最好一个页面只放一个(打脸滑稽
-
 import "com.github.ksoichiro.android.observablescrollview.*"--导入ObservableScrollView，容易监听滑动
-
 import "muk"--导入中文函数
 import "android.graphics.Paint"
 import "android.graphics.*"
@@ -36,8 +33,8 @@ import "android.widget.NumberPicker"
 import "android.view.animation.TranslateAnimation"
 import "android.view.animation.AnimationSet"
 
-
 隐藏标题栏()
+
 语言=Locale.getDefault().getLanguage()
 
 ThemeColor,TextColor=...--接收主页传来的主题配色
@@ -55,8 +52,9 @@ activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
 ]]
 
 --完全沉浸，SDK>21
-if ThemeColor == "FF000000" then--防止全白
+if ThemeColor == "FF000000" or ThemeColor == "ff000000" then--防止全白
   activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS).setStatusBarColor(转0x("#FF757575"));
+  ThemeColor="#FF757575"
  else
   activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS).setStatusBarColor(转0x(ThemeColor));
 end
@@ -415,7 +413,7 @@ layout={
       background=ThemeColor;
       elevation="4dp";
       orientation="vertical";
-    id="_topbar";
+      id="_topbar";
       {--状态栏占位布局
         TextView;
         layout_height=状态栏高度;
@@ -435,14 +433,14 @@ layout={
       layout_width="-1";
       elevation="4dp";
       orientation="vertical";
- --     background=ThemeColor;
+      --     background=ThemeColor;
       id="_topbar2";
       {--状态栏占位布局
         TextView;
         layout_height=状态栏高度;
         layout_width="-1";
-      };  
-   
+      };
+
       {--标题栏布局
         LinearLayout;
         layout_height="-1";
@@ -758,6 +756,17 @@ cv11_lay.onClick=function()
   activity.startActivity(viewIntent)
 end
 
+--颜色转换
+function 转0x(颜色)
+  if #颜色==7 then
+    ab=颜色:match("#(.+)")
+    abc=tonumber("0xff"..ab)
+   else
+    ab=颜色:match("#(.+)")
+    abc=tonumber("0x"..ab)
+  end
+  return abc
+end
 
 --[[效果不行，已删除
 --print函数（原作者 @yuxuan 仅修改为函数调用）

@@ -99,6 +99,7 @@ TextColor="#FF000000"
 
 --状态栏沉浸，Android SDK>21时生效
 activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS).setStatusBarColor(0xff757575);
+
 --布局表
 layout={--侧滑根布局
   DrawerLayout;
