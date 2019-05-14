@@ -438,7 +438,7 @@ end
             request.setDestinationInExternalPublicDir("Android/media/ml.cerasus.pics/Tujian","杂烩-"..math.random(1,999999999999)..".png");
             request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
             downloadManager.enqueue(request);
-            snakebar("开始保存图片至此设备")
+            print("开始保存图片至此设备")
            else
             downloadManager=activity.getSystemService(Context.DOWNLOAD_SERVICE);
             url=Uri.parse(picUrl:sub(1,53));
@@ -447,7 +447,7 @@ end
             request.setDestinationInExternalPublicDir("Pictures/Tujian","杂烩-"..math.random(1,999999999999)..".png");
             request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
             downloadManager.enqueue(request);
-            snakebar("开始保存图片至此设备")
+            print("开始保存图片至此设备")
           end
         end
         if(which== 1) then
@@ -499,7 +499,7 @@ end
             request.setDestinationInExternalPublicDir("Android/media/ml.cerasus.pics/Tujian","插画-"..math.random(1,999999999999)..".png");
             request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
             downloadManager.enqueue(request);
-            snakebar("开始保存图片至此设备")
+            print("开始保存图片至此设备")
            else
             downloadManager=activity.getSystemService(Context.DOWNLOAD_SERVICE);
             url=Uri.parse(picUrl:sub(1,53));
@@ -508,7 +508,7 @@ end
             request.setDestinationInExternalPublicDir("Pictures/Tujian","插画-"..math.random(1,999999999999)..".png");
             request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
             downloadManager.enqueue(request);
-            snakebar("开始保存图片至此设备")
+            print("开始保存图片至此设备")
           end
         end
         if(which== 1) then
@@ -566,7 +566,7 @@ function setWallpaper(url,title) --直接传入下载链接和标题就行
       bitmap = BitmapFactory.decodeFile(path)
       manager = WallpaperManager.getInstance(activity.getApplicationContext())
       manager.setBitmap(bitmap)
-      snakebar("壁纸已设置")
+      print("壁纸已设置")
       dialog6.hide()
     end)
     function tt.onTick()
@@ -606,8 +606,8 @@ function ControlsRipple(id,Color)
   id.setBackground(Pretend.setColor(ColorStateList(int[0].class{int{}},int{Color})))
 end
 
-
---snakebar函数（原作者 @yuxuan 仅修改为函数调用）
+--[[效果不行，已删除
+--print函数（原作者 @yuxuan 仅修改为函数调用）
 function snakebar(neirong)
   --pop窗口布局
   yuxuan={
@@ -717,3 +717,4 @@ function snakebar(neirong)
   渐变(0xFF323232,0xFF323232,yuxuanpop)
   参数=tonumber(os.time())
 end
+]]

@@ -40,6 +40,8 @@ import "android.view.animation.AnimationSet"
 隐藏标题栏()
 语言=Locale.getDefault().getLanguage()
 
+ThemeColor,TextColor=...--接收主页传来的主题配色
+
 --设置颜色变量便于调用
 primaryc="#ff000000"
 write="#ffffffff"
@@ -47,13 +49,23 @@ viewshaderc="#3f000000"
 textc="#212121"
 b="#ff000000"
 w="#ffffffff"
+--[[
 --状态栏沉浸，Android SDK>19时生效
 activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+]]
+
+--完全沉浸，SDK>21
+if ThemeColor == "FF000000" then--防止全白
+  activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS).setStatusBarColor(转0x("#FF757575"));
+ else
+  activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS).setStatusBarColor(转0x(ThemeColor));
+end
 
 状态栏高度=activity.getResources().getDimensionPixelSize(luajava.bindClass("com.android.internal.R$dimen")().status_bar_height)
 
 --布局表
-layout={--页面布局
+layout={
+  --页面布局
   LinearLayout;
   layout_height="-1";
   layout_width="-1";
@@ -85,14 +97,15 @@ layout={--页面布局
             LinearLayout;
             layout_height="200dp";
             layout_width="-1";
-            background=w;
+            background=ThemeColor;
             {
               ImageView;
               layout_height="-1";
               layout_width="-1";
-              src="ceshi/res/hphoto";
+              src="ceshi/res/photo.png";
               scaleType="centerCrop";
               id="pho_top";
+              ColorFilter=ThemeColor；
             };
           };
           {--卡片
@@ -399,10 +412,10 @@ layout={--页面布局
       LinearLayout;
       layout_height="-2";
       layout_width="-1";
-      background=w;
+      background=ThemeColor;
       elevation="4dp";
       orientation="vertical";
-      id="_topbar";
+    id="_topbar";
       {--状态栏占位布局
         TextView;
         layout_height=状态栏高度;
@@ -413,6 +426,7 @@ layout={--页面布局
         layout_height="56dp";
         layout_width="-1";
         id="_topbar_top";
+        background=ThemeColor;
       };
     };
     {--顶栏布局（标题）
@@ -421,12 +435,14 @@ layout={--页面布局
       layout_width="-1";
       elevation="4dp";
       orientation="vertical";
+ --     background=ThemeColor;
       id="_topbar2";
       {--状态栏占位布局
         TextView;
         layout_height=状态栏高度;
         layout_width="-1";
-      };
+      };  
+   
       {--标题栏布局
         LinearLayout;
         layout_height="-1";
@@ -444,7 +460,7 @@ layout={--页面布局
             layout_width="56dp";
             layout_height="56dp";
             padding="16dp";
-            ColorFilter=b;
+            ColorFilter=TextColor;
             src="ceshi/res/back";
             onClick=function()关闭页面()end;
             id="_back";
@@ -453,7 +469,7 @@ layout={--页面布局
         {
           TextView;
           Text="关于";
-          textColor=b;
+          textColor=TextColor;
           textSize="20sp";
           paddingLeft="16dp";
           layout_height="56dp";
@@ -479,12 +495,12 @@ layout={--页面布局
         {
           size=0;
           layout_margin="16dp";
-          background=primaryc;
+          background=b;
           elevation="4dp";
           elevationClick="10dp";
           id="_mfb";
           src="ceshi/res/open";
-          iconColor=write;
+          iconColor=w;
           rippleColor="#3fffffff";
         };
         id="_mfb_w";
@@ -606,7 +622,11 @@ QQ群.getPaint().setFakeBoldText(true)
 隐私政策.getPaint().setFakeBoldText(true)
 绿色公约.getPaint().setFakeBoldText(true)
 开源.getPaint().setFakeBoldText(true)
+官网.getPaint().setFakeBoldText(true)
 版权.getPaint().setFakeBoldText(true)
+
+
+pho_top.setColorFilter(转0x(ThemeColor))
 
 --[[
 PS：Tujian 所选用的图片来自于 Unsplash、Pixiv、Cookapk 等社区、网站及论坛，且并非用于商业行为。
@@ -681,9 +701,9 @@ cv1_lay.onClick=function()
     语言=="zh_HK"or
     语言=="zh_TW"
     then
-    snakebar("无人为孤岛，一图一世界")
+    print("无人为孤岛，一图一世界")
    else
-    snakebar("Nobody is an island,a picture contain one world.")
+    print("Nobody is an island,a picture contain one world.")
   end
 end
 
@@ -696,9 +716,9 @@ cv3_lay.onClick=function()
     语言=="zh_HK"or
     语言=="zh_TW"
     then
-    snakebar("若加入失败，请检查是否安装了最新版本 QQ")
+    print("若加入失败，请检查是否安装了最新版本 QQ")
    else
-    snakebar("If failed, please install QQ")
+    print("If failed, please install QQ")
   end
 end
 cv4_lay.onClick=function()
@@ -732,7 +752,15 @@ cv8_lay.onClick=function()
   activity.startActivity(viewIntent)
 end
 
---snakebar函数（原作者 @yuxuan 仅修改为函数调用）
+cv11_lay.onClick=function()
+  url="https://tupics.github.io/"
+  viewIntent = Intent("android.intent.action.VIEW",Uri.parse(url))
+  activity.startActivity(viewIntent)
+end
+
+
+--[[效果不行，已删除
+--print函数（原作者 @yuxuan 仅修改为函数调用）
 function snakebar(neirong)
   --pop窗口布局
   yuxuan={
@@ -842,3 +870,4 @@ function snakebar(neirong)
   渐变(0xFF323232,0xFF323232,yuxuanpop)
   参数=tonumber(os.time())
 end
+]]

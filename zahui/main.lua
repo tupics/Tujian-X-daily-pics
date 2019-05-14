@@ -90,6 +90,8 @@ w="#ffffffff"
 b="#ff000000"
 barcolor="#ffffffff"
 t="#ff000000"
+ThemeColor="#FFFFFFFF"
+TextColor="#FF000000"
 
 状态栏高度=activity.getResources().getDimensionPixelSize(luajava.bindClass("com.android.internal.R$dimen")().status_bar_height)
 
@@ -316,7 +318,7 @@ layout={--侧滑根布局
           TextView;
           layout_height=状态栏高度;
           layout_width="-1";
-          background=w;
+          background=ThemeColor;
           id="占位";
         };
         {
@@ -622,10 +624,10 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
                   end)
 
                  else
-                  snakebar"网络不畅"
+                  print"网络不畅"
                 end
                else
-                snakebar"无法连接到 Tujian 服务器，请检查网络设置"
+                print"无法连接到 Tujian 服务器，请检查网络设置"
               end
             end
           end)
@@ -858,10 +860,10 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
                     模糊.setImageBitmap(加深后的图片)
                   end)
                  else
-                  snakebar"网络不畅"
+                  print"网络不畅"
                 end
                else
-                snakebar"无法连接到 Tujian 服务器，请检查网络设置"
+                print"无法连接到 Tujian 服务器，请检查网络设置"
               end
             end
           end)
@@ -1151,10 +1153,10 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
 
 
                    else
-                    snakebar"网络不畅"
+                    print"网络不畅"
                   end
                  else
-                  snakebar"无法连接到 Tujian 服务器，请检查网络设置"
+                  print"无法连接到 Tujian 服务器，请检查网络设置"
                 end
               end
             end)
@@ -1234,7 +1236,7 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
       activity.finish()      
       ]]
       --代码不稳定，未开放，可以自己了解
-      activity.newActivity("ceshi/main.lua")
+      activity.newActivity("ceshi/main.lua",{ThemeColor,TextColor})
      elseif s=="句子" then
       句子()
      elseif s=="交流" then
@@ -1246,9 +1248,9 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
         语言=="zh_HK"or
         语言=="zh_TW"
         then
-        snakebar("若加入失败，请检查是否安装了最新版本 QQ")
+        print("若加入失败，请检查是否安装了最新版本 QQ")
        else
-        snakebar("If failed, please install QQ")
+        print("If failed, please install QQ")
       end
      elseif s=="推送" then
       url="https://t.me/Tujiansays"
@@ -1293,7 +1295,7 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
           if
             File("/sdcard/Pictures/Tujian/Wechat-QR.jpg").exists() == true
             then
-            snakebar"二维码已存在"
+            print"二维码已存在"
            else
             downloadManager=activity.getSystemService(Context.DOWNLOAD_SERVICE);
             url=Uri.parse(qrlink);
@@ -1302,12 +1304,12 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
             request.setDestinationInExternalPublicDir("Pictures/Tujian","Wechat-QR.jpg");
             request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
             downloadManager.enqueue(request);
-            snakebar"二维码已存储至此设备"
+            print"二维码已存储至此设备"
           end
          else
           if File("/sdcard/Android/media/ml.cerasus.pics/Tujian/Wechat-QR.jpg").exists() == true
             then
-            snakebar"二维码已存在"
+            print"二维码已存在"
            else
             downloadManager=activity.getSystemService(Context.DOWNLOAD_SERVICE);
             url=Uri.parse(qrlink);
@@ -1316,7 +1318,7 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
             request.setDestinationInExternalPublicDir("Android/media/ml.cerasus.pics/Tujian","Wechat-QR.jpg");
             request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
             downloadManager.enqueue(request);
-            snakebar"二维码已存储至此设备"
+            print"二维码已存储至此设备"
           end
         end
       end)
@@ -1330,7 +1332,7 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
       viewIntent = Intent("android.intent.action.VIEW",Uri.parse(url))
       activity.startActivity(viewIntent)
      else
-      snakebar("功能暂不可用")
+      print("功能暂不可用")
     end
   end})
 
@@ -1422,6 +1424,7 @@ Http.get(pxinxi,nil,"UTF-8",UA,function(http_code,content)
   more.setColorFilter(转0x(TextColor))
   loading.IndeterminateDrawable.setColorFilter(PorterDuffColorFilter((转0x(ThemeColor)),PorterDuff.Mode.SRC_ATOP))
 
+
   import "java.io.File"--导入File类
   if File("sdcard/Android/data/ml.cerasus.pics/cache/"..biaoti..".jpg").exists() == false then
     --print(""..p_link.."?q=70")
@@ -1506,10 +1509,10 @@ Http.get(pxinxi,nil,"UTF-8",UA,function(http_code,content)
           end)
 
          else
-          snakebar"网络不畅"
+          print"网络不畅"
         end
        else
-        snakebar"无法连接到 Tujian 服务器，请检查网络设置"
+        print"无法连接到 Tujian 服务器，请检查网络设置"
       end
     end)
    else
@@ -1606,6 +1609,14 @@ bing.onClick=function()
   pop1.show()
 end
 
+
+--黑色模式测试
+function 黑色模式()
+  activity.setTheme(android.R.style.Theme_DeviceDefault_NoActionBar)
+  ThemeColor="#FF000000"
+  TextColor="#FFFFFFFF"
+end
+
 --查看图片信息img
 img.onClick=function()
   控件可见(模糊)
@@ -1628,12 +1639,12 @@ img.onClick=function()
           file,err=io.open("/sdcard/Pictures/Tujian/"..biaoti..".jpg")
           if err==nil
             then
-            snakebar("图片已存在")
+            print("图片已存在")
           end
          else
           emm = string.sub(p_link,1,16)
           if emm == "https://img.dpic"then
-            snakebar("开始保存图片至此设备")
+            print("开始保存图片至此设备")
             downloadManager=activity.getSystemService(Context.DOWNLOAD_SERVICE);
             url=Uri.parse(p_link);
             request=DownloadManager.Request(url);
@@ -1644,11 +1655,11 @@ img.onClick=function()
             import "java.io.*" --先导入io包
             file,err=io.open("/sdcard/Pictures/Tujian/"..biaoti..".jpg")
             if err==nil then
-              snakebar("图片已保存至此设备")
+              print("图片已保存至此设备")
             end
            else
             LuaUtil.copyDir("/sdcard/Android/data/ml.cerasus.pics/cache/"..biaoti..".jpg","/sdcard/Pictures/Tujian/"..biaoti..".jpg")
-            snakebar("图片已保存至此设备")
+            print("图片已保存至此设备")
           end
         end
        else
@@ -1659,11 +1670,11 @@ img.onClick=function()
           file,err=io.open("/sdcard/Android/media/ml.cerasus.pics/Tujian/"..biaoti..".jpg")
           if err==nil
             then
-            snakebar("图片已存在")
+            print("图片已存在")
           end
           emm = string.sub(p_link,1,16)
           if emm == "https://img.dpic"then
-            snakebar("开始保存图片至此设备")
+            print("开始保存图片至此设备")
             downloadManager=activity.getSystemService(Context.DOWNLOAD_SERVICE);
             url=Uri.parse(p_link);
             request=DownloadManager.Request(url);
@@ -1674,12 +1685,12 @@ img.onClick=function()
             import "java.io.*" --先导入io包
             file,err=io.open("/sdcard/Android/media/ml.cerasus.pics/Tujian/"..biaoti..".jpg")
             if err==nil then
-              snakebar("图片已保存至此设备")
+              print("图片已保存至此设备")
             end
           end
          else
           LuaUtil.copyDir("/sdcard/Android/data/ml.cerasus.pics/cache/"..biaoti..".jpg","/sdcard/Android/media/ml.cerasus.pics/Tujian/"..biaoti..".jpg")
-          snakebar("图片已保存至此设备")
+          print("图片已保存至此设备")
         end
       end
     end})
@@ -1777,12 +1788,12 @@ end
           file,err=io.open("/sdcard/Pictures/Tujian/"..biaoti..".jpg")
           if err==nil
             then
-            snakebar("图片已存在")
+            print("图片已存在")
           end
          else
           emm = string.sub(p_link,1,16)
           if emm == "https://img.dpic"then
-            snakebar("开始保存图片至此设备")
+            print("开始保存图片至此设备")
             downloadManager=activity.getSystemService(Context.DOWNLOAD_SERVICE);
             url=Uri.parse(p_link);
             request=DownloadManager.Request(url);
@@ -1793,11 +1804,11 @@ end
             import "java.io.*" --先导入io包
             file,err=io.open("/sdcard/Pictures/Tujian/"..biaoti..".jpg")
             if err==nil then
-              snakebar("图片已保存至此设备")
+              print("图片已保存至此设备")
             end
            else
             LuaUtil.copyDir("/sdcard/Android/data/ml.cerasus.pics/cache/"..biaoti..".jpg","/sdcard/Pictures/Tujian/"..biaoti..".jpg")
-            snakebar("图片已保存至此设备")
+            print("图片已保存至此设备")
           end
         end
        else
@@ -1808,11 +1819,11 @@ end
           file,err=io.open("/sdcard/Android/media/ml.cerasus.pics/Tujian/"..biaoti..".jpg")
           if err==nil
             then
-            snakebar("图片已存在")
+            print("图片已存在")
           end
           emm = string.sub(p_link,1,16)
           if emm == "https://img.dpic"then
-            snakebar("开始保存图片至此设备")
+            print("开始保存图片至此设备")
             downloadManager=activity.getSystemService(Context.DOWNLOAD_SERVICE);
             url=Uri.parse(p_link);
             request=DownloadManager.Request(url);
@@ -1823,12 +1834,12 @@ end
             import "java.io.*" --先导入io包
             file,err=io.open("/sdcard/Android/media/ml.cerasus.pics/Tujian/"..biaoti..".jpg")
             if err==nil then
-              snakebar("图片已保存至此设备")
+              print("图片已保存至此设备")
             end
           end
          else
           LuaUtil.copyDir("/sdcard/Android/data/ml.cerasus.pics/cache/"..biaoti..".jpg","/sdcard/Android/media/ml.cerasus.pics/Tujian/"..biaoti..".jpg")
-          snakebar("图片已保存至此设备")
+          print("图片已保存至此设备")
         end
       end
     end})
@@ -1891,7 +1902,7 @@ loading.IndeterminateDrawable.setColorFilter(PorterDuffColorFilter(0xff000000,Po
             request.setDestinationInExternalPublicDir("Android/media/ml.cerasus.pics/Tujian","桌面-"..math.random(1,999999999999)..".png");
             request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
             downloadManager.enqueue(request);
-            snakebar("开始保存图片至此设备")
+            print("开始保存图片至此设备")
            else
             downloadManager=activity.getSystemService(Context.DOWNLOAD_SERVICE);
             url=Uri.parse(picUrl:sub(1,53));
@@ -1900,7 +1911,7 @@ loading.IndeterminateDrawable.setColorFilter(PorterDuffColorFilter(0xff000000,Po
             request.setDestinationInExternalPublicDir("Pictures/Tujian","桌面-"..math.random(1,999999999999)..".png");
             request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
             downloadManager.enqueue(request);
-            snakebar("开始保存图片至此设备")
+            print("开始保存图片至此设备")
           end
         end
         if(which== 1) then
@@ -1986,7 +1997,7 @@ function onKeyDown(code,event)
     if 参数+2 > tonumber(os.time()) then
       activity.finish()
      else
-      snakebar("再按一次返回键退出")
+      print("再按一次返回键退出")
       _drawer.closeDrawer(3)
       参数=tonumber(os.time())
     end
@@ -2009,7 +2020,7 @@ function 句子()
       .setNeutralButton("复制",{onClick=function(v)
           import "android.content.*"
           activity.getSystemService(Context.CLIPBOARD_SERVICE).setText(body)
-          snakebar("已复制到剪贴板")
+          print("已复制到剪贴板")
         end})
       .show()
       dialog.getButton(dialog.BUTTON_POSITIVE).setTextColor(0xff000000)
@@ -2069,7 +2080,7 @@ function setWallpaper(url,title) --直接传入下载链接和标题就行
       bitmap = BitmapFactory.decodeFile(path)
       manager = WallpaperManager.getInstance(activity.getApplicationContext())
       manager.setBitmap(bitmap)
-      snakebar("壁纸已设置")
+      print("壁纸已设置")
       dialog6.hide()
     end)
     function tt.onTick()
@@ -2109,8 +2120,8 @@ function 转0x(颜色)
   return abc
 end
 
-
---snakebar函数（原作者 @yuxuan 仅修改为函数调用）
+--[[效果不行，已删除
+--print函数（原作者 @yuxuan 仅修改为函数调用）
 function snakebar(neirong)
   --pop窗口布局
   yuxuan={
@@ -2221,3 +2232,4 @@ function snakebar(neirong)
   渐变(0xFF323232,0xFF323232,yuxuanpop)
   参数=tonumber(os.time())
 end
+]]
