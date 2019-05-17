@@ -26,6 +26,7 @@ import "android.view.WindowManager"
 activity.setContentView(loadlayout("layout"))
 --设置视图("layout")
 activity.newActivity("zahui/main.lua")
+activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)--禁止横屏
 --关闭页面()
 activity.finish()
 

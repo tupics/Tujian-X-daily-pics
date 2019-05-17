@@ -35,6 +35,8 @@ import "android.view.animation.AnimationSet"
 
 隐藏标题栏()
 
+activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)--禁止横屏
+
 语言=Locale.getDefault().getLanguage()
 
 ThemeColor,TextColor=...--接收主页传来的主题配色
@@ -437,7 +439,6 @@ layout={
       layout_width="-1";
       elevation="4dp";
       orientation="vertical";
-      --     background=ThemeColor;
       id="_topbar2";
       --[[ 
       {--状态栏占位布局
@@ -707,9 +708,9 @@ cv1_lay.onClick=function()
     语言=="zh_HK"or
     语言=="zh_TW"
     then
-    print("无人为孤岛，一图一世界")
+    SnakeBar("无人为孤岛，一图一世界")
    else
-    print("Nobody is an island,a picture contain one world.")
+    SnakeBar("Nobody is an island,a picture contain one world.")
   end
 end
 
@@ -722,9 +723,9 @@ cv3_lay.onClick=function()
     语言=="zh_HK"or
     语言=="zh_TW"
     then
-    print("若加入失败，请检查是否安装了最新版本 QQ")
+    SnakeBar("若加入失败，请检查是否安装了最新版本 QQ")
    else
-    print("If failed, please install QQ")
+    SnakeBar("If failed, please install QQ")
   end
 end
 cv4_lay.onClick=function()
@@ -776,115 +777,11 @@ function 转0x(颜色)
   return abc
 end
 
---[[效果不行，已删除
---print函数（原作者 @yuxuan 仅修改为函数调用）
-function snakebar(neirong)
-  --pop窗口布局
-  yuxuan={
-    LinearLayout,
-    orientation="vertical",
-    layout_width="fill",
-    layout_height="fill",
-    background="#000000",
-    id="yuxuanpop",
-    {
-      TextView,
-      text=neirong,
-      textColor="#ffffff",
-      textSize="15sp",
-      layout_gravity="left",
-      layout_marginTop="13dp",
-      layout_marginLeft="25dp",
-      id="text";
-    }
-  }
-  --定义一个弹窗为PopupWindow类型的弹窗
-  pop=PopupWindow(activity)
-  --给弹窗一个自定义布局
-  pop.setContentView(loadlayout(yuxuan))
-  --修复bug,千万不能删除
-  pop.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
-  --设置显示宽度
-  pop.setWidth(activity.width)
-  --设置显示高度
-  pop.setHeight(130)
-  --点击PopupWindow外面区域  true为消失
-  pop.setOutsideTouchable(false)
-  --修复bug,千万不能删
-  pop.setBackgroundDrawable(BitmapDrawable(loadbitmap("9.jpg")))
-  --设置pop可获得焦点
-  pop.setFocusable(false)
-  --设置pop可触摸
-  pop.setTouchable(true)
-  --设置弹窗显示位置
-  pop.showAtLocation(view,Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL,0,0)
-
-
-  --下面这个动画可要可不要，我使用是为了增加微交互，更爽
-  --这个是弹窗里面的控件动画
-  --定义动画变量,使用AnimationSet类，使该动画可加载多种动画
-  animationSet = AnimationSet(true)
-  --设置布局动画，布局动画的意思是布局里面的控件执行动画，而非单个控件动画，参数:动画名，延迟
-  layoutAnimationController=LayoutAnimationController(animationSet,0.2);
-  --设置动画类型，顺序   反序   随机
-  layoutAnimationController.setOrder(LayoutAnimationController.ORDER_NORMAL); --   ORDER_     NORMAL     REVERSE     RANDOM
-  --id控件加载动画
-  yuxuanpop.setLayoutAnimation(layoutAnimationController);
-
-  --渐变动画
-  yuxuan_dh1= AlphaAnimation(0,1);
-  --渐变动画时长
-  yuxuan_dh1.setDuration(00);
-  --添加动画
-  animationSet.addAnimation(yuxuan_dh1);
-
-  --平移动画
-  yuxuan_dh2=TranslateAnimation(Animation.RELATIVE_TO_PARENT, 1, Animation.RELATIVE_TO_SELF, 0, Animation.RELATIVE_TO_SELF, 0, Animation.RELATIVE_TO_SELF, 0);
-  --动画时长
-  yuxuan_dh2.setDuration(00);
-  --添加动画
-  animationSet.addAnimation(yuxuan_dh2);
-
-
-
-
-  --上升动画
-  --相关参数，请自行手册查询
-  --定义动画,500为上升高度
-  yuxuandh3=TranslateAnimation(0, 0,130, 0)
-  --动画时间，也就是上升动画的快慢
-  yuxuandh3.setDuration(200)
-  --动画开始执行
-  yuxuanpop.startAnimation(yuxuandh3);
-  --动画结束回调
-  import "android.view.animation.Animation$AnimationListener"
-  yuxuandh3.setAnimationListener(AnimationListener{
-    onAnimationEnd=function()
-
-      --3000是动画间隔时间
-      task(800,function()
-        --同yuxuandh3
-        yuxuandh4=TranslateAnimation(0, 0,0,130)
-        yuxuandh4.setDuration(200)
-        yuxuanpop.startAnimation(yuxuandh4);
-        import "android.view.animation.Animation$AnimationListener"
-        yuxuandh4.setAnimationListener(AnimationListener{
-          onAnimationEnd=function()
-
-            pop.dismiss()
-          end})
-      end)
-    end})
-
-  function 渐变(left_jb,right_jb,id)
-    drawable = GradientDrawable(GradientDrawable.Orientation.TR_BL,{
-      right_jb,--右色
-      left_jb,--左色
-    });
-    id.setBackgroundDrawable(drawable)
-  end
-  --调用渐变函数
-  渐变(0xFF323232,0xFF323232,yuxuanpop)
-  参数=tonumber(os.time())
+--Snakebar函数，具体代码请见根目录Snakebar.lua
+function SnakeBar(fill)
+  SnackerBar.build()
+  :msg(fill)
+  :actionText("")
+  :action(function() end)
+  :show()
 end
-]]

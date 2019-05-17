@@ -26,6 +26,8 @@ sdk = tointeger(Build.VERSION.SDK)
 
 隐藏标题栏()
 
+activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)--禁止横屏
+
 --设置颜色变量便于调用
 primaryc="#3F51B5"
 write="#ffffffff"
@@ -272,18 +274,18 @@ obs_1.setScrollViewCallbacks(ObservableScrollViewCallbacks{
   --滚动时
   onScrollChanged=function(scrollY,firstScroll,dragging)
     obs1_lst=scrollY
-    --print(scrollY)
+    --SnakeBar(scrollY)
   end,
 
   --按下
   onDownMotionEvent=function()
-    --print("按下")
+    --SnakeBar("按下")
   end,
 
   --拖拽结束或者取消时
   onUpOrCancelMotionEvent=function(scrollState)
     if(scrollState==ScrollState.DOWN) then
-      --print("向下滚动");
+      --SnakeBar("向下滚动");
       translationUp = ObjectAnimator.ofFloat(_topbar, "Y",{_topbar.getY(), 0})
       translationUp.setInterpolator(DecelerateInterpolator())
       translationUp.setDuration(256)
@@ -293,7 +295,7 @@ obs_1.setScrollViewCallbacks(ObservableScrollViewCallbacks{
       alpha.setInterpolator(DecelerateInterpolator())
       alpha.start()
      elseif(scrollState==ScrollState.UP) then
-      --print("向上滚动");
+      --SnakeBar("向上滚动");
       if obs1_lst>=5 then
         translationUp = ObjectAnimator.ofFloat(_topbar, "Y",{_topbar.getY(),-dp2px(56)})
         translationUp.setInterpolator(DecelerateInterpolator())
@@ -304,7 +306,7 @@ obs_1.setScrollViewCallbacks(ObservableScrollViewCallbacks{
         alpha.setInterpolator(DecelerateInterpolator())
         alpha.start()
        else
-        --print("向下滚动");
+        --SnakeBar("向下滚动");
         translationUp = ObjectAnimator.ofFloat(_topbar, "Y",{_topbar.getY(), 0})
         translationUp.setInterpolator(DecelerateInterpolator())
         translationUp.setDuration(256)
@@ -315,7 +317,7 @@ obs_1.setScrollViewCallbacks(ObservableScrollViewCallbacks{
         alpha.start()
       end
      else
-      --print("停止滚动");
+      --SnakeBar("停止滚动");
     end
 
   end
@@ -325,7 +327,7 @@ obs_2.setScrollViewCallbacks(ObservableScrollViewCallbacks{
   --滚动时
   onScrollChanged=function(scrollY,firstScroll,dragging)
     obs2_lst=scrollY
-    --print(scrollY,firstScroll,dragging)
+    --SnakeBar(scrollY,firstScroll,dragging)
 
     -- param scrollY 在Y轴滚动位置。
     -- firstScroll 是否是第一次（刚开始）滑动
@@ -334,13 +336,13 @@ obs_2.setScrollViewCallbacks(ObservableScrollViewCallbacks{
 
   --按下
   onDownMotionEvent=function()
-    --print("按下")
+    --SnakeBar("按下")
   end,
 
   --拖拽结束或者取消时
   onUpOrCancelMotionEvent=function(scrollState)
     if(scrollState==ScrollState.DOWN) then
-      --print("向下滚动");
+      --SnakeBar("向下滚动");
       translationUp = ObjectAnimator.ofFloat(_topbar, "Y",{_topbar.getY(), 0})
       translationUp.setInterpolator(DecelerateInterpolator())
       translationUp.setDuration(256)
@@ -351,7 +353,7 @@ obs_2.setScrollViewCallbacks(ObservableScrollViewCallbacks{
       alpha.start()
      elseif(scrollState==ScrollState.UP) then
       if obs2_lst>=5 then
-        --print("向上滚动");
+        --SnakeBar("向上滚动");
         translationUp = ObjectAnimator.ofFloat(_topbar, "Y",{_topbar.getY(),-dp2px(56)})
         translationUp.setInterpolator(DecelerateInterpolator())
         translationUp.setDuration(256)
@@ -361,7 +363,7 @@ obs_2.setScrollViewCallbacks(ObservableScrollViewCallbacks{
         alpha.setInterpolator(DecelerateInterpolator())
         alpha.start()
        else
-        --print("向下滚动");
+        --SnakeBar("向下滚动");
         translationUp = ObjectAnimator.ofFloat(_topbar, "Y",{_topbar.getY(), 0})
         translationUp.setInterpolator(DecelerateInterpolator())
         translationUp.setDuration(256)
@@ -372,7 +374,7 @@ obs_2.setScrollViewCallbacks(ObservableScrollViewCallbacks{
         alpha.start()
       end
      else
-      --print("停止滚动");
+      --SnakeBar("停止滚动");
     end
 
   end
@@ -389,7 +391,7 @@ MLua模板 by MUK
 控件隐藏(subtitle)
 _title.getPaint().setFakeBoldText(true)
 ThemeColor,TextColor=...--载入参数
---print(ThemeColor,TextColor)--测试
+--SnakeBar(ThemeColor,TextColor)--测试
 
 --[[
 kbl3=...--接受在杂烩设置的空变量
@@ -438,7 +440,7 @@ end
             request.setDestinationInExternalPublicDir("Android/media/ml.cerasus.pics/Tujian","杂烩-"..math.random(1,999999999999)..".png");
             request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
             downloadManager.enqueue(request);
-            print("开始保存图片至此设备")
+            SnakeBar("开始保存图片至此设备")
            else
             downloadManager=activity.getSystemService(Context.DOWNLOAD_SERVICE);
             url=Uri.parse(picUrl:sub(1,53));
@@ -447,7 +449,7 @@ end
             request.setDestinationInExternalPublicDir("Pictures/Tujian","杂烩-"..math.random(1,999999999999)..".png");
             request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
             downloadManager.enqueue(request);
-            print("开始保存图片至此设备")
+            SnakeBar("开始保存图片至此设备")
           end
         end
         if(which== 1) then
@@ -499,7 +501,7 @@ end
             request.setDestinationInExternalPublicDir("Android/media/ml.cerasus.pics/Tujian","插画-"..math.random(1,999999999999)..".png");
             request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
             downloadManager.enqueue(request);
-            print("开始保存图片至此设备")
+            SnakeBar("开始保存图片至此设备")
            else
             downloadManager=activity.getSystemService(Context.DOWNLOAD_SERVICE);
             url=Uri.parse(picUrl:sub(1,53));
@@ -508,7 +510,7 @@ end
             request.setDestinationInExternalPublicDir("Pictures/Tujian","插画-"..math.random(1,999999999999)..".png");
             request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
             downloadManager.enqueue(request);
-            print("开始保存图片至此设备")
+            SnakeBar("开始保存图片至此设备")
           end
         end
         if(which== 1) then
@@ -529,6 +531,7 @@ end
   onPageFinished=function(view,url)
     控件隐藏(subtitle)
   end}
+
 
 
 --设置壁纸函数
@@ -566,7 +569,7 @@ function setWallpaper(url,title) --直接传入下载链接和标题就行
       bitmap = BitmapFactory.decodeFile(path)
       manager = WallpaperManager.getInstance(activity.getApplicationContext())
       manager.setBitmap(bitmap)
-      print("壁纸已设置")
+      SnakeBar("壁纸已设置")
       dialog6.hide()
     end)
     function tt.onTick()
@@ -606,115 +609,11 @@ function ControlsRipple(id,Color)
   id.setBackground(Pretend.setColor(ColorStateList(int[0].class{int{}},int{Color})))
 end
 
---[[效果不行，已删除
---print函数（原作者 @yuxuan 仅修改为函数调用）
-function snakebar(neirong)
-  --pop窗口布局
-  yuxuan={
-    LinearLayout,
-    orientation="vertical",
-    layout_width="fill",
-    layout_height="fill",
-    background="#000000",
-    id="yuxuanpop",
-    {
-      TextView,
-      text=neirong,
-      textColor="#ffffff",
-      textSize="15sp",
-      layout_gravity="left",
-      layout_marginTop="13dp",
-      layout_marginLeft="25dp",
-      id="text";
-    }
-  }
-  --定义一个弹窗为PopupWindow类型的弹窗
-  pop=PopupWindow(activity)
-  --给弹窗一个自定义布局
-  pop.setContentView(loadlayout(yuxuan))
-  --修复bug,千万不能删除
-  pop.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
-  --设置显示宽度
-  pop.setWidth(activity.width)
-  --设置显示高度
-  pop.setHeight(130)
-  --点击PopupWindow外面区域  true为消失
-  pop.setOutsideTouchable(false)
-  --修复bug,千万不能删
-  pop.setBackgroundDrawable(BitmapDrawable(loadbitmap("9.jpg")))
-  --设置pop可获得焦点
-  pop.setFocusable(false)
-  --设置pop可触摸
-  pop.setTouchable(true)
-  --设置弹窗显示位置
-  pop.showAtLocation(view,Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL,0,0)
-
-
-  --下面这个动画可要可不要，我使用是为了增加微交互，更爽
-  --这个是弹窗里面的控件动画
-  --定义动画变量,使用AnimationSet类，使该动画可加载多种动画
-  animationSet = AnimationSet(true)
-  --设置布局动画，布局动画的意思是布局里面的控件执行动画，而非单个控件动画，参数:动画名，延迟
-  layoutAnimationController=LayoutAnimationController(animationSet,0.2);
-  --设置动画类型，顺序   反序   随机
-  layoutAnimationController.setOrder(LayoutAnimationController.ORDER_NORMAL); --   ORDER_     NORMAL     REVERSE     RANDOM
-  --id控件加载动画
-  yuxuanpop.setLayoutAnimation(layoutAnimationController);
-
-  --渐变动画
-  yuxuan_dh1= AlphaAnimation(0,1);
-  --渐变动画时长
-  yuxuan_dh1.setDuration(00);
-  --添加动画
-  animationSet.addAnimation(yuxuan_dh1);
-
-  --平移动画
-  yuxuan_dh2=TranslateAnimation(Animation.RELATIVE_TO_PARENT, 1, Animation.RELATIVE_TO_SELF, 0, Animation.RELATIVE_TO_SELF, 0, Animation.RELATIVE_TO_SELF, 0);
-  --动画时长
-  yuxuan_dh2.setDuration(00);
-  --添加动画
-  animationSet.addAnimation(yuxuan_dh2);
-
-
-
-
-  --上升动画
-  --相关参数，请自行手册查询
-  --定义动画,500为上升高度
-  yuxuandh3=TranslateAnimation(0, 0,130, 0)
-  --动画时间，也就是上升动画的快慢
-  yuxuandh3.setDuration(200)
-  --动画开始执行
-  yuxuanpop.startAnimation(yuxuandh3);
-  --动画结束回调
-  import "android.view.animation.Animation$AnimationListener"
-  yuxuandh3.setAnimationListener(AnimationListener{
-    onAnimationEnd=function()
-
-      --3000是动画间隔时间
-      task(800,function()
-        --同yuxuandh3
-        yuxuandh4=TranslateAnimation(0, 0,0,130)
-        yuxuandh4.setDuration(200)
-        yuxuanpop.startAnimation(yuxuandh4);
-        import "android.view.animation.Animation$AnimationListener"
-        yuxuandh4.setAnimationListener(AnimationListener{
-          onAnimationEnd=function()
-
-            pop.dismiss()
-          end})
-      end)
-    end})
-
-  function 渐变(left_jb,right_jb,id)
-    drawable = GradientDrawable(GradientDrawable.Orientation.TR_BL,{
-      right_jb,--右色
-      left_jb,--左色
-    });
-    id.setBackgroundDrawable(drawable)
-  end
-  --调用渐变函数
-  渐变(0xFF323232,0xFF323232,yuxuanpop)
-  参数=tonumber(os.time())
+--Snakebar函数，具体代码请见根目录Snakebar.lua
+function SnakeBar(fill)
+  SnackerBar.build()
+  :msg(fill)
+  :actionText("")
+  :action(function() end)
+  :show()
 end
-]]
