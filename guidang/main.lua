@@ -20,6 +20,9 @@ import "android.widget.*"
 import "android.view.*"
 import "com.github.ksoichiro.android.observablescrollview.*"--导入ObservableScrollView，容易监听滑动
 import "muk"--导入中文函数
+import "SnakeBar" 
+import "android.content.pm.ActivityInfo"
+
 
 ThemeColor,TextColor=...--载入参数
 sdk = tointeger(Build.VERSION.SDK)

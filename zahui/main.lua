@@ -62,6 +62,7 @@ import "android.graphics.PorterDuff"
 import "com.androlua.LuaUtil"
 import 'android.graphics.drawable.*'
 import "SnackerBar"
+import "android.content.pm.ActivityInfo"
 
 
 隐藏标题栏()

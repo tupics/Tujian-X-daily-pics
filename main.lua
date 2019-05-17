@@ -20,6 +20,7 @@ import "android.widget.*"
 import "android.view.*"
 import "android.graphics.ColorFilter"
 import "android.view.WindowManager"
+import "android.content.pm.ActivityInfo"
 
 --activity.setTitle('MLua')
 --activity.setTheme(android.R.style.Theme_DeviceDefault_Light)

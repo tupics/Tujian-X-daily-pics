@@ -32,6 +32,8 @@ import "android.widget.RatingBar"
 import "android.widget.NumberPicker"
 import "android.view.animation.TranslateAnimation"
 import "android.view.animation.AnimationSet"
+import "SnakeBar" 
+import "android.content.pm.ActivityInfo"
 
 隐藏标题栏()
 
