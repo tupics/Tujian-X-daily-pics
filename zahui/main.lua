@@ -61,7 +61,7 @@ import "android.graphics.PorterDuffColorFilter"
 import "android.graphics.PorterDuff"
 import "com.androlua.LuaUtil"
 import 'android.graphics.drawable.*'
-import "SnackBar"
+import "SnakeBar"
 import "android.content.pm.ActivityInfo"
 
 
