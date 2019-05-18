@@ -30,6 +30,8 @@ import "muk"
 activity.setContentView(loadlayout("layout"))
 --设置视图("layout")
 
+sdk = tointeger(Build.VERSION.SDK)
+
 --检测是否启动过了，打开welcome.lua
 import "java.io.File"--导入File类
 if File("/sdcard/Android/data/ml.cerasus.pics/cachemain/welcome.tj").exists() ==false
