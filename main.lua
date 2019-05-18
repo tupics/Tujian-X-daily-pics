@@ -21,6 +21,9 @@ import "android.view.*"
 import "android.graphics.ColorFilter"
 import "android.view.WindowManager"
 import "android.content.pm.ActivityInfo"
+import "android.content.pm.PackageManager"
+import "android.Manifest"
+import "muk"
 
 --activity.setTitle('MLua')
 --activity.setTheme(android.R.style.Theme_DeviceDefault_Light)
@@ -28,26 +31,29 @@ activity.setContentView(loadlayout("layout"))
 --设置视图("layout")
 
 --检测是否启动过了，打开welcome.lua
-function getData(name,key)
-  local data=this.getApplicationContext().getSharedPreferences(name,0).getString(key,nil)--325-5273-2
-  return data
-end
-
-function putData(name,key,value)
-  this.getApplicationContext().getSharedPreferences(name,0).edit().putString(key,value).apply()--3255-2732
-  return true
-end
-if not getData("welcome","是否启动过？") then
-  putData("welcome","是否启动过？","已经启动过了")
+import "java.io.File"--导入File类
+if File("/sdcard/Android/data/ml.cerasus.pics/cachemain/welcome.tj").exists() ==false
+  then
+  f=File(tostring(File(tostring("/sdcard/Android/data/ml.cerasus.pics/cachemain/welcome.tj")).getParentFile())).mkdirs()
+  io.open(tostring("/sdcard/Android/data/ml.cerasus.pics/cachemain/welcome.tj"),"w"):write(tostring("Welcome to use Tujian X")):close()
   activity.newActivity('welcome/main.lua')
+  activity.finish()
+  if tointeger(sdk) <= 28
+    then
+    申请权限({Manifest.permission.WRITE_EXTERNAL_STORAGE})
+  end
  else
   activity.newActivity("zahui/main.lua")
+  activity.finish()
 end
+
+
+
 
 activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)--禁止横屏
 
-activity.finish()
 
 if Build.VERSION.SDK_INT >= 21 then
   activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS).setStatusBarColor(0xff4285f4);
 end
+

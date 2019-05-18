@@ -57,7 +57,8 @@ local layout={
       paddingBottom="5dp",
       layout_width=0,
         },
-    {Button,
+    {
+      Button,
       layout_height=-2,
       style="?android:attr/buttonBarButtonStyle",
       text="DONE",

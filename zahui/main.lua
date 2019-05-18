@@ -373,6 +373,7 @@ layout={--侧滑根布局
   };
 };
 
+
 设置视图(layout)
 
 --波纹({cv1_lay},"方黑")
@@ -473,6 +474,7 @@ adp.add{__type=2,iv={src="zahui/res/right.png"},tv="捐赠"}
 adp.add{__type=2,iv={src="zahui/res/upload.png"},tv="投稿"}
 adp.add{__type=2,iv={src="zahui/res/qq.png"},tv="交流"}
 adp.add{__type=2,iv={src="zahui/res/push.png"},tv="推送"}
+adp.add{__type=2,iv={src="zahui/res/setting.png"},tv="设置"}
 adp.add{__type=2,iv={src="zahui/res/info.png"},tv="关于"}
 drawer_lv.setAdapter(adp)
 
@@ -741,6 +743,7 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
       adp.add{__type=2,iv={src="zahui/res/upload.png"},tv="投稿"}
       adp.add{__type=2,iv={src="zahui/res/qq.png"},tv="交流"}
       adp.add{__type=2,iv={src="zahui/res/push.png"},tv="推送"}
+      adp.add{__type=2,iv={src="zahui/res/setting.png"},tv="设置"}
       adp.add{__type=2,iv={src="zahui/res/info.png"},tv="关于"}
       local pxinxi = "https://dp.chimon.me/api/today.php?sort=插画"
       Http.get(pxinxi,nil,"UTF-8",UA,function(http_code,content)
@@ -984,6 +987,7 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
       adp.add{__type=2,iv={src="zahui/res/upload.png"},tv="投稿"}
       adp.add{__type=2,iv={src="zahui/res/qq.png"},tv="交流"}
       adp.add{__type=2,iv={src="zahui/res/push.png"},tv="推送"}
+      adp.add{__type=2,iv={src="zahui/res/setting.png"},tv="设置"}
       adp.add{__type=2,iv={src="zahui/res/info.png"},tv="关于"}
       _drawer.closeDrawer(3)
       _title.Text = "桌面"
@@ -1020,6 +1024,7 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
       adp.add{__type=2,iv={src="zahui/res/upload.png"},tv="投稿"}
       adp.add{__type=2,iv={src="zahui/res/qq.png"},tv="交流"}
       adp.add{__type=2,iv={src="zahui/res/push.png"},tv="推送"}
+      adp.add{__type=2,iv={src="zahui/res/setting.png"},tv="设置"}
       adp.add{__type=2,iv={src="zahui/res/info.png"},tv="关于"}
       _drawer.closeDrawer(3)
       控件隐藏(subtitle)
@@ -1384,6 +1389,8 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
       url="https://dpic.dev/tg"
       viewIntent = Intent("android.intent.action.VIEW",Uri.parse(url))
       activity.startActivity(viewIntent)
+     elseif s=="设置" then
+      SnakeBar("敬请期待..")
      else
       SnakeBar("功能暂不可用")
     end
@@ -1519,46 +1526,46 @@ Http.get(pxinxi,nil,"UTF-8",UA,function(http_code,content)
             f=File(tostring(File(tostring("/sdcard/Android/data/ml.cerasus.pics/cachemain/a.tj")).getParentFile())).mkdirs()
             io.open(tostring("/sdcard/Android/data/ml.cerasus.pics/cachemain/a.tj"),"w"):write(tostring("Welcome to use Tujian X")):close()
             --  os.execute('mkdir'.."/storage/emulated/0/Android/data/ml.cerasus.pics/cachemain/a.tj")
-          end          
-            function blur( context, bitmap, blurRadius)
-              renderScript = RenderScript.create(context);
-              blurScript = ScriptIntrinsicBlur.create(renderScript, Element.U8_4(renderScript));
-              inAllocation = Allocation.createFromBitmap(renderScript, bitmap);
-              outputBitmap = bitmap;
-              outAllocation = Allocation.createTyped(renderScript, inAllocation.getType());
-              blurScript.setRadius(blurRadius);
-              blurScript.setInput(inAllocation);
-              blurScript.forEach(outAllocation);
-              outAllocation.copyTo(outputBitmap);
-              inAllocation.destroy();
-              outAllocation.destroy();
-              renderScript.destroy();
-              blurScript.destroy();
-              return outputBitmap;
-            end
+          end
+          function blur( context, bitmap, blurRadius)
+            renderScript = RenderScript.create(context);
+            blurScript = ScriptIntrinsicBlur.create(renderScript, Element.U8_4(renderScript));
+            inAllocation = Allocation.createFromBitmap(renderScript, bitmap);
+            outputBitmap = bitmap;
+            outAllocation = Allocation.createTyped(renderScript, inAllocation.getType());
+            blurScript.setRadius(blurRadius);
+            blurScript.setInput(inAllocation);
+            blurScript.forEach(outAllocation);
+            outAllocation.copyTo(outputBitmap);
+            inAllocation.destroy();
+            outAllocation.destroy();
+            renderScript.destroy();
+            blurScript.destroy();
+            return outputBitmap;
+          end
 
-            bitmap=loadbitmap("/sdcard/Android/data/ml.cerasus.pics/cache/"..biaoti..".jpg")
-            --Gaussian = blur(activity,bitmap,25) --模糊度 0 ~ 25
-            --imageView.setImageBitmap(Gaussian)
-
-
-            --高斯模糊加深
-            function blurAndZoom(context,bitmap,blurRadius,scale)
-              return zoomBitmap(blur(context,zoomBitmap(bitmap, 1 / scale), blurRadius), scale);
-            end
-
-            function zoomBitmap(bitmap,scale)
-              w = bitmap.getWidth();
-              h = bitmap.getHeight();
-              matrix = Matrix();
-              matrix.postScale(scale, scale);
-              bitmap = Bitmap.createBitmap(bitmap, 0, 0, w, h, matrix, true);
-              return bitmap;
-            end
+          bitmap=loadbitmap("/sdcard/Android/data/ml.cerasus.pics/cache/"..biaoti..".jpg")
+          --Gaussian = blur(activity,bitmap,25) --模糊度 0 ~ 25
+          --imageView.setImageBitmap(Gaussian)
 
 
-            加深后的图片=blurAndZoom(activity,bitmap,25,4)
-            模糊.setImageBitmap(加深后的图片)        
+          --高斯模糊加深
+          function blurAndZoom(context,bitmap,blurRadius,scale)
+            return zoomBitmap(blur(context,zoomBitmap(bitmap, 1 / scale), blurRadius), scale);
+          end
+
+          function zoomBitmap(bitmap,scale)
+            w = bitmap.getWidth();
+            h = bitmap.getHeight();
+            matrix = Matrix();
+            matrix.postScale(scale, scale);
+            bitmap = Bitmap.createBitmap(bitmap, 0, 0, w, h, matrix, true);
+            return bitmap;
+          end
+
+
+          加深后的图片=blurAndZoom(activity,bitmap,25,4)
+          模糊.setImageBitmap(加深后的图片)
 
          else
           SnakeBar"网络不畅"
@@ -1924,6 +1931,7 @@ end
 
 --修改ProgressBar颜色
 loading.IndeterminateDrawable.setColorFilter(PorterDuffColorFilter(0xff000000,PorterDuff.Mode.SRC_ATOP))
+
 
 --Webview版本桌面壁纸
 桌面.loadUrl("https://dp.chimon.me/fapp/old.php?sort=电脑壁纸")--加载网页

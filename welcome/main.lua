@@ -1,3 +1,18 @@
+--[[
+Copyright [2018－2019] [Tujian X @Createlite]
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+]]
 require "import"
 import "android.app.*"
 import "android.os.*"
@@ -16,8 +31,20 @@ import "android.widget.GridLayout"
 import "android.support.v4.app.*"
 import "com.tencent.smtt.sdk.*"
 import "android.widget.PopupMenu"
+import "muk"
 import "android.graphics.*"
+import "android.content.pm.ActivityInfo"
+import "Createlite@Tujian@SnakerBar"
 
+隐藏标题栏()
+
+activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)--禁止横屏
+
+
+--[[
+代码大约50%原创，其中很大一部分是在 @MUK 的思路下完成的
+源代码是 @Luxts 的欢迎页，这里被我做了不少改动...
+]]
 
 fltBtncolor='#607D8B'--悬浮窗颜色
 fltBtncolor2='#efefef'--悬浮窗图标颜色
@@ -261,3 +288,12 @@ Hola.getPaint().setFakeBoldText(true)
 sologen.getPaint().setFakeBoldText(true)
 Tujian.getPaint().setFakeBoldText(true)
 Tujian.getPaint().setTextSkewX(-0.2)
+
+--Snakebar函数，具体代码请见根目录Snakebar.lua
+function SnakeBar(fill)
+  SnackerBar.build()
+  :msg(fill)
+  :actionText("")
+  :action(function() end)
+  :show()
+end
