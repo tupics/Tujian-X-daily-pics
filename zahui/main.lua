@@ -61,7 +61,7 @@ import "android.graphics.PorterDuffColorFilter"
 import "android.graphics.PorterDuff"
 import "com.androlua.LuaUtil"
 import 'android.graphics.drawable.*'
-import "SnakeBar"
+import "Createlite@Tujian@SnakerBar"
 import "android.content.pm.ActivityInfo"
 
 
@@ -294,7 +294,7 @@ layout={--侧滑根布局
     gravity="center",
     {
       ProgressBar;
-      style="?android:attr/progressBarStyleLarge";
+      --style="?android:attr/progressBarStyleLarge";--设置大loading圆圈
       id="loading";
     };
   };
@@ -1397,6 +1397,7 @@ MLua模板 by MUK
 
 
 ]]
+
 
 --[[
 动画代码不稳定，未开放

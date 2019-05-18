@@ -26,9 +26,26 @@ import "android.content.pm.ActivityInfo"
 --activity.setTheme(android.R.style.Theme_DeviceDefault_Light)
 activity.setContentView(loadlayout("layout"))
 --设置视图("layout")
-activity.newActivity("zahui/main.lua")
+
+--检测是否启动过了，打开welcome.lua
+function getData(name,key)
+  local data=this.getApplicationContext().getSharedPreferences(name,0).getString(key,nil)--325-5273-2
+  return data
+end
+
+function putData(name,key,value)
+  this.getApplicationContext().getSharedPreferences(name,0).edit().putString(key,value).apply()--3255-2732
+  return true
+end
+if not getData("welcome","是否启动过？") then
+  putData("welcome","是否启动过？","已经启动过了")
+  activity.newActivity('welcome/main.lua')
+ else
+  activity.newActivity("zahui/main.lua")
+end
+
 activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)--禁止横屏
---关闭页面()
+
 activity.finish()
 
 if Build.VERSION.SDK_INT >= 21 then
