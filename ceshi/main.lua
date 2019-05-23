@@ -38,7 +38,6 @@ import "android.content.pm.ActivityInfo"
 隐藏标题栏()
 
 activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)--禁止横屏
-activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS).setNavigationBarColor(转0x(ThemeColor));
 
 语言=Locale.getDefault().getLanguage()
 
@@ -55,6 +54,7 @@ w="#ffffffff"
 --状态栏沉浸，Android SDK>19时生效
 activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 ]]
+
 
 --完全沉浸，SDK>21
 if ThemeColor == "#FFFFFFFF" or ThemeColor == "#ffffffff" or ThemeColor==nil then--防止全白

@@ -21,7 +21,7 @@ import "android.animation.Animator"
 --触碰时不会关闭，可无期限查看
 --近乎原生体验
 --使用方法:
--- 1.导入模块 import "SnackerBar"
+-- 1.导入模块 import "Createlite@Tujian@SnackerBar"
 -- 2.调用：SnackerBar.build()
 --        :msg("提示文字"):actionText("按钮文字")
 --        :action(按钮点击事件):show()
@@ -31,6 +31,13 @@ import "android.animation.Animator"
 我已经将Snakebar改为了函数，如果不需要按钮文字/事件的话，调用方法如下：
 SnakeBar("内容")
 当然，原作者的调用方式仍然支持
+
+单独写个函数：
+function Snakebar(内容)
+  SnackerBar.build()
+       :msg(内容):actionText("")
+       :action():show()
+end
 ]]
 
 导航栏高度=activity.getResources().getDimensionPixelSize(luajava.bindClass("com.android.internal.R$dimen")().navigation_bar_height)

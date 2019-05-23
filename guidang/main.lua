@@ -23,8 +23,6 @@ import "muk"--导入中文函数
 import "Createlite@Tujian@SnakerBar"
 import "android.content.pm.ActivityInfo"
 
-activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS).setNavigationBarColor(转0x(ThemeColor));
-
 ThemeColor,TextColor=...--载入参数
 sdk = tointeger(Build.VERSION.SDK)
 
