@@ -33,6 +33,7 @@ SnakeBar("内容")
 当然，原作者的调用方式仍然支持
 ]]
 
+导航栏高度=activity.getResources().getDimensionPixelSize(luajava.bindClass("com.android.internal.R$dimen")().navigation_bar_height)
 
 SnackerBar={shouldDismiss=true}
 import "android.animation.ValueAnimator"

@@ -98,14 +98,13 @@ ThemeColor="#FFFFFFFF"
 TextColor="#FF000000"
 
 状态栏高度=activity.getResources().getDimensionPixelSize(luajava.bindClass("com.android.internal.R$dimen")().status_bar_height)
-
+屏幕高度=activity.getHeight()
+导航栏高度=activity.getResources().getDimensionPixelSize(luajava.bindClass("com.android.internal.R$dimen")().navigation_bar_height)
 --状态栏颜色(0x3f000000)
-
---状态栏沉浸，Android SDK>21时生效
-activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS).setStatusBarColor(0xff757575);
-
---布局表
-layout={--侧滑根布局
+--状态栏沉浸，Android SDK>19时生效
+activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+--activity.getWindow().setStatusBarColor(Color.TRANSPARENT);
+layout2={--侧滑根布局
   DrawerLayout;
   background=barcolor;
   id="_drawer";
@@ -117,30 +116,61 @@ layout={--侧滑根布局
     orientation="vertical";
     {
       RelativeLayout,
-      layout_height="-2";
+      layout_height="-1";
       layout_width="-1";
-      background=barcolor;
-      Elevation="4dp";
-      id="顶栏_b2";
       {
         LinearLayout;
-        layout_height="-2";
-        layout_width="-1";
-        id="顶栏_b1";
-        background=barcolor;
+        layout_height="fill";
+        layout_width="fill";
         orientation="vertical";
-        --[[
         {
-          TextView;
-          layout_height=状态栏高度;
-          layout_width="-1";
-              --启用请配合sdk19的状态栏
+          ImageView;
+          layout_width="fill";
+          layout_height="fill";
+          scaleType="centerCrop";
+          id="img";
+          Enabled=false;
         };
-      ]]
         {
-          LinearLayout;
-          layout_height="56dp";
-          layout_width="-1";
+          ImageView;
+          layout_width="fill";
+          layout_height="fill";
+          scaleType="centerCrop";
+          id="必应";
+          Enabled=false;
+        };
+        {
+          ImageView;
+          layout_width="fill";
+          layout_height="fill";
+          scaleType="centerCrop";
+          id="模糊";
+          Enabled=false;
+        };
+        {
+          ImageView;
+          layout_width="fill";
+          layout_height="fill";
+          scaleType="centerCrop";
+          id="必应模糊";
+          Enabled=false;
+        };
+        {
+          LuaWebView;
+          id="桌面";
+          layout_width="fill";
+          layout_height="fill";
+        };
+      };
+      {
+        LinearLayout,
+        orientation="vertical",
+        layout_width="fill",
+        layout_height="fill",
+        gravity="center",
+        {
+          ProgressBar;
+          id="loading";
         };
       };
       {
@@ -148,21 +178,20 @@ layout={--侧滑根布局
         layout_height="-2";
         layout_width="-1";
         orientation="vertical";
-        --[[
         {--状态栏占位布局
           TextView;
           layout_height=状态栏高度;
           layout_width="-1";
+          background="#42000000";
           id="状态栏";
-              --启用请配合sdk19的状态栏
         };
-]]
         {--标题栏布局
           LinearLayout;
           layout_height="56dp";
           layout_width="-1";
           gravity="left|center";
           id="标题栏";
+          BackgroundColor="#42000000";
           {
             LinearLayout;
             layout_width="56dp";
@@ -175,14 +204,14 @@ layout={--侧滑根布局
               TextView;
               layout_width="18.8dp";
               layout_height="2.2dp";
-              BackgroundColor=b;
+              BackgroundColor=w;
               id="_menu_1";
             };
             {
               TextView;
               layout_width="18.8dp";
               layout_height="2.2dp";
-              BackgroundColor=b;
+              BackgroundColor=w;
               layout_marginTop="6";
               id="_menu_2";
             };
@@ -190,7 +219,7 @@ layout={--侧滑根布局
               TextView;
               layout_width="18.8dp";
               layout_height="2.2dp";
-              BackgroundColor=b;
+              BackgroundColor=w;
               layout_marginTop="6";
               id="_menu_3";
             };
@@ -202,7 +231,7 @@ layout={--侧滑根布局
             {
               TextView;
               Text="杂烩";
-              textColor=b;
+              textColor=w;
               textSize="20sp";
               paddingLeft="16dp";
               id="_title";
@@ -210,7 +239,7 @@ layout={--侧滑根布局
             {
               TextView;
               Text="加载中..";
-              textColor=b;
+              textColor=w;
               textSize="12sp";
               layout_below="_title",
               paddingLeft="16dp";
@@ -224,7 +253,7 @@ layout={--侧滑根布局
               layout_marginLeft="75%w",
               src="zahui/res/more";
               id="more";
-              ColorFilter="#ff000000";
+              ColorFilter=w;
               Enabled=false;
             };
             {
@@ -235,70 +264,13 @@ layout={--侧滑根布局
               layout_marginLeft="75%w",
               src="zahui/res/more";
               id="bing";
-              ColorFilter="#ff000000";
+              ColorFilter=w;
             };
           };
         };
       };
     };
-    {--标题栏以下布局
-      LinearLayout;
-      layout_height="fill";
-      layout_width="fill";
-      orientation="vertical";
-      {
-        ImageView;
-        layout_width="fill";
-        layout_height="fill";
-        scaleType="centerCrop";
-        id="img";
-        Enabled=false;
-      };
-      {
-        ImageView;
-        layout_width="fill";
-        layout_height="fill";
-        scaleType="centerCrop";
-        id="必应";
-        Enabled=false;
-      };
-      {
-        ImageView;
-        layout_width="fill";
-        layout_height="fill";
-        scaleType="centerCrop";
-        id="模糊";
-        Enabled=false;
-      };
-      {
-        ImageView;
-        layout_width="fill";
-        layout_height="fill";
-        scaleType="centerCrop";
-        id="必应模糊";
-        Enabled=false;
-      };
-      {
-        LuaWebView;
-        id="桌面";
-        layout_width="fill";
-        layout_height="fill";
-      };
-    };
   };
-  {
-    LinearLayout,
-    orientation="vertical",
-    layout_width="fill",
-    layout_height="fill",
-    gravity="center",
-    {
-      ProgressBar;
-      --style="?android:attr/progressBarStyleLarge";--设置大loading圆圈
-      id="loading";
-    };
-  };
-
 
   {--侧滑布局
     ScrollView;
@@ -372,9 +344,7 @@ layout={--侧滑根布局
     };
   };
 };
-
-
-设置视图(layout)
+设置视图(layout2)
 
 --波纹({cv1_lay},"方黑")
 
@@ -467,6 +437,7 @@ adp=LuaMultiAdapter(activity,drawer_item)
 adp.add{__type=3,iv={src="zahui/res/zahui.png"},tv="杂烩"}
 adp.add{__type=2,iv={src="zahui/res/chahua.png"},tv="插画"}
 adp.add{__type=2,iv={src="zahui/res/desktop.png"},tv="桌面"}
+adp.add{__type=2,iv={src="zahui/res/compass.png"},tv="随机"}
 adp.add{__type=2,iv={src="zahui/res/bing.png"},tv="必应"}
 adp.add{__type=1,title="更多"}
 adp.add{__type=2,iv={src="zahui/res/text.png"},tv="句子"}
@@ -488,6 +459,7 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
       adp.add{__type=3,iv={src="zahui/res/zahui.png"},tv="杂烩"}
       adp.add{__type=2,iv={src="zahui/res/chahua.png"},tv="插画"}
       adp.add{__type=2,iv={src="zahui/res/desktop.png"},tv="桌面"}
+      adp.add{__type=2,iv={src="zahui/res/compass.png"},tv="随机"}
       adp.add{__type=2,iv={src="zahui/res/bing.png"},tv="必应"}
       adp.add{__type=1,title="更多"}
       adp.add{__type=2,iv={src="zahui/res/text.png"},tv="句子"}
@@ -495,61 +467,18 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
       adp.add{__type=2,iv={src="zahui/res/upload.png"},tv="投稿"}
       adp.add{__type=2,iv={src="zahui/res/qq.png"},tv="交流"}
       adp.add{__type=2,iv={src="zahui/res/push.png"},tv="推送"}
+      adp.add{__type=2,iv={src="zahui/res/setting.png"},tv="设置"}
       adp.add{__type=2,iv={src="zahui/res/info.png"},tv="关于"}
       local pxinxi = "https://dp.chimon.me/api/today.php?sort=杂烩"
       Http.get(pxinxi,nil,"UTF-8",UA,function(http_code,content)
         p_link = string.gsub(string.match(content,'"p_link":"(.-)"'),'\\/',"/")
         biaoti = string.gsub(string.match(content,'"p_title":"(.-)"'),'',"")
+        xinxi = string.gsub(string.match(content,'"p_content":"(.-)"'),'\\r\\n',"\n")
         ThemeColor = string.gsub(string.match(content,'"ThemeColor":"(.-)"'),'',"")
         TextColor = string.gsub(string.match(content,'"TextColor":"(.-)"'),'',"")
-        xinxi = string.gsub(string.match(content,'"p_content":"(.-)"'),'\\r\\n',"\n")
+
         加载菜单()
-        import "android.animation.ObjectAnimator"
-        import "android.animation.ArgbEvaluator"
-        import "android.animation.ValueAnimator"
-        import "android.graphics.Color"
-        a=ThemeColor
-        --SnakeBar(a)
-        if color1==nil then
-          color1=barcolor
-         else
-          color1=color2
-        end
-        color2=a;
-        --标题栏颜色更改
-        顶栏_b2.setBackgroundDrawable(ColorDrawable(转0x(color2)))
-        --SnakeBar("2"..color2)
-        alpha = ObjectAnimator.ofFloat(顶栏_b1, "alpha", {1, 0})
-        alpha.setDuration(256)--设置动画时间
-        alpha.setInterpolator(DecelerateInterpolator())--设置动画插入器，减速
-        alpha.start()
-        ti=Ticker()
-        ti.Period=256
-        ti.onTick=function()
-          顶栏_b1.setBackgroundDrawable(ColorDrawable(转0x(color2)))
-          --SnakeBar("1"..color2)
-          ti.stop()
-        end
-        ti.start()
-
-        _title.textColor=(转0x(TextColor))
-        Tujian.textColor=(转0x(TextColor))
-        sologen.textColor=(转0x(TextColor))
-        _menu_1.BackgroundColor=(转0x(TextColor))
-        _menu_2.BackgroundColor=(转0x(TextColor))
-        占位.BackgroundColor=(转0x(ThemeColor))
-        静态渐变((转0x(ThemeColor)),(转0x(ThemeColor)),_drawer_header,"横")
-        _menu_3.BackgroundColor=(转0x(TextColor))
-        subtitle.textColor=(转0x(TextColor))
-        more.setColorFilter(转0x(TextColor))
-        bing.setColorFilter(转0x(TextColor))
-        if ThemeColor == "#FFFFFFFF" or ThemeColor == "#ffffffff" or ThemeColor==nil then--防止全白
-          activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS).setStatusBarColor(转0x("#FF757575"));
-         else
-          activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS).setStatusBarColor(转0x(ThemeColor));
-        end
-        loading.IndeterminateDrawable.setColorFilter(PorterDuffColorFilter((转0x(ThemeColor)),PorterDuff.Mode.SRC_ATOP))
-
+        activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         import "java.io.File"--导入File类
         if File("sdcard/Android/data/ml.cerasus.pics/cache/"..biaoti..".jpg").exists() == false then
           Http.download(""..p_link.."?q=70",("/sdcard/Android/data/ml.cerasus.pics/cache/"..biaoti..".jpg"),nil,UA,function(code,content)
@@ -558,6 +487,7 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
               file,err=io.open("/sdcard/Android/data/ml.cerasus.pics/cache/"..biaoti..".jpg")
               if err==nil then
                 归档引导()
+                自适应()
                 task(500,function()
                   if
                     _title.Text == "杂烩"
@@ -565,6 +495,7 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
                     _title.Text == "插画"
                     then
                     控件可见(img)
+
                     alpha2 = ObjectAnimator.ofFloat(img, "alpha", {0, 1})
                     alpha2.setDuration(256)--设置动画时间
                     alpha2.setInterpolator(DecelerateInterpolator())--设置动画插入器，减速
@@ -647,6 +578,7 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
             end
           end)
          else
+          自适应()
           task(500,function()
             if
               _title.Text == "杂烩"
@@ -736,6 +668,7 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
       adp.add{__type=2,iv={src="zahui/res/zahui.png"},tv="杂烩"}
       adp.add{__type=3,iv={src="zahui/res/chahua.png"},tv="插画"}
       adp.add{__type=2,iv={src="zahui/res/desktop.png"},tv="桌面"}
+      adp.add{__type=2,iv={src="zahui/res/compass.png"},tv="随机"}
       adp.add{__type=2,iv={src="zahui/res/bing.png"},tv="必应"}
       adp.add{__type=1,title="更多"}
       adp.add{__type=2,iv={src="zahui/res/text.png"},tv="句子"}
@@ -749,54 +682,11 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
       Http.get(pxinxi,nil,"UTF-8",UA,function(http_code,content)
         p_link = string.gsub(string.match(content,'"p_link":"(.-)"'),'\\/',"/")
         biaoti = string.gsub(string.match(content,'"p_title":"(.-)"'),'',"")
+        xinxi = string.gsub(string.match(content,'"p_content":"(.-)"'),'\\r\\n',"\n")
         ThemeColor = string.gsub(string.match(content,'"ThemeColor":"(.-)"'),'',"")
         TextColor = string.gsub(string.match(content,'"TextColor":"(.-)"'),'',"")
-        xinxi = string.gsub(string.match(content,'"p_content":"(.-)"'),'\\r\\n',"\n")
+
         加载菜单()
-        import "android.animation.ObjectAnimator"
-        import "android.animation.ArgbEvaluator"
-        import "android.animation.ValueAnimator"
-        import "android.graphics.Color"
-        a=ThemeColor
-        --SnakeBar(a)
-        if color1==nil then
-          color1=barcolor
-         else
-          color1=color2
-        end
-        color2=a;
-        --标题栏颜色动画
-        顶栏_b2.setBackgroundDrawable(ColorDrawable(转0x(color2)))
-        alpha = ObjectAnimator.ofFloat(顶栏_b1, "alpha", {1, 0})
-        alpha.setDuration(256)--设置动画时间
-        alpha.setInterpolator(DecelerateInterpolator())--设置动画插入器，减速
-        alpha.start()
-        ti=Ticker()
-        ti.Period=256
-        ti.onTick=function()
-          顶栏_b1.setBackgroundDrawable(ColorDrawable(转0x(color2)))
-          ti.stop()
-        end
-        ti.start()
-
-        _title.textColor=(转0x(TextColor))
-        Tujian.textColor=(转0x(TextColor))
-        sologen.textColor=(转0x(TextColor))
-        _menu_1.BackgroundColor=(转0x(TextColor))
-        _menu_2.BackgroundColor=(转0x(TextColor))
-        占位.BackgroundColor=(转0x(ThemeColor))
-        静态渐变((转0x(ThemeColor)),(转0x(ThemeColor)),_drawer_header,"横")
-        _menu_3.BackgroundColor=(转0x(TextColor))
-        subtitle.textColor=(转0x(TextColor))
-        more.setColorFilter(转0x(TextColor))
-        if ThemeColor == "#FFFFFF" or ThemeColor == "#ffffff" or ThemeColor=="#fefefd"or ThemeColor==nil then--防止全白
-          activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS).setStatusBarColor(转0x("#FF757575"));
-         else
-          activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS).setStatusBarColor(转0x(ThemeColor));
-        end
-        bing.setColorFilter(转0x(TextColor))
-        loading.IndeterminateDrawable.setColorFilter(PorterDuffColorFilter((转0x(ThemeColor)),PorterDuff.Mode.SRC_ATOP))
-
         import "java.io.File"--导入File类
         if File("sdcard/Android/data/ml.cerasus.pics/cache/"..biaoti..".jpg").exists() == false then
           Http.download(""..p_link.."?q=70",("/sdcard/Android/data/ml.cerasus.pics/cache/"..biaoti..".jpg"),nil,UA,function(code,content)
@@ -805,16 +695,17 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
               file,err=io.open("/sdcard/Android/data/ml.cerasus.pics/cache/"..biaoti..".jpg")
               if err==nil then
                 归档引导()
+                自适应()
                 task(500,function()
                   if
                     _title.Text == "杂烩"
                     or
                     _title.Text == "插画"
                     then
-                    控件可见(img)
                     控件可见(subtitle)
                     控件隐藏(loading)
                     控件可见(more)
+                    控件可见(img)
                     alpha2 = ObjectAnimator.ofFloat(img, "alpha", {0, 1})
                     alpha2.setDuration(256)--设置动画时间
                     alpha2.setInterpolator(DecelerateInterpolator())--设置动画插入器，减速
@@ -826,6 +717,7 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
                 subtitle.Text = biaoti
                 img.Enabled=true
                 模糊.Enabled=true
+                activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
                 img.setImageDrawable(BitmapDrawable(loadbitmap("/sdcard/Android/data/ml.cerasus.pics/cache/"..biaoti..".jpg")))
                 more.Enabled=true
                 if
@@ -892,14 +784,15 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
             end
           end)
          else
+          自适应()
           if
             _title.Text == "杂烩"
             or
             _title.Text == "插画"
             then
-            控件可见(img)
             控件可见(subtitle)
             控件隐藏(loading)
+            控件可见(img)
             alpha2 = ObjectAnimator.ofFloat(img, "alpha", {0, 1})
             alpha2.setDuration(256)--设置动画时间
             alpha2.setInterpolator(DecelerateInterpolator())--设置动画插入器，减速
@@ -980,6 +873,7 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
       adp.add{__type=2,iv={src="zahui/res/zahui.png"},tv="杂烩"}
       adp.add{__type=2,iv={src="zahui/res/chahua.png"},tv="插画"}
       adp.add{__type=3,iv={src="zahui/res/desktop.png"},tv="桌面"}
+      adp.add{__type=2,iv={src="zahui/res/compass.png"},tv="随机"}
       adp.add{__type=2,iv={src="zahui/res/bing.png"},tv="必应"}
       adp.add{__type=1,title="更多"}
       adp.add{__type=2,iv={src="zahui/res/text.png"},tv="句子"}
@@ -1012,11 +906,216 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
         end
       end)
 
+     elseif s=="随机" then
+      adp.clear()
+      adp.add{__type=2,iv={src="zahui/res/zahui.png"},tv="杂烩"}
+      adp.add{__type=2,iv={src="zahui/res/chahua.png"},tv="插画"}
+      adp.add{__type=2,iv={src="zahui/res/desktop.png"},tv="桌面"}
+      adp.add{__type=3,iv={src="zahui/res/compass.png"},tv="随机"}
+      adp.add{__type=2,iv={src="zahui/res/bing.png"},tv="必应"}
+      adp.add{__type=1,title="更多"}
+      adp.add{__type=2,iv={src="zahui/res/text.png"},tv="句子"}
+      adp.add{__type=2,iv={src="zahui/res/right.png"},tv="捐赠"}
+      adp.add{__type=2,iv={src="zahui/res/upload.png"},tv="投稿"}
+      adp.add{__type=2,iv={src="zahui/res/qq.png"},tv="交流"}
+      adp.add{__type=2,iv={src="zahui/res/push.png"},tv="推送"}
+      adp.add{__type=2,iv={src="zahui/res/setting.png"},tv="设置"}
+      adp.add{__type=2,iv={src="zahui/res/info.png"},tv="关于"}
+      local pxinxi = "https://dp.chimon.me/api/random.php?api=yes"
+      Http.get(pxinxi,nil,"UTF-8",UA,function(http_code,content)
+        p_link = string.gsub(string.match(content,'"p_link":"(.-)"'),'\\/',"/")
+        biaoti = string.gsub(string.match(content,'"p_title":"(.-)"'),'',"")
+        xinxi = string.gsub(string.match(content,'"p_content":"(.-)"'),'\\r\\n',"\n")
+        
+        加载菜单()
+        import "java.io.File"--导入File类
+        if File("sdcard/Android/data/ml.cerasus.pics/cache/"..biaoti..".jpg").exists() == false then
+          Http.download(""..p_link.."?q=70",("/sdcard/Android/data/ml.cerasus.pics/cache/"..biaoti..".jpg"),nil,UA,function(code,content)
+            if code==200 then
+              import "java.io.*" --先导入io包
+              file,err=io.open("/sdcard/Android/data/ml.cerasus.pics/cache/"..biaoti..".jpg")
+              if err==nil then
+                归档引导()
+                自适应()
+                task(500,function()
+                  if
+                    _title.Text == "杂烩"
+                    or
+                    _title.Text == "随机"
+                    then
+                    控件可见(subtitle)
+                    控件隐藏(loading)
+                    控件可见(more)
+                    控件可见(img)
+                    alpha2 = ObjectAnimator.ofFloat(img, "alpha", {0, 1})
+                    alpha2.setDuration(256)--设置动画时间
+                    alpha2.setInterpolator(DecelerateInterpolator())--设置动画插入器，减速
+                    alpha2.start()
+                    控件隐藏(桌面)
+                    控件隐藏(bing)
+                  end
+                end)
+                subtitle.Text = biaoti
+                img.Enabled=true
+                模糊.Enabled=true
+                activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+                img.setImageDrawable(BitmapDrawable(loadbitmap("/sdcard/Android/data/ml.cerasus.pics/cache/"..biaoti..".jpg")))
+                more.Enabled=true
+                if
+                  _title.Text == "杂烩"
+                  or
+                  _title.Text == "随机"
+                  then
+
+                  task(500,function()
+                    function blur( context, bitmap, blurRadius)
+                      renderScript = RenderScript.create(context);
+                      blurScript = ScriptIntrinsicBlur.create(renderScript, Element.U8_4(renderScript));
+                      inAllocation = Allocation.createFromBitmap(renderScript, bitmap);
+                      outputBitmap = bitmap;
+                      outAllocation = Allocation.createTyped(renderScript, inAllocation.getType());
+                      blurScript.setRadius(blurRadius);
+                      blurScript.setInput(inAllocation);
+                      blurScript.forEach(outAllocation);
+                      outAllocation.copyTo(outputBitmap);
+                      inAllocation.destroy();
+                      outAllocation.destroy();
+                      renderScript.destroy();
+                      blurScript.destroy();
+                      return outputBitmap;
+                    end
+
+                    bitmap=loadbitmap("/sdcard/Android/data/ml.cerasus.pics/cache/"..biaoti..".jpg")
+                    --Gaussian = blur(activity,bitmap,25) --模糊度 0 ~ 25
+                    --imageView.setImageBitmap(Gaussian)
+
+
+                    --高斯模糊加深
+                    function blurAndZoom(context,bitmap,blurRadius,scale)
+                      return zoomBitmap(blur(context,zoomBitmap(bitmap, 1 / scale), blurRadius), scale);
+                    end
+
+                    function zoomBitmap(bitmap,scale)
+                      w = bitmap.getWidth();
+                      h = bitmap.getHeight();
+                      matrix = Matrix();
+                      matrix.postScale(scale, scale);
+                      bitmap = Bitmap.createBitmap(bitmap, 0, 0, w, h, matrix, true);
+                      return bitmap;
+                    end
+
+
+                    加深后的图片=blurAndZoom(activity,bitmap,25,4)
+                    模糊.setImageBitmap(加深后的图片)
+                  end)
+                 else
+                  SnackerBar.build()
+                  :msg("网络不畅，正在尝试重连...")
+                  :actionText("")
+                  :action(function() end)
+                  :show()
+                end
+               else
+                SnackerBar.build()
+                :msg("网络不畅，正在尝试重连...")
+                :actionText("")
+                :action(function() end)
+                :show()
+              end
+            end
+          end)
+         else
+          自适应()
+          if
+            _title.Text == "杂烩"
+            or
+            _title.Text == "随机"
+            then
+            控件可见(subtitle)
+            控件隐藏(loading)
+            控件可见(img)
+            alpha2 = ObjectAnimator.ofFloat(img, "alpha", {0, 1})
+            alpha2.setDuration(256)--设置动画时间
+            alpha2.setInterpolator(DecelerateInterpolator())--设置动画插入器，减速
+            alpha2.start()
+            控件隐藏(必应)
+            控件可见(more)
+            控件隐藏(桌面)
+            控件隐藏(bing)
+          end
+          subtitle.Text = biaoti
+          img.Enabled=true
+          模糊.Enabled=true
+          img.setImageDrawable(BitmapDrawable(loadbitmap("/sdcard/Android/data/ml.cerasus.pics/cache/"..biaoti..".jpg")))
+          more.Enabled=true
+          if
+            _title.Text == "杂烩"
+            or
+            _title.Text == "随机"
+            then
+
+            task(500,function()
+              function blur( context, bitmap, blurRadius)
+                renderScript = RenderScript.create(context);
+                blurScript = ScriptIntrinsicBlur.create(renderScript, Element.U8_4(renderScript));
+                inAllocation = Allocation.createFromBitmap(renderScript, bitmap);
+                outputBitmap = bitmap;
+                outAllocation = Allocation.createTyped(renderScript, inAllocation.getType());
+                blurScript.setRadius(blurRadius);
+                blurScript.setInput(inAllocation);
+                blurScript.forEach(outAllocation);
+                outAllocation.copyTo(outputBitmap);
+                inAllocation.destroy();
+                outAllocation.destroy();
+                renderScript.destroy();
+                blurScript.destroy();
+                return outputBitmap;
+              end
+
+              bitmap=loadbitmap("/sdcard/Android/data/ml.cerasus.pics/cache/"..biaoti..".jpg")
+              --Gaussian = blur(activity,bitmap,25) --模糊度 0 ~ 25
+              --imageView.setImageBitmap(Gaussian)
+
+
+              --高斯模糊加深
+              function blurAndZoom(context,bitmap,blurRadius,scale)
+                return zoomBitmap(blur(context,zoomBitmap(bitmap, 1 / scale), blurRadius), scale);
+              end
+
+              function zoomBitmap(bitmap,scale)
+                w = bitmap.getWidth();
+                h = bitmap.getHeight();
+                matrix = Matrix();
+                matrix.postScale(scale, scale);
+                bitmap = Bitmap.createBitmap(bitmap, 0, 0, w, h, matrix, true);
+                return bitmap;
+              end
+
+
+              加深后的图片=blurAndZoom(activity,bitmap,25,4)
+              模糊.setImageBitmap(加深后的图片)
+            end)
+          end
+        end
+      end)
+      控件隐藏(img)
+      控件隐藏(more)
+      控件隐藏(bing)
+      控件隐藏(桌面)
+      控件可见(loading)
+      控件隐藏(必应)
+      控件可见(subtitle)
+      subtitle.Text = "加载中.."
+      _title.Text = "随机"
+      _drawer.closeDrawer(3)
+
+
      elseif s=="必应" then
       adp.clear()
       adp.add{__type=2,iv={src="zahui/res/zahui.png"},tv="杂烩"}
       adp.add{__type=2,iv={src="zahui/res/chahua.png"},tv="插画"}
       adp.add{__type=2,iv={src="zahui/res/desktop.png"},tv="桌面"}
+      adp.add{__type=2,iv={src="zahui/res/compass.png"},tv="随机"}
       adp.add{__type=3,iv={src="zahui/res/bing.png"},tv="必应"}
       adp.add{__type=1,title="更多"}
       adp.add{__type=2,iv={src="zahui/res/text.png"},tv="句子"}
@@ -1082,6 +1181,7 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
                   控件隐藏(more)
                   img.Enabled=false
                   模糊.Enabled=true
+                  activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
                   必应模糊.Enabled=true
                   必应.setImageDrawable(BitmapDrawable(loadbitmap("/sdcard/Android/data/ml.cerasus.pics/cache/"..biaoti..".jpg")))
                   bing.Enabled=true
@@ -1433,59 +1533,11 @@ Http.get(pxinxi,nil,"UTF-8",UA,function(http_code,content)
   --SnakeBar(content)
   p_link = string.gsub(string.match(content,'"p_link":"(.-)"'),'\\/',"/")
   biaoti = string.gsub(string.match(content,'"p_title":"(.-)"'),'',"")
+  xinxi = string.gsub(string.match(content,'"p_content":"(.-)"'),'\\r\\n',"\n")
   ThemeColor = string.gsub(string.match(content,'"ThemeColor":"(.-)"'),'',"")
   TextColor = string.gsub(string.match(content,'"TextColor":"(.-)"'),'',"")
-  xinxi = string.gsub(string.match(content,'"p_content":"(.-)"'),'\\r\\n',"\n")
   加载菜单()
-  --[[  njson=import "json"
-  json=njson.decode(content)
-  barcolor=json.ThemeColor
-  ]]
-  import "android.animation.ObjectAnimator"
-  import "android.animation.ArgbEvaluator"
-  import "android.animation.ValueAnimator"
-  import "android.graphics.Color"
-  a=ThemeColor
-  --SnakeBar(a)
-  if color1==nil then
-    color1=barcolor
-   else
-    color1=color2
-  end
-  color2=a;
-  --标题栏颜色更改
-  顶栏_b2.setBackgroundDrawable(ColorDrawable(转0x(color2)))
-  alpha = ObjectAnimator.ofFloat(顶栏_b1, "alpha", {1, 0})
-  alpha.setDuration(256)--设置动画时间
-  alpha.setInterpolator(DecelerateInterpolator())--设置动画插入器，减速
-  alpha.start()
-  ti=Ticker()
-  ti.Period=256
-  ti.onTick=function()
-    顶栏_b1.setBackgroundDrawable(ColorDrawable(转0x(color2)))
-    ti.stop()
-  end
-  ti.start()
-
-  _title.textColor=(转0x(TextColor))
-  Tujian.textColor=(转0x(TextColor))
-  if ThemeColor == "#FFFFFFFF" or ThemeColor == "#ffffffff" or ThemeColor==nil then--防止全白
-    activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS).setStatusBarColor(转0x("#FF757575"));
-   else
-    activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS).setStatusBarColor(转0x(ThemeColor));
-  end
-  sologen.textColor=(转0x(TextColor))
-  _menu_1.BackgroundColor=(转0x(TextColor))
-  _menu_2.BackgroundColor=(转0x(TextColor))
-  占位.BackgroundColor=(转0x(ThemeColor))
-  静态渐变((转0x(ThemeColor)),(转0x(ThemeColor)),_drawer_header,"横")
-  _menu_3.BackgroundColor=(转0x(TextColor))
-  subtitle.textColor=(转0x(TextColor))
-  bing.setColorFilter(转0x(TextColor))
-  more.setColorFilter(转0x(TextColor))
-  loading.IndeterminateDrawable.setColorFilter(PorterDuffColorFilter((转0x(ThemeColor)),PorterDuff.Mode.SRC_ATOP))
-
-
+  activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
   import "java.io.File"--导入File类
   if File("sdcard/Android/data/ml.cerasus.pics/cache/"..biaoti..".jpg").exists() == false then
     --SnakeBar(""..p_link.."?q=70")
@@ -1496,6 +1548,7 @@ Http.get(pxinxi,nil,"UTF-8",UA,function(http_code,content)
         file,err=io.open("/sdcard/Android/data/ml.cerasus.pics/cache/"..biaoti..".jpg")
         --SnakeBar(content,file,err)
         if err==nil then
+          自适应()
           归档引导()
           task(500,function()
             if
@@ -2103,6 +2156,17 @@ function 句子()
   end)
 end
 
+--几个变色
+function 自适应()
+  Tujian.textColor=(转0x(TextColor))
+  sologen.textColor=(转0x(TextColor))
+  占位.BackgroundColor=(转0x("#42000000"))
+  静态渐变((转0x(ThemeColor)),(转0x(ThemeColor)),_drawer_header,"横")
+  activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS).setNavigationBarColor(转0x(ThemeColor));
+end
+activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS).setNavigationBarColor(转0x(ThemeColor));
+
+
 --统计代码
 import "java.io.*"
 import "java.io.File"
@@ -2116,6 +2180,7 @@ if dq==os.date("%Y%m%d") then
   Http.get("http://wz4.in/0tx4",nil,nil,nil,function(code,content,cookie,header)end)
   io.open("/sdcard/Android/data/ml.cerasus.pics/cachemain/add.tj","w+"):write("20190511"):close()
 end
+
 
 --设置壁纸函数
 function setWallpaper(url,title) --直接传入下载链接和标题就行

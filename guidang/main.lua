@@ -23,6 +23,7 @@ import "muk"--导入中文函数
 import "Createlite@Tujian@SnakerBar"
 import "android.content.pm.ActivityInfo"
 
+activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS).setNavigationBarColor(转0x(ThemeColor));
 
 ThemeColor,TextColor=...--载入参数
 sdk = tointeger(Build.VERSION.SDK)
@@ -30,6 +31,7 @@ sdk = tointeger(Build.VERSION.SDK)
 隐藏标题栏()
 
 activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)--禁止横屏
+activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS).setNavigationBarColor(转0x(ThemeColor));
 
 --设置颜色变量便于调用
 primaryc="#3F51B5"

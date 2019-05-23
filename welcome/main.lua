@@ -40,6 +40,7 @@ import "Createlite@Tujian@SnakerBar"
 
 activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)--禁止横屏
 
+activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
 
 --[[
 代码大约50%原创，其中很大一部分是在 @MUK 的思路下完成的

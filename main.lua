@@ -30,6 +30,8 @@ import "muk"
 activity.setContentView(loadlayout("layout"))
 --设置视图("layout")
 
+sdk = tointeger(Build.VERSION.SDK)
+
 --检测是否启动过了，打开welcome.lua
 import "java.io.File"--导入File类
 if File("/sdcard/Android/data/ml.cerasus.pics/cachemain/welcome.tj").exists() ==false
@@ -54,6 +56,6 @@ activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)--禁�
 
 
 if Build.VERSION.SDK_INT >= 21 then
-  activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS).setStatusBarColor(0xff4285f4);
+  activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS).setStatusBarColor(0xff757575);
 end
 
