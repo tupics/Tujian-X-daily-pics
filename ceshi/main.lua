@@ -217,6 +217,39 @@ layout={
               };
             };
           };
+        
+            {--卡片
+            CardView;
+            background=write;
+            layout_height="-2";
+            layout_width="-1";
+            onClick=function()end;
+            layout_margin="8dp";
+            {
+              LinearLayout;
+              layout_height="-1";
+              layout_width="-1";
+              orientation="vertical";
+              padding="16dp";
+              id="cv12_lay";
+              {
+                TextView;
+                Text="捐赠我们";
+                textColor=primaryc;
+                textSize="16sp";
+                id="捐赠"
+              };
+              {
+                TextView;
+                Text=[[这会使 Tujian 项目 继续发展]];
+                textColor=textc;
+                textSize="14sp";
+                paddingTop="4dp";
+                id="捐赠内容";
+              };
+            };
+          };
+
 
           {--卡片
             CardView;
@@ -534,6 +567,7 @@ if 品牌 == "Smartisan" then
   波纹({cv8_lay},"方黑")
   波纹({cv10_lay},"方黑")
   波纹({cv11_lay},"方黑")
+  波纹({cv12_lay},"方黑")
   波纹({_back},"圆白")
 end
 _topbar.alpha=0
@@ -626,6 +660,7 @@ MLua模板 by MUK
 ]]
 _title.getPaint().setFakeBoldText(true)
 概述.getPaint().setFakeBoldText(true)
+捐赠.getPaint().setFakeBoldText(true)
 推送.getPaint().setFakeBoldText(true)
 Tg群.getPaint().setFakeBoldText(true)
 QQ群.getPaint().setFakeBoldText(true)
@@ -681,6 +716,7 @@ if
   推送.Text="Push"
   官网.Text="Official Website"
   Tg群.Text="Telegram Group"
+  捐赠.Text="Donate"
   开源.Text="Open Source"
   QQ群.Text="QQ Group"
   绿色公约.Text="Green-Android Project"
@@ -700,6 +736,7 @@ Well, Enjoy the meaning of the pictures now!]]
 Now Tujian X has already supported the Project and pass the authentication.]]
   官网内容.Text="Click to learn more information"
   隐私政策内容.Text="Click to learn more information"
+  捐赠内容.Text="Click to learn more information"
   开源内容.Text="Click to learn more about Open Tujian-Tujian Open source"
 end
 
@@ -766,6 +803,95 @@ cv11_lay.onClick=function()
   url="https://tupics.github.io/"
   viewIntent = Intent("android.intent.action.VIEW",Uri.parse(url))
   activity.startActivity(viewIntent)
+end
+
+cv12_lay.onClick=function()
+     --对话框内带图片（自定义布局对话框，带图片的）
+      img_layout=
+      {
+        LinearLayout;
+        orientation="vertical";--重力属性
+        {
+          ImageView;--图片控件
+          src='zahui/res/qr.png';--设置图片路径
+          layout_width='150dp';--图片宽度
+          layout_height='150dp';--图片高度
+          layout_gravity="center";--重力属性
+          scaleType='fitXY';--图片显示类型
+        };
+        {
+          TextView;--文字控件
+          textSize="16sp";
+          paddingLeft="22dp";
+          paddingRight="19dp";
+          Text=[[众所周知，Tujian 是一个公益项目。随着用户的增加、图片收录数量等方面的问题，Tujian 服务器已经不堪重负...
+
+因此，经过 第3195次 Tujian 事务所 圆桌会议，我们决定放一个微信收款二维码...欢迎捐赠以支持 Tujian 发展]];
+          textColor="#ff000000";
+        };
+
+      };--图片自绘支持修改图片大小
+
+      dialog1=AlertDialog.Builder(this)
+      .setTitle("捐赠-微信")--设置标题
+      .setView(loadlayout(img_layout))--设置布局
+      .setNegativeButton("了解",function(v)--设置积极按钮
+      end)
+      .setPositiveButton("保存二维码至本地",function(v)--设置积极按钮
+        qrlink="https://ws1.sinaimg.cn/large/006N1muNly1g2t70rcrehj30cp0cpgle.jpg"
+        if tointeger(sdk) <= 28
+          then
+          if
+            File("/sdcard/Pictures/Tujian/Wechat-QR.jpg").exists() == true
+            then
+            SnackerBar.build()
+            :msg("二维码已存在")
+            :actionText("")
+            :action(function() end)
+            :show()
+           else
+            downloadManager=activity.getSystemService(Context.DOWNLOAD_SERVICE);
+            url=Uri.parse(qrlink);
+            request=DownloadManager.Request(url);
+            request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE|DownloadManager.Request.NETWORK_WIFI);
+            request.setDestinationInExternalPublicDir("Pictures/Tujian","Wechat-QR.jpg");
+            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+            downloadManager.enqueue(request);
+            SnackerBar.build()
+            :msg("二维码已存储至此设备")
+            :actionText("")
+            :action(function() end)
+            :show()
+          end
+         else
+          if File("/sdcard/Android/media/ml.cerasus.pics/Tujian/Wechat-QR.jpg").exists() == true
+            then
+            SnackerBar.build()
+            :msg("二维码已存在")
+            :actionText("")
+            :action(function() end)
+            :show()
+           else
+            downloadManager=activity.getSystemService(Context.DOWNLOAD_SERVICE);
+            url=Uri.parse(qrlink);
+            request=DownloadManager.Request(url);
+            request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE|DownloadManager.Request.NETWORK_WIFI);
+            request.setDestinationInExternalPublicDir("Android/media/ml.cerasus.pics/Tujian","Wechat-QR.jpg");
+            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+            downloadManager.enqueue(request);
+            SnackerBar.build()
+            :msg("二维码已存储至此设备")
+            :actionText("")
+            :action(function() end)
+            :show()
+          end
+        end
+      end)
+      .show()--显示弹窗
+      dialog1.getButton(dialog1.BUTTON_POSITIVE).setTextColor(0xff000000)
+      dialog1.getButton(dialog1.BUTTON_NEGATIVE).setTextColor(0xff000000)
+      dialog1.getButton(dialog1.BUTTON_NEUTRAL).setTextColor(0xff000000)
+      dialog1.create()
 end
 
 --颜色转换

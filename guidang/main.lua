@@ -46,7 +46,7 @@ activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
 --完全沉浸，SDK>21
 if ThemeColor == "#FFFFFFFF" or ThemeColor == "#ffffffff" or ThemeColor==nil then--防止全白
   activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS).setStatusBarColor(转0x("#FF757575"));
-   else
+ else
   activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS).setStatusBarColor(转0x(ThemeColor));
 end
 
@@ -435,25 +435,7 @@ end
     {
       onClick=function(dialog,which)
         if(which== 0) then
-          if sdk<=28==false then
-            downloadManager=activity.getSystemService(Context.DOWNLOAD_SERVICE);
-            url=Uri.parse(picUrl:sub(1,53));
-            request=DownloadManager.Request(url);
-            request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE|DownloadManager.Request.NETWORK_WIFI);
-            request.setDestinationInExternalPublicDir("Android/media/ml.cerasus.pics/Tujian","杂烩-"..math.random(1,999999999999)..".png");
-            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-            downloadManager.enqueue(request);
-            SnakeBar("开始保存图片至此设备")
-           else
-            downloadManager=activity.getSystemService(Context.DOWNLOAD_SERVICE);
-            url=Uri.parse(picUrl:sub(1,53));
-            request=DownloadManager.Request(url);
-            request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE|DownloadManager.Request.NETWORK_WIFI);
-            request.setDestinationInExternalPublicDir("Pictures/Tujian","杂烩-"..math.random(1,999999999999)..".png");
-            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-            downloadManager.enqueue(request);
-            SnakeBar("开始保存图片至此设备")
-          end
+          保存图片("杂烩")--函数在后面，这里是为了方便
         end
         if(which== 1) then
           setWallpaper(""..picUrl.."","杂烩-"..math.random(1,999999999999)..".png")
@@ -496,25 +478,7 @@ end
       onClick=function(dialog,which)
         if(which== 0)
           then
-          if sdk<=28==false then
-            downloadManager=activity.getSystemService(Context.DOWNLOAD_SERVICE);
-            url=Uri.parse(picUrl:sub(1,53));
-            request=DownloadManager.Request(url);
-            request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE|DownloadManager.Request.NETWORK_WIFI);
-            request.setDestinationInExternalPublicDir("Android/media/ml.cerasus.pics/Tujian","插画-"..math.random(1,999999999999)..".png");
-            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-            downloadManager.enqueue(request);
-            SnakeBar("开始保存图片至此设备")
-           else
-            downloadManager=activity.getSystemService(Context.DOWNLOAD_SERVICE);
-            url=Uri.parse(picUrl:sub(1,53));
-            request=DownloadManager.Request(url);
-            request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE|DownloadManager.Request.NETWORK_WIFI);
-            request.setDestinationInExternalPublicDir("Pictures/Tujian","插画-"..math.random(1,999999999999)..".png");
-            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-            downloadManager.enqueue(request);
-            SnakeBar("开始保存图片至此设备")
-          end
+          保存图片("插画")--函数在后面，这里是为了方便
         end
         if(which== 1) then
           setWallpaper(""..picUrl.."","插画-"..math.random(1,999999999999)..".png")
@@ -535,7 +499,53 @@ end
     控件隐藏(subtitle)
   end}
 
-
+--保存图片函数
+function 保存图片(sort)
+  判定=Uri.parse(picUrl:sub(1,16));
+  if 判定 == "https://img.dpic"then
+    if sdk <= 28 == false
+      then
+      downloadManager=activity.getSystemService(Context.DOWNLOAD_SERVICE);
+      url=Uri.parse(picUrl:sub(1,53));
+      request=DownloadManager.Request(url);
+      request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE|DownloadManager.Request.NETWORK_WIFI);
+      request.setDestinationInExternalPublicDir("Android/media/ml.cerasus.pics/Tujian",""..sort.."-"..math.random(1,999999999999)..".png");
+      request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+      downloadManager.enqueue(request);
+      SnakeBar("开始保存图片至此设备")
+     else
+      downloadManager=activity.getSystemService(Context.DOWNLOAD_SERVICE);
+      url=Uri.parse(picUrl:sub(1,53));
+      request=DownloadManager.Request(url);
+      request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE|DownloadManager.Request.NETWORK_WIFI);
+      request.setDestinationInExternalPublicDir("Pictures/Tujian",""..sort.."-"..math.random(1,999999999999)..".png");
+      request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+      downloadManager.enqueue(request);
+      SnakeBar("开始保存图片至此设备")
+    end
+   else
+    if sdk <= 28 == false
+      then
+      downloadManager=activity.getSystemService(Context.DOWNLOAD_SERVICE);
+      url=Uri.parse(picUrl);
+      request=DownloadManager.Request(url);
+      request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE|DownloadManager.Request.NETWORK_WIFI);
+      request.setDestinationInExternalPublicDir("Android/media/ml.cerasus.pics/Tujian",""..sort.."-"..math.random(1,999999999999)..".png");
+      request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+      downloadManager.enqueue(request);
+      SnakeBar("开始保存图片至此设备")
+     else
+      downloadManager=activity.getSystemService(Context.DOWNLOAD_SERVICE);
+      url=Uri.parse(picUrl);
+      request=DownloadManager.Request(url);
+      request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE|DownloadManager.Request.NETWORK_WIFI);
+      request.setDestinationInExternalPublicDir("Pictures/Tujian",""..sort.."-"..math.random(1,999999999999)..".png");
+      request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+      downloadManager.enqueue(request);
+      SnakeBar("开始保存图片至此设备")
+    end
+  end
+end
 
 --设置壁纸函数
 function setWallpaper(url,title) --直接传入下载链接和标题就行
@@ -557,23 +567,24 @@ function setWallpaper(url,title) --直接传入下载链接和标题就行
   dialog6.setTitle("设置壁纸")
   dialog6.setCancelable(true)--设置是否可以通过点击Back键取消
   dialog6.setCanceledOnTouchOutside(false)--设置在点击Dialog外是否取消Dialog进度条
-  local filePath=tostring(activity.getFilesDir()).."/imagecache/"..title..".jpg"
+  filePath="/sdcard/Android/data/ml.cerasus.pics/cache/"..title..""
   local function down(url,path)
     local tt=Ticker()
     tt.Period=10
     tt.start()
-    Http.download(url,path,function(code,data,cookie,header)
-      if endd then
-        return
+    Http.download(url,path,nil,UA,function(code,content)
+      if code==200 then
+        import "java.io.*" --先导入io包
+        file,err=io.open(path)
+        --SnakeBar(content,file,err)
+        if err==nil then
+          tt.stop()
+          intent = Intent(Intent.ACTION_ATTACH_DATA);
+          intent.setDataAndType(Uri.fromFile(File(path)),'image/*');
+          activity.startActivity(intent);
+          dialog6.hide()
+        end
       end
-      tt.stop()
-      import "android.graphics.BitmapFactory"
-      import "android.app.WallpaperManager"
-      bitmap = BitmapFactory.decodeFile(path)
-      manager = WallpaperManager.getInstance(activity.getApplicationContext())
-      manager.setBitmap(bitmap)
-      SnakeBar("壁纸已设置")
-      dialog6.hide()
     end)
     function tt.onTick()
       local f=io.open(path,"r")

@@ -344,6 +344,7 @@ layout2={--侧滑根布局
     };
   };
 };
+
 设置视图(layout2)
 
 --波纹({cv1_lay},"方黑")
@@ -441,11 +442,8 @@ adp.add{__type=2,iv={src="zahui/res/compass.png"},tv="随机"}
 adp.add{__type=2,iv={src="zahui/res/bing.png"},tv="必应"}
 adp.add{__type=1,title="更多"}
 adp.add{__type=2,iv={src="zahui/res/text.png"},tv="句子"}
-adp.add{__type=2,iv={src="zahui/res/right.png"},tv="捐赠"}
 adp.add{__type=2,iv={src="zahui/res/upload.png"},tv="投稿"}
-adp.add{__type=2,iv={src="zahui/res/qq.png"},tv="交流"}
-adp.add{__type=2,iv={src="zahui/res/push.png"},tv="推送"}
-adp.add{__type=2,iv={src="zahui/res/setting.png"},tv="设置"}
+--adp.add{__type=2,iv={src="zahui/res/setting.png"},tv="设置"}
 adp.add{__type=2,iv={src="zahui/res/info.png"},tv="关于"}
 drawer_lv.setAdapter(adp)
 
@@ -463,11 +461,8 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
       adp.add{__type=2,iv={src="zahui/res/bing.png"},tv="必应"}
       adp.add{__type=1,title="更多"}
       adp.add{__type=2,iv={src="zahui/res/text.png"},tv="句子"}
-      adp.add{__type=2,iv={src="zahui/res/right.png"},tv="捐赠"}
       adp.add{__type=2,iv={src="zahui/res/upload.png"},tv="投稿"}
-      adp.add{__type=2,iv={src="zahui/res/qq.png"},tv="交流"}
-      adp.add{__type=2,iv={src="zahui/res/push.png"},tv="推送"}
-      adp.add{__type=2,iv={src="zahui/res/setting.png"},tv="设置"}
+      --    adp.add{__type=2,iv={src="zahui/res/setting.png"},tv="设置"}
       adp.add{__type=2,iv={src="zahui/res/info.png"},tv="关于"}
       local pxinxi = "https://dp.chimon.me/api/today.php?sort=杂烩"
       Http.get(pxinxi,nil,"UTF-8",UA,function(http_code,content)
@@ -672,11 +667,8 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
       adp.add{__type=2,iv={src="zahui/res/bing.png"},tv="必应"}
       adp.add{__type=1,title="更多"}
       adp.add{__type=2,iv={src="zahui/res/text.png"},tv="句子"}
-      adp.add{__type=2,iv={src="zahui/res/right.png"},tv="捐赠"}
       adp.add{__type=2,iv={src="zahui/res/upload.png"},tv="投稿"}
-      adp.add{__type=2,iv={src="zahui/res/qq.png"},tv="交流"}
-      adp.add{__type=2,iv={src="zahui/res/push.png"},tv="推送"}
-      adp.add{__type=2,iv={src="zahui/res/setting.png"},tv="设置"}
+      --      adp.add{__type=2,iv={src="zahui/res/setting.png"},tv="设置"}
       adp.add{__type=2,iv={src="zahui/res/info.png"},tv="关于"}
       local pxinxi = "https://dp.chimon.me/api/today.php?sort=插画"
       Http.get(pxinxi,nil,"UTF-8",UA,function(http_code,content)
@@ -877,11 +869,8 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
       adp.add{__type=2,iv={src="zahui/res/bing.png"},tv="必应"}
       adp.add{__type=1,title="更多"}
       adp.add{__type=2,iv={src="zahui/res/text.png"},tv="句子"}
-      adp.add{__type=2,iv={src="zahui/res/right.png"},tv="捐赠"}
       adp.add{__type=2,iv={src="zahui/res/upload.png"},tv="投稿"}
-      adp.add{__type=2,iv={src="zahui/res/qq.png"},tv="交流"}
-      adp.add{__type=2,iv={src="zahui/res/push.png"},tv="推送"}
-      adp.add{__type=2,iv={src="zahui/res/setting.png"},tv="设置"}
+      --      adp.add{__type=2,iv={src="zahui/res/setting.png"},tv="设置"}
       adp.add{__type=2,iv={src="zahui/res/info.png"},tv="关于"}
       _drawer.closeDrawer(3)
       _title.Text = "桌面"
@@ -915,18 +904,15 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
       adp.add{__type=2,iv={src="zahui/res/bing.png"},tv="必应"}
       adp.add{__type=1,title="更多"}
       adp.add{__type=2,iv={src="zahui/res/text.png"},tv="句子"}
-      adp.add{__type=2,iv={src="zahui/res/right.png"},tv="捐赠"}
       adp.add{__type=2,iv={src="zahui/res/upload.png"},tv="投稿"}
-      adp.add{__type=2,iv={src="zahui/res/qq.png"},tv="交流"}
-      adp.add{__type=2,iv={src="zahui/res/push.png"},tv="推送"}
-      adp.add{__type=2,iv={src="zahui/res/setting.png"},tv="设置"}
+      --      adp.add{__type=2,iv={src="zahui/res/setting.png"},tv="设置"}
       adp.add{__type=2,iv={src="zahui/res/info.png"},tv="关于"}
-      local pxinxi = "https://dp.chimon.me/api/random.php?api=yes"
+      local pxinxi = "https://api.dpic.dev/random?op=mobile"
       Http.get(pxinxi,nil,"UTF-8",UA,function(http_code,content)
         p_link = string.gsub(string.match(content,'"p_link":"(.-)"'),'\\/',"/")
         biaoti = string.gsub(string.match(content,'"p_title":"(.-)"'),'',"")
         xinxi = string.gsub(string.match(content,'"p_content":"(.-)"'),'\\r\\n',"\n")
-        
+
         加载菜单()
         import "java.io.File"--导入File类
         if File("sdcard/Android/data/ml.cerasus.pics/cache/"..biaoti..".jpg").exists() == false then
@@ -1119,11 +1105,8 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
       adp.add{__type=3,iv={src="zahui/res/bing.png"},tv="必应"}
       adp.add{__type=1,title="更多"}
       adp.add{__type=2,iv={src="zahui/res/text.png"},tv="句子"}
-      adp.add{__type=2,iv={src="zahui/res/right.png"},tv="捐赠"}
       adp.add{__type=2,iv={src="zahui/res/upload.png"},tv="投稿"}
-      adp.add{__type=2,iv={src="zahui/res/qq.png"},tv="交流"}
-      adp.add{__type=2,iv={src="zahui/res/push.png"},tv="推送"}
-      adp.add{__type=2,iv={src="zahui/res/setting.png"},tv="设置"}
+      --          adp.add{__type=2,iv={src="zahui/res/setting.png"},tv="设置"}
       adp.add{__type=2,iv={src="zahui/res/info.png"},tv="关于"}
       _drawer.closeDrawer(3)
       控件隐藏(subtitle)
@@ -1373,118 +1356,6 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
       activity.newActivity("ceshi/main.lua",{ThemeColor,TextColor})
      elseif s=="句子" then
       句子()
-     elseif s=="交流" then
-      url="mqqapi://card/show_pslcard?src_type=internal&version=1&uin=472863370&card_type=group&source=qrcode"
-      activity.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
-      if
-        语言=="zh"or
-        语言=="zh_CN"or
-        语言=="zh_HK"or
-        语言=="zh_TW"
-        then
-        SnackerBar.build()
-        :msg("若加入失败，请检查是否安装了最新版本 QQ")
-        :actionText("")
-        :action(function() end)
-        :show()
-       else
-        SnackerBar.build()
-        :msg("If failed, please install QQ")
-        :actionText("")
-        :action(function() end)
-        :show()
-      end
-     elseif s=="推送" then
-      url="https://t.me/Tujiansays"
-      viewIntent = Intent("android.intent.action.VIEW",Uri.parse(url))
-      activity.startActivity(viewIntent)
-     elseif s=="捐赠" then
-      --对话框内带图片（自定义布局对话框，带图片的）
-      img_layout=
-      {
-        LinearLayout;
-        orientation="vertical";--重力属性
-        {
-          ImageView;--图片控件
-          src='zahui/res/qr.png';--设置图片路径
-          layout_width='150dp';--图片宽度
-          layout_height='150dp';--图片高度
-          layout_gravity="center";--重力属性
-          scaleType='fitXY';--图片显示类型
-        };
-        {
-          TextView;--文字控件
-          textSize="16sp";
-          paddingLeft="22dp";
-          paddingRight="19dp";
-          Text=[[众所周知，Tujian 是一个公益项目。随着用户的增加、图片收录数量等方面的问题，Tujian 服务器已经不堪重负...
-
-因此，经过 第3195次 Tujian 事务所 圆桌会议，我们决定放一个微信收款二维码...欢迎捐赠以支持 Tujian 发展]];
-          textColor="#ff000000";
-        };
-
-      };--图片自绘支持修改图片大小
-
-      dialog1=AlertDialog.Builder(this)
-      .setTitle("捐赠-微信")--设置标题
-      .setView(loadlayout(img_layout))--设置布局
-      .setNegativeButton("了解",function(v)--设置积极按钮
-      end)
-      .setPositiveButton("保存二维码至本地",function(v)--设置积极按钮
-        qrlink="https://ws1.sinaimg.cn/large/006N1muNly1g2t70rcrehj30cp0cpgle.jpg"
-        if tointeger(sdk) <= 28
-          then
-          if
-            File("/sdcard/Pictures/Tujian/Wechat-QR.jpg").exists() == true
-            then
-            SnackerBar.build()
-            :msg("二维码已存在")
-            :actionText("")
-            :action(function() end)
-            :show()
-           else
-            downloadManager=activity.getSystemService(Context.DOWNLOAD_SERVICE);
-            url=Uri.parse(qrlink);
-            request=DownloadManager.Request(url);
-            request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE|DownloadManager.Request.NETWORK_WIFI);
-            request.setDestinationInExternalPublicDir("Pictures/Tujian","Wechat-QR.jpg");
-            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-            downloadManager.enqueue(request);
-            SnackerBar.build()
-            :msg("二维码已存储至此设备")
-            :actionText("")
-            :action(function() end)
-            :show()
-          end
-         else
-          if File("/sdcard/Android/media/ml.cerasus.pics/Tujian/Wechat-QR.jpg").exists() == true
-            then
-            SnackerBar.build()
-            :msg("二维码已存在")
-            :actionText("")
-            :action(function() end)
-            :show()
-           else
-            downloadManager=activity.getSystemService(Context.DOWNLOAD_SERVICE);
-            url=Uri.parse(qrlink);
-            request=DownloadManager.Request(url);
-            request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE|DownloadManager.Request.NETWORK_WIFI);
-            request.setDestinationInExternalPublicDir("Android/media/ml.cerasus.pics/Tujian","Wechat-QR.jpg");
-            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-            downloadManager.enqueue(request);
-            SnackerBar.build()
-            :msg("二维码已存储至此设备")
-            :actionText("")
-            :action(function() end)
-            :show()
-          end
-        end
-      end)
-      .show()--显示弹窗
-      dialog1.getButton(dialog1.BUTTON_POSITIVE).setTextColor(0xff000000)
-      dialog1.getButton(dialog1.BUTTON_NEGATIVE).setTextColor(0xff000000)
-      dialog1.getButton(dialog1.BUTTON_NEUTRAL).setTextColor(0xff000000)
-      dialog1.create()
      elseif s=="投稿" then
       url="https://dpic.dev/tg"
       viewIntent = Intent("android.intent.action.VIEW",Uri.parse(url))
@@ -2005,29 +1876,53 @@ loading.IndeterminateDrawable.setColorFilter(PorterDuffColorFilter(0xff000000,Po
     {
       onClick=function(dialog,which)
         if(which== 0) then
-          if sdk <= 28 == false
-            then
-            downloadManager=activity.getSystemService(Context.DOWNLOAD_SERVICE);
-            url=Uri.parse(picUrl:sub(1,53));
-            request=DownloadManager.Request(url);
-            request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE|DownloadManager.Request.NETWORK_WIFI);
-            request.setDestinationInExternalPublicDir("Android/media/ml.cerasus.pics/Tujian","桌面-"..math.random(1,999999999999)..".png");
-            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-            downloadManager.enqueue(request);
-            SnakeBar("开始保存图片至此设备")
+          判定=Uri.parse(picUrl:sub(1,16));
+          if 判定 == "https://img.dpic"then
+            if sdk <= 28 == false
+              then
+              downloadManager=activity.getSystemService(Context.DOWNLOAD_SERVICE);
+              url=Uri.parse(picUrl:sub(1,53));
+              request=DownloadManager.Request(url);
+              request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE|DownloadManager.Request.NETWORK_WIFI);
+              request.setDestinationInExternalPublicDir("Android/media/ml.cerasus.pics/Tujian","桌面-"..math.random(1,999999999999)..".png");
+              request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+              downloadManager.enqueue(request);
+              SnakeBar("开始保存图片至此设备")
+             else
+              downloadManager=activity.getSystemService(Context.DOWNLOAD_SERVICE);
+              url=Uri.parse(picUrl:sub(1,53));
+              request=DownloadManager.Request(url);
+              request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE|DownloadManager.Request.NETWORK_WIFI);
+              request.setDestinationInExternalPublicDir("Pictures/Tujian","桌面-"..math.random(1,999999999999)..".png");
+              request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+              downloadManager.enqueue(request);
+              SnakeBar("开始保存图片至此设备")
+            end
            else
-            downloadManager=activity.getSystemService(Context.DOWNLOAD_SERVICE);
-            url=Uri.parse(picUrl:sub(1,53));
-            request=DownloadManager.Request(url);
-            request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE|DownloadManager.Request.NETWORK_WIFI);
-            request.setDestinationInExternalPublicDir("Pictures/Tujian","桌面-"..math.random(1,999999999999)..".png");
-            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-            downloadManager.enqueue(request);
-            SnakeBar("开始保存图片至此设备")
+            if sdk <= 28 == false
+              then
+              downloadManager=activity.getSystemService(Context.DOWNLOAD_SERVICE);
+              url=Uri.parse(picUrl);
+              request=DownloadManager.Request(url);
+              request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE|DownloadManager.Request.NETWORK_WIFI);
+              request.setDestinationInExternalPublicDir("Android/media/ml.cerasus.pics/Tujian","桌面-"..math.random(1,999999999999)..".png");
+              request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+              downloadManager.enqueue(request);
+              SnakeBar("开始保存图片至此设备")
+             else
+              downloadManager=activity.getSystemService(Context.DOWNLOAD_SERVICE);
+              url=Uri.parse(picUrl);
+              request=DownloadManager.Request(url);
+              request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE|DownloadManager.Request.NETWORK_WIFI);
+              request.setDestinationInExternalPublicDir("Pictures/Tujian","桌面-"..math.random(1,999999999999)..".png");
+              request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+              downloadManager.enqueue(request);
+              SnakeBar("开始保存图片至此设备")
+            end
           end
         end
         if(which== 1) then
-          setWallpaper(""..picUrl.."","桌面-"..math.random(1,999999999999)..".png")
+          setWallpaper1(""..picUrl.."","桌面-"..math.random(1,999999999999)..".png")
         end
       end
     }
@@ -2121,6 +2016,7 @@ function onKeyDown(code,event)
   end
 end
 
+
 --Snakebar函数，具体代码请见根目录Snakebar.lua
 function SnakeBar(fill)
   SnackerBar.build()
@@ -2183,7 +2079,12 @@ end
 
 
 --设置壁纸函数
-function setWallpaper(url,title) --直接传入下载链接和标题就行
+function setWallpaper()
+  local intent = Intent(Intent.ACTION_ATTACH_DATA);
+  intent.setDataAndType(Uri.fromFile(File("/sdcard/Android/data/ml.cerasus.pics/cache/"..biaoti..".jpg")),'image/*');
+  activity.startActivity(intent);
+end
+function setWallpaper1(url,title) --直接传入下载链接和标题就行
   require "import"
   import "com.androlua.Http"
   import "com.androlua.Ticker"
@@ -2202,23 +2103,24 @@ function setWallpaper(url,title) --直接传入下载链接和标题就行
   dialog6.setTitle("设置壁纸")
   dialog6.setCancelable(true)--设置是否可以通过点击Back键取消
   dialog6.setCanceledOnTouchOutside(false)--设置在点击Dialog外是否取消Dialog进度条
-  local filePath=tostring(activity.getFilesDir()).."/imagecache/"..title..".jpg"
+  filePath="/sdcard/Android/data/ml.cerasus.pics/cache/"..title..""
   local function down(url,path)
     local tt=Ticker()
     tt.Period=10
     tt.start()
-    Http.download(url,path,function(code,data,cookie,header)
-      if endd then
-        return
+    Http.download(url,path,nil,UA,function(code,content)
+      if code==200 then
+        import "java.io.*" --先导入io包
+        file,err=io.open(path)
+        --SnakeBar(content,file,err)
+        if err==nil then
+          tt.stop()
+          intent = Intent(Intent.ACTION_ATTACH_DATA);
+          intent.setDataAndType(Uri.fromFile(File(path)),'image/*');
+          activity.startActivity(intent);
+          dialog6.hide()
+        end
       end
-      tt.stop()
-      import "android.graphics.BitmapFactory"
-      import "android.app.WallpaperManager"
-      bitmap = BitmapFactory.decodeFile(path)
-      manager = WallpaperManager.getInstance(activity.getApplicationContext())
-      manager.setBitmap(bitmap)
-      SnakeBar("壁纸已设置")
-      dialog6.hide()
     end)
     function tt.onTick()
       local f=io.open(path,"r")
