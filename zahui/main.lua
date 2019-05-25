@@ -99,7 +99,6 @@ TextColor="#FF000000"
 
 状态栏高度=activity.getResources().getDimensionPixelSize(luajava.bindClass("com.android.internal.R$dimen")().status_bar_height)
 屏幕高度=activity.getHeight()
-导航栏高度=activity.getResources().getDimensionPixelSize(luajava.bindClass("com.android.internal.R$dimen")().navigation_bar_height)
 --状态栏颜色(0x3f000000)
 --状态栏沉浸，Android SDK>19时生效
 activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -324,12 +323,23 @@ layout2={--侧滑根布局
             TextView;
             layout_height="-2";
             layout_width="-1";
-            text="无人为孤岛，一图一世界";
+            text=[[无人为孤岛，一图一世界]];
             textColor=b;
             textSize="12sp";
             alpha="0.9";
             paddingTop="4dp";
             id="sologen";
+          };
+          {
+            TextView;
+            layout_height="-2";
+            layout_width="-1";
+            text=("终于等到你，还好我没放弃");
+            textColor=b;
+            textSize="12sp";
+            alpha="0.9";
+            paddingTop="4dp";
+            id="juzi";
           };
         };
       };
@@ -441,7 +451,6 @@ adp.add{__type=2,iv={src="zahui/res/desktop.png"},tv="桌面"}
 adp.add{__type=2,iv={src="zahui/res/compass.png"},tv="随机"}
 adp.add{__type=2,iv={src="zahui/res/bing.png"},tv="必应"}
 adp.add{__type=1,title="更多"}
-adp.add{__type=2,iv={src="zahui/res/text.png"},tv="句子"}
 adp.add{__type=2,iv={src="zahui/res/upload.png"},tv="投稿"}
 --adp.add{__type=2,iv={src="zahui/res/setting.png"},tv="设置"}
 adp.add{__type=2,iv={src="zahui/res/info.png"},tv="关于"}
@@ -460,7 +469,6 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
       adp.add{__type=2,iv={src="zahui/res/compass.png"},tv="随机"}
       adp.add{__type=2,iv={src="zahui/res/bing.png"},tv="必应"}
       adp.add{__type=1,title="更多"}
-      adp.add{__type=2,iv={src="zahui/res/text.png"},tv="句子"}
       adp.add{__type=2,iv={src="zahui/res/upload.png"},tv="投稿"}
       --    adp.add{__type=2,iv={src="zahui/res/setting.png"},tv="设置"}
       adp.add{__type=2,iv={src="zahui/res/info.png"},tv="关于"}
@@ -666,7 +674,6 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
       adp.add{__type=2,iv={src="zahui/res/compass.png"},tv="随机"}
       adp.add{__type=2,iv={src="zahui/res/bing.png"},tv="必应"}
       adp.add{__type=1,title="更多"}
-      adp.add{__type=2,iv={src="zahui/res/text.png"},tv="句子"}
       adp.add{__type=2,iv={src="zahui/res/upload.png"},tv="投稿"}
       --      adp.add{__type=2,iv={src="zahui/res/setting.png"},tv="设置"}
       adp.add{__type=2,iv={src="zahui/res/info.png"},tv="关于"}
@@ -868,7 +875,6 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
       adp.add{__type=2,iv={src="zahui/res/compass.png"},tv="随机"}
       adp.add{__type=2,iv={src="zahui/res/bing.png"},tv="必应"}
       adp.add{__type=1,title="更多"}
-      adp.add{__type=2,iv={src="zahui/res/text.png"},tv="句子"}
       adp.add{__type=2,iv={src="zahui/res/upload.png"},tv="投稿"}
       --      adp.add{__type=2,iv={src="zahui/res/setting.png"},tv="设置"}
       adp.add{__type=2,iv={src="zahui/res/info.png"},tv="关于"}
@@ -903,7 +909,6 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
       adp.add{__type=3,iv={src="zahui/res/compass.png"},tv="随机"}
       adp.add{__type=2,iv={src="zahui/res/bing.png"},tv="必应"}
       adp.add{__type=1,title="更多"}
-      adp.add{__type=2,iv={src="zahui/res/text.png"},tv="句子"}
       adp.add{__type=2,iv={src="zahui/res/upload.png"},tv="投稿"}
       --      adp.add{__type=2,iv={src="zahui/res/setting.png"},tv="设置"}
       adp.add{__type=2,iv={src="zahui/res/info.png"},tv="关于"}
@@ -1104,7 +1109,6 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
       adp.add{__type=2,iv={src="zahui/res/compass.png"},tv="随机"}
       adp.add{__type=3,iv={src="zahui/res/bing.png"},tv="必应"}
       adp.add{__type=1,title="更多"}
-      adp.add{__type=2,iv={src="zahui/res/text.png"},tv="句子"}
       adp.add{__type=2,iv={src="zahui/res/upload.png"},tv="投稿"}
       --          adp.add{__type=2,iv={src="zahui/res/setting.png"},tv="设置"}
       adp.add{__type=2,iv={src="zahui/res/info.png"},tv="关于"}
@@ -1852,10 +1856,14 @@ end
   dialog8.create()
 end
 
-
 --修改ProgressBar颜色
 loading.IndeterminateDrawable.setColorFilter(PorterDuffColorFilter(0xff000000,PorterDuff.Mode.SRC_ATOP))
 
+--侧栏句子设置文本
+local url="https://api.lwl12.com/hitokoto/v1?encode=text&charset=utf-8"
+Http.get(url,cookie,"UTF-8",function(code,body,cookie,header)
+  juzi.Text = "\n"..body..""
+end)
 
 --Webview版本桌面壁纸
 桌面.loadUrl("https://dp.chimon.me/fapp/old.php?sort=电脑壁纸")--加载网页
@@ -2026,32 +2034,6 @@ function SnakeBar(fill)
   :show()
 end
 
---句子函数
-function 句子()
-  local url="https://api.lwl12.com/hitokoto/v1?encode=text&charset=utf-8"
-  Http.get(url,cookie,"UTF-8",function(code,body,cookie,header)
-    if code==200 then
-      dialog=AlertDialog.Builder(this)
-      .setTitle("句子")
-      .setMessage(body)
-      .setPositiveButton("下一句",{onClick=function(v)
-          句子()
-        end})
-      .setNegativeButton("阅毕",nil)
-      .setNeutralButton("复制",{onClick=function(v)
-          import "android.content.*"
-          activity.getSystemService(Context.CLIPBOARD_SERVICE).setText(body)
-          SnakeBar("已复制到剪贴板")
-        end})
-      .show()
-      dialog.getButton(dialog.BUTTON_POSITIVE).setTextColor(0xff000000)
-      dialog.getButton(dialog.BUTTON_NEGATIVE).setTextColor(0xff000000)
-      dialog.getButton(dialog.BUTTON_NEUTRAL).setTextColor(0xff000000)
-      dialog.create()
-    end
-  end)
-end
-
 --几个变色
 function 自适应()
   Tujian.textColor=(转0x(TextColor))
@@ -2061,7 +2043,6 @@ function 自适应()
   activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS).setNavigationBarColor(转0x(ThemeColor));
 end
 activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS).setNavigationBarColor(转0x(ThemeColor));
-
 
 --统计代码
 import "java.io.*"
@@ -2076,7 +2057,6 @@ if dq==os.date("%Y%m%d") then
   Http.get("http://wz4.in/0tx4",nil,nil,nil,function(code,content,cookie,header)end)
   io.open("/sdcard/Android/data/ml.cerasus.pics/cachemain/add.tj","w+"):write("20190511"):close()
 end
-
 
 --设置壁纸函数
 function setWallpaper()
