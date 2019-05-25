@@ -273,7 +273,7 @@ layout2={--侧滑根布局
 
   {--侧滑布局
     ScrollView;
-    layout_width="75%w";
+    layout_width="68%w";
     layout_height="-1";
     layout_gravity="left";--*重要*设置父布局重心
     background=write;
@@ -914,7 +914,7 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
       adp.add{__type=2,iv={src="zahui/res/info.png"},tv="关于"}
       local pxinxi = "https://api.dpic.dev/random?op=mobile"
       Http.get(pxinxi,nil,"UTF-8",UA,function(http_code,content)
-        p_link = string.gsub(string.match(content,'"p_link":"(.-)"'),'\\/',"/")
+        p_link = string.gsub(string.match(content,'"local_url":"(.-)"'),'\\/',"/")
         biaoti = string.gsub(string.match(content,'"p_title":"(.-)"'),'',"")
         xinxi = string.gsub(string.match(content,'"p_content":"(.-)"'),'\\r\\n',"\n")
 
@@ -1859,6 +1859,9 @@ end
 --修改ProgressBar颜色
 loading.IndeterminateDrawable.setColorFilter(PorterDuffColorFilter(0xff000000,PorterDuff.Mode.SRC_ATOP))
 
+--隐藏导航栏
+activity.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION|View.SYSTEM_UI_FLAG_IMMERSIVE)
+
 --侧栏句子设置文本
 local url="https://api.lwl12.com/hitokoto/v1?encode=text&charset=utf-8"
 Http.get(url,cookie,"UTF-8",function(code,body,cookie,header)
@@ -2038,6 +2041,7 @@ end
 function 自适应()
   Tujian.textColor=(转0x(TextColor))
   sologen.textColor=(转0x(TextColor))
+  juzi.textColor=(转0x(TextColor))
   占位.BackgroundColor=(转0x("#42000000"))
   静态渐变((转0x(ThemeColor)),(转0x(ThemeColor)),_drawer_header,"横")
   activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS).setNavigationBarColor(转0x(ThemeColor));

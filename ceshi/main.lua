@@ -906,6 +906,9 @@ function 转0x(颜色)
   return abc
 end
 
+--隐藏导航栏
+activity.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION|View.SYSTEM_UI_FLAG_IMMERSIVE)
+
 --Snakebar函数，具体代码请见根目录Snakebar.lua
 function SnakeBar(fill)
   SnackerBar.build()

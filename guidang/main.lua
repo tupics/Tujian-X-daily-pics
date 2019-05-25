@@ -499,6 +499,9 @@ end
     控件隐藏(subtitle)
   end}
 
+--隐藏导航栏
+activity.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION|View.SYSTEM_UI_FLAG_IMMERSIVE)
+
 --保存图片函数
 function 保存图片(sort)
   判定=Uri.parse(picUrl:sub(1,16));
