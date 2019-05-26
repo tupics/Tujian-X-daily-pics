@@ -101,7 +101,8 @@ TextColor="#FF000000"
 屏幕高度=activity.getHeight()
 --状态栏颜色(0x3f000000)
 --状态栏沉浸，Android SDK>19时生效
-activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+--activity.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE)
 --activity.getWindow().setStatusBarColor(Color.TRANSPARENT);
 layout2={--侧滑根布局
   DrawerLayout;
@@ -476,7 +477,8 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
       Http.get(pxinxi,nil,"UTF-8",UA,function(http_code,content)
         p_link = string.gsub(string.match(content,'"p_link":"(.-)"'),'\\/',"/")
         biaoti = string.gsub(string.match(content,'"p_title":"(.-)"'),'',"")
-        xinxi = string.gsub(string.match(content,'"p_content":"(.-)"'),'\\r\\n',"\n")
+        xinxi1 = string.gsub(string.match(content,'"p_content":"(.-)"'),'\\r\\n',"\n")
+        xinxi = string.gsub(xinxi1,[[\/\/]],'//')
         ThemeColor = string.gsub(string.match(content,'"ThemeColor":"(.-)"'),'',"")
         TextColor = string.gsub(string.match(content,'"TextColor":"(.-)"'),'',"")
 
@@ -681,7 +683,8 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
       Http.get(pxinxi,nil,"UTF-8",UA,function(http_code,content)
         p_link = string.gsub(string.match(content,'"p_link":"(.-)"'),'\\/',"/")
         biaoti = string.gsub(string.match(content,'"p_title":"(.-)"'),'',"")
-        xinxi = string.gsub(string.match(content,'"p_content":"(.-)"'),'\\r\\n',"\n")
+        xinxi1 = string.gsub(string.match(content,'"p_content":"(.-)"'),'\\r\\n',"\n")
+        xinxi = string.gsub(xinxi1,[[\/\/]],'//')
         ThemeColor = string.gsub(string.match(content,'"ThemeColor":"(.-)"'),'',"")
         TextColor = string.gsub(string.match(content,'"TextColor":"(.-)"'),'',"")
 
@@ -916,8 +919,8 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
       Http.get(pxinxi,nil,"UTF-8",UA,function(http_code,content)
         p_link = string.gsub(string.match(content,'"local_url":"(.-)"'),'\\/',"/")
         biaoti = string.gsub(string.match(content,'"p_title":"(.-)"'),'',"")
-        xinxi = string.gsub(string.match(content,'"p_content":"(.-)"'),'\\r\\n',"\n")
-
+        xinxi1 = string.gsub(string.match(content,'"p_content":"(.-)"'),'\\r\\n',"\n")
+        xinxi = string.gsub(xinxi1,[[\/\/]],'//')
         加载菜单()
         import "java.io.File"--导入File类
         if File("sdcard/Android/data/ml.cerasus.pics/cache/"..biaoti..".jpg").exists() == false then
@@ -1408,7 +1411,8 @@ Http.get(pxinxi,nil,"UTF-8",UA,function(http_code,content)
   --SnakeBar(content)
   p_link = string.gsub(string.match(content,'"p_link":"(.-)"'),'\\/',"/")
   biaoti = string.gsub(string.match(content,'"p_title":"(.-)"'),'',"")
-  xinxi = string.gsub(string.match(content,'"p_content":"(.-)"'),'\\r\\n',"\n")
+  xinxi1 = string.gsub(string.match(content,'"p_content":"(.-)"'),'\\r\\n',"\n")
+  xinxi = string.gsub(xinxi1,[[\/\/]],'//')
   ThemeColor = string.gsub(string.match(content,'"ThemeColor":"(.-)"'),'',"")
   TextColor = string.gsub(string.match(content,'"TextColor":"(.-)"'),'',"")
   加载菜单()
@@ -1579,7 +1583,7 @@ function 加载菜单()
       activity.newActivity("guidang/main.lua",{ThemeColor,TextColor})
     end
     menu.add("设为壁纸").onMenuItemClick=function(a)
-      setWallpaper(p_link,biaoti)
+      setWallpaper(biaoti)
     end
     pop.show()
   end
@@ -1590,7 +1594,7 @@ bing.onClick=function()
   pop1=PopupMenu(activity,bing)
   menu=pop1.Menu
   menu.add("设为壁纸").onMenuItemClick=function(a)
-    setWallpaper(""..p_link.."","必应-"..math.random(1,999999999999)..".png")
+    setWallpaper("必应-"..math.random(1,999999999999)..".png")
   end
   pop1.show()
 end
@@ -1933,7 +1937,7 @@ end)
           end
         end
         if(which== 1) then
-          setWallpaper1(""..picUrl.."","桌面-"..math.random(1,999999999999)..".png")
+          setWallpaper1(tostring(picUrl),"桌面-"..math.random(1,999999999999)..".png")
         end
       end
     }
@@ -1959,7 +1963,8 @@ Http.get(check_update_url,nil,"UTF-8",UA,function(http_code,content)
     new_versionCode = tonumber(string.match(content,'"version_code":(.-),'))--版本号
     new_versionName = string.match(content,'"version_name":"(.-)"')--版本名
     apk_url = string.gsub(string.match(content,'"apk_url":"(.-)"'),'\\','')--下载地址
-    update_log = string.gsub(string.match(content,'"update_log":"(.-)"'),'\\n',"\n")--更新日志
+    update_log1 = string.gsub(string.match(content,'"update_log":"(.-)"'),'\\n',"\n")--更新日志
+    update_log = string.gsub(update_log1,[[\/]],'/')
 
     if (new_versionCode > versionCode) then
       dialog=AlertDialog.Builder(this)
@@ -2063,7 +2068,7 @@ if dq==os.date("%Y%m%d") then
 end
 
 --设置壁纸函数
-function setWallpaper()
+function setWallpaper(biaoti)
   local intent = Intent(Intent.ACTION_ATTACH_DATA);
   intent.setDataAndType(Uri.fromFile(File("/sdcard/Android/data/ml.cerasus.pics/cache/"..biaoti..".jpg")),'image/*');
   activity.startActivity(intent);
@@ -2081,15 +2086,15 @@ function setWallpaper1(url,title) --直接传入下载链接和标题就行
   import "android.app.WallpaperManager"
   import "android.app.*"
   import "java.io.*"
-  local dialog6= ProgressDialog(this)
+  dialog6= ProgressDialog(this)
   dialog6.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
   --设置进度条的形式为水平进度条
   dialog6.setTitle("设置壁纸")
-  dialog6.setCancelable(true)--设置是否可以通过点击Back键取消
+  dialog6.setCancelable(false)--设置是否可以通过点击Back键取消
   dialog6.setCanceledOnTouchOutside(false)--设置在点击Dialog外是否取消Dialog进度条
   filePath="/sdcard/Android/data/ml.cerasus.pics/cache/"..title..""
-  local function down(url,path)
-    local tt=Ticker()
+  function down(url,path)
+    tt=Ticker()
     tt.Period=10
     tt.start()
     Http.download(url,path,nil,UA,function(code,content)
@@ -2103,19 +2108,20 @@ function setWallpaper1(url,title) --直接传入下载链接和标题就行
           intent.setDataAndType(Uri.fromFile(File(path)),'image/*');
           activity.startActivity(intent);
           dialog6.hide()
+          dialog6.dismiss()
         end
       end
     end)
     function tt.onTick()
-      local f=io.open(path,"r")
+      f=io.open(path,"r")
       if f~=nil then
-        local len=f:read("a")
-        local s=#len/lens
+        len=f:read("a")
+        s=#len/lens
         dialog6.setProgress(s*100)
       end
     end
   end
-  local function download(url,path)
+  function download(url,path)
     dialog6.show()
     import "java.net.URL"
     realUrl = URL(url)

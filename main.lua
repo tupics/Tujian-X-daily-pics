@@ -30,6 +30,9 @@ import "muk"
 activity.setContentView(loadlayout("layout"))
 --设置视图("layout")
 
+--隐藏虚拟导航栏
+activity.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION|View.SYSTEM_UI_FLAG_IMMERSIVE)
+
 sdk = tointeger(Build.VERSION.SDK)
 
 --检测是否启动过了，打开welcome.lua

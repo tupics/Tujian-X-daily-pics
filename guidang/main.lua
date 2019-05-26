@@ -28,6 +28,8 @@ sdk = tointeger(Build.VERSION.SDK)
 
 隐藏标题栏()
 
+--隐藏虚拟导航栏
+activity.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION|View.SYSTEM_UI_FLAG_IMMERSIVE)
 activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)--禁止横屏
 activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS).setNavigationBarColor(转0x(ThemeColor));
 
@@ -564,15 +566,15 @@ function setWallpaper(url,title) --直接传入下载链接和标题就行
   import "android.app.WallpaperManager"
   import "android.app.*"
   import "java.io.*"
-  local dialog6= ProgressDialog(this)
+  dialog6= ProgressDialog(this)
   dialog6.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
   --设置进度条的形式为水平进度条
   dialog6.setTitle("设置壁纸")
-  dialog6.setCancelable(true)--设置是否可以通过点击Back键取消
+  dialog6.setCancelable(false)--设置是否可以通过点击Back键取消
   dialog6.setCanceledOnTouchOutside(false)--设置在点击Dialog外是否取消Dialog进度条
   filePath="/sdcard/Android/data/ml.cerasus.pics/cache/"..title..""
-  local function down(url,path)
-    local tt=Ticker()
+  function down(url,path)
+    tt=Ticker()  
     tt.Period=10
     tt.start()
     Http.download(url,path,nil,UA,function(code,content)
@@ -584,21 +586,22 @@ function setWallpaper(url,title) --直接传入下载链接和标题就行
           tt.stop()
           intent = Intent(Intent.ACTION_ATTACH_DATA);
           intent.setDataAndType(Uri.fromFile(File(path)),'image/*');
-          activity.startActivity(intent);
+          activity.startActivity(intent);          
           dialog6.hide()
+          dialog6.dismiss()
         end
       end
     end)
     function tt.onTick()
-      local f=io.open(path,"r")
+      f=io.open(path,"r")
       if f~=nil then
-        local len=f:read("a")
-        local s=#len/lens
+        len=f:read("a")
+        s=#len/lens
         dialog6.setProgress(s*100)
       end
     end
   end
-  local function download(url,path)
+  function download(url,path)
     dialog6.show()
     import "java.net.URL"
     realUrl = URL(url)
@@ -611,8 +614,9 @@ function setWallpaper(url,title) --直接传入下载链接和标题就行
     lens=con.getContentLength()
     down(url,path)
   end
-  download(url,filePath)
+  download(url,filePath)  
 end
+
 
 --控件点击波纹函数
 function ControlsRipple(id,Color)
