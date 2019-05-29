@@ -63,6 +63,8 @@ import "com.androlua.LuaUtil"
 import 'android.graphics.drawable.*'
 import "Createlite@Tujian@SnakerBar"
 import "android.content.pm.ActivityInfo"
+import 'ml.cerasus.RomUtil.*'
+
 
 
 隐藏标题栏()
@@ -1582,7 +1584,7 @@ function 加载菜单()
       --  activity.newActivity("guidang/main.lua")
       activity.newActivity("guidang/main.lua",{ThemeColor,TextColor})
     end
-    menu.add("设为壁纸").onMenuItemClick=function(a)
+    menu.add("设为壁纸").onMenuItemClick=function(a) 
       setWallpaper(biaoti)
     end
     pop.show()
@@ -2069,9 +2071,33 @@ end
 
 --设置壁纸函数
 function setWallpaper(biaoti)
-  local intent = Intent(Intent.ACTION_ATTACH_DATA);
-  intent.setDataAndType(Uri.fromFile(File("/sdcard/Android/data/ml.cerasus.pics/cache/"..biaoti..".jpg")),'image/*');
-  activity.startActivity(intent);
+  path="/sdcard/Android/data/ml.cerasus.pics/cache/"..biaoti..".jpg"
+  --判断系统，需要导包 import"ml.cerasus.RomUtil"
+  --EMUI
+  if RomUtil.isHuaweiRom() then
+    componentName = ComponentName("com.android.gallery3d","com.android.gallery3d.app.Wallpaper");
+    intent = Intent(Intent.ACTION_VIEW);
+    intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+    intent.setDataAndType(Uri.fromFile(File(path)), "image/*");
+    intent.putExtra("mimeType", "image/*");
+    intent.setComponent(componentName);
+    activity.startActivity(intent);
+   elseif RomUtil.isMiuiRom() then
+    --MIUI
+    componentName = ComponentName("com.android.thememanager", "com.android.thememanager.activity.WallpaperDetailActivity");
+    intent = Intent("miui.intent.action.START_WALLPAPER_DETAIL");
+    intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+    intent.setDataAndType(Uri.fromFile(File(path)),"image/*");
+    intent.putExtra("mimeType","image/*");
+    intent.setComponent(componentName);
+    activity.startActivity(intent); intent = Intent(Intent.ACTION_ATTACH_DATA)
+   else
+    --其他
+    local intent = Intent(Intent.ACTION_ATTACH_DATA);
+    intent.setDataAndType(Uri.fromFile(File(path)),'image/*');
+    activity.startActivity(intent);
+  end
+
 end
 function setWallpaper1(url,title) --直接传入下载链接和标题就行
   require "import"
@@ -2093,6 +2119,7 @@ function setWallpaper1(url,title) --直接传入下载链接和标题就行
   dialog6.setCancelable(false)--设置是否可以通过点击Back键取消
   dialog6.setCanceledOnTouchOutside(false)--设置在点击Dialog外是否取消Dialog进度条
   filePath="/sdcard/Android/data/ml.cerasus.pics/cache/"..title..""
+  path=filePath
   function down(url,path)
     tt=Ticker()
     tt.Period=10
@@ -2104,11 +2131,37 @@ function setWallpaper1(url,title) --直接传入下载链接和标题就行
         --SnakeBar(content,file,err)
         if err==nil then
           tt.stop()
-          intent = Intent(Intent.ACTION_ATTACH_DATA);
-          intent.setDataAndType(Uri.fromFile(File(path)),'image/*');
-          activity.startActivity(intent);
-          dialog6.hide()
-          dialog6.dismiss()
+          --判断系统，需要导包 import"ml.cerasus.RomUtil"
+          --EMUI
+          if RomUtil.isHuaweiRom() then
+            componentName = ComponentName("com.android.gallery3d","com.android.gallery3d.app.Wallpaper");
+            intent = Intent(Intent.ACTION_VIEW);
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            intent.setDataAndType(Uri.fromFile(File(path)), "image/*");
+            intent.putExtra("mimeType", "image/*");
+            intent.setComponent(componentName);
+            activity.startActivity(intent);
+            dialog6.hide()
+            dialog6.dismiss()
+           elseif RomUtil.isMiuiRom() then
+            --MIUI
+            componentName = ComponentName("com.android.thememanager", "com.android.thememanager.activity.WallpaperDetailActivity");
+            intent = Intent("miui.intent.action.START_WALLPAPER_DETAIL");
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            intent.setDataAndType(Uri.fromFile(File(path)),"image/*");
+            intent.putExtra("mimeType","image/*");
+            intent.setComponent(componentName);
+            activity.startActivity(intent); intent = Intent(Intent.ACTION_ATTACH_DATA);
+            dialog6.hide()
+            dialog6.dismiss()
+           else
+            --其他
+            local intent = Intent(Intent.ACTION_ATTACH_DATA);
+            intent.setDataAndType(Uri.fromFile(File(path)),'image/*');
+            activity.startActivity(intent);
+            dialog6.hide()
+            dialog6.dismiss()
+          end
         end
       end
     end)

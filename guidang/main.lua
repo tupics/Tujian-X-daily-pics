@@ -22,6 +22,7 @@ import "com.github.ksoichiro.android.observablescrollview.*"--导入ObservableSc
 import "muk"--导入中文函数
 import "Createlite@Tujian@SnakerBar"
 import "android.content.pm.ActivityInfo"
+import 'ml.cerasus.RomUtil.*'
 
 ThemeColor,TextColor=...--载入参数
 sdk = tointeger(Build.VERSION.SDK)
@@ -573,8 +574,9 @@ function setWallpaper(url,title) --直接传入下载链接和标题就行
   dialog6.setCancelable(false)--设置是否可以通过点击Back键取消
   dialog6.setCanceledOnTouchOutside(false)--设置在点击Dialog外是否取消Dialog进度条
   filePath="/sdcard/Android/data/ml.cerasus.pics/cache/"..title..""
+  path=filePath
   function down(url,path)
-    tt=Ticker()  
+    tt=Ticker()
     tt.Period=10
     tt.start()
     Http.download(url,path,nil,UA,function(code,content)
@@ -584,11 +586,37 @@ function setWallpaper(url,title) --直接传入下载链接和标题就行
         --SnakeBar(content,file,err)
         if err==nil then
           tt.stop()
-          intent = Intent(Intent.ACTION_ATTACH_DATA);
-          intent.setDataAndType(Uri.fromFile(File(path)),'image/*');
-          activity.startActivity(intent);          
-          dialog6.hide()
-          dialog6.dismiss()
+          --判断系统，需要导包 import"ml.cerasus.RomUtil"
+          --EMUI
+          if RomUtil.isHuaweiRom() then
+            componentName = ComponentName("com.android.gallery3d","com.android.gallery3d.app.Wallpaper");
+            intent = Intent(Intent.ACTION_VIEW);
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            intent.setDataAndType(Uri.fromFile(File(path)), "image/*");
+            intent.putExtra("mimeType", "image/*");
+            intent.setComponent(componentName);
+            activity.startActivity(intent);
+            dialog6.hide()
+            dialog6.dismiss()
+           elseif RomUtil.isMiuiRom() then
+            --MIUI
+            componentName = ComponentName("com.android.thememanager", "com.android.thememanager.activity.WallpaperDetailActivity");
+            intent = Intent("miui.intent.action.START_WALLPAPER_DETAIL");
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            intent.setDataAndType(Uri.fromFile(File(path)),"image/*");
+            intent.putExtra("mimeType","image/*");
+            intent.setComponent(componentName);
+            activity.startActivity(intent); intent = Intent(Intent.ACTION_ATTACH_DATA);
+            dialog6.hide()
+            dialog6.dismiss()
+           else
+            --其他
+            local intent = Intent(Intent.ACTION_ATTACH_DATA);
+            intent.setDataAndType(Uri.fromFile(File(path)),'image/*');
+            activity.startActivity(intent);
+            dialog6.hide()
+            dialog6.dismiss()
+          end
         end
       end
     end)
@@ -614,9 +642,8 @@ function setWallpaper(url,title) --直接传入下载链接和标题就行
     lens=con.getContentLength()
     down(url,path)
   end
-  download(url,filePath)  
+  download(url,filePath)
 end
-
 
 --控件点击波纹函数
 function ControlsRipple(id,Color)

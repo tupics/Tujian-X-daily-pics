@@ -20,7 +20,7 @@ From the [Tujian X](https://www.coolapk.com/apk/ml.cerasus.pics) App,you can get
 Screenshots
 -------
 
-![image](https://img.dpic.dev/a8b8451baa6d6e6553c6503ec98fb862)
+![image](https://img.dpic.dev/b85811e1590657c029d447f7677b7b74)
 
 License
 -------
