@@ -52,11 +52,7 @@ if File("/sdcard/Android/data/ml.cerasus.pics/cachemain/welcome.tj").exists() ==
   activity.finish()
 end
 
-
-
-
 activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)--禁止横屏
-
 
 if Build.VERSION.SDK_INT >= 21 then
   activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS).setStatusBarColor(0xff757575);

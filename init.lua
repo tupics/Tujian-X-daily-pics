@@ -1,5 +1,5 @@
 appname="Tujian X"
-appver="3.1.3"
+appver="3.1.5"
 appcode="1"
 appsdk="29"
 path_pattern=""

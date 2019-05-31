@@ -332,18 +332,7 @@ layout2={--侧滑根布局
             alpha="0.9";
             paddingTop="4dp";
             id="sologen";
-          };
-          {
-            TextView;
-            layout_height="-2";
-            layout_width="-1";
-            text=("终于等到你，还好我没放弃");
-            textColor=b;
-            textSize="12sp";
-            alpha="0.9";
-            paddingTop="4dp";
-            id="juzi";
-          };
+          };  
         };
       };
       {--无滚动列表
@@ -454,6 +443,7 @@ adp.add{__type=2,iv={src="zahui/res/desktop.png"},tv="桌面"}
 adp.add{__type=2,iv={src="zahui/res/compass.png"},tv="随机"}
 adp.add{__type=2,iv={src="zahui/res/bing.png"},tv="必应"}
 adp.add{__type=1,title="更多"}
+adp.add{__type=2,iv={src="zahui/res/text.png"},tv="句子"}
 adp.add{__type=2,iv={src="zahui/res/upload.png"},tv="投稿"}
 --adp.add{__type=2,iv={src="zahui/res/setting.png"},tv="设置"}
 adp.add{__type=2,iv={src="zahui/res/info.png"},tv="关于"}
@@ -472,6 +462,7 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
       adp.add{__type=2,iv={src="zahui/res/compass.png"},tv="随机"}
       adp.add{__type=2,iv={src="zahui/res/bing.png"},tv="必应"}
       adp.add{__type=1,title="更多"}
+      adp.add{__type=2,iv={src="zahui/res/text.png"},tv="句子"}
       adp.add{__type=2,iv={src="zahui/res/upload.png"},tv="投稿"}
       --    adp.add{__type=2,iv={src="zahui/res/setting.png"},tv="设置"}
       adp.add{__type=2,iv={src="zahui/res/info.png"},tv="关于"}
@@ -678,6 +669,7 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
       adp.add{__type=2,iv={src="zahui/res/compass.png"},tv="随机"}
       adp.add{__type=2,iv={src="zahui/res/bing.png"},tv="必应"}
       adp.add{__type=1,title="更多"}
+      adp.add{__type=2,iv={src="zahui/res/text.png"},tv="句子"}
       adp.add{__type=2,iv={src="zahui/res/upload.png"},tv="投稿"}
       --      adp.add{__type=2,iv={src="zahui/res/setting.png"},tv="设置"}
       adp.add{__type=2,iv={src="zahui/res/info.png"},tv="关于"}
@@ -880,6 +872,7 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
       adp.add{__type=2,iv={src="zahui/res/compass.png"},tv="随机"}
       adp.add{__type=2,iv={src="zahui/res/bing.png"},tv="必应"}
       adp.add{__type=1,title="更多"}
+      adp.add{__type=2,iv={src="zahui/res/text.png"},tv="句子"}
       adp.add{__type=2,iv={src="zahui/res/upload.png"},tv="投稿"}
       --      adp.add{__type=2,iv={src="zahui/res/setting.png"},tv="设置"}
       adp.add{__type=2,iv={src="zahui/res/info.png"},tv="关于"}
@@ -914,6 +907,7 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
       adp.add{__type=3,iv={src="zahui/res/compass.png"},tv="随机"}
       adp.add{__type=2,iv={src="zahui/res/bing.png"},tv="必应"}
       adp.add{__type=1,title="更多"}
+      adp.add{__type=2,iv={src="zahui/res/text.png"},tv="句子"}
       adp.add{__type=2,iv={src="zahui/res/upload.png"},tv="投稿"}
       --      adp.add{__type=2,iv={src="zahui/res/setting.png"},tv="设置"}
       adp.add{__type=2,iv={src="zahui/res/info.png"},tv="关于"}
@@ -1114,6 +1108,7 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
       adp.add{__type=2,iv={src="zahui/res/compass.png"},tv="随机"}
       adp.add{__type=3,iv={src="zahui/res/bing.png"},tv="必应"}
       adp.add{__type=1,title="更多"}
+      adp.add{__type=2,iv={src="zahui/res/text.png"},tv="句子"}
       adp.add{__type=2,iv={src="zahui/res/upload.png"},tv="投稿"}
       --          adp.add{__type=2,iv={src="zahui/res/setting.png"},tv="设置"}
       adp.add{__type=2,iv={src="zahui/res/info.png"},tv="关于"}
@@ -1584,7 +1579,7 @@ function 加载菜单()
       --  activity.newActivity("guidang/main.lua")
       activity.newActivity("guidang/main.lua",{ThemeColor,TextColor})
     end
-    menu.add("设为壁纸").onMenuItemClick=function(a) 
+    menu.add("设为壁纸").onMenuItemClick=function(a)
       setWallpaper(biaoti)
     end
     pop.show()
@@ -1868,12 +1863,6 @@ loading.IndeterminateDrawable.setColorFilter(PorterDuffColorFilter(0xff000000,Po
 --隐藏导航栏
 activity.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION|View.SYSTEM_UI_FLAG_IMMERSIVE)
 
---侧栏句子设置文本
-local url="https://api.lwl12.com/hitokoto/v1?encode=text&charset=utf-8"
-Http.get(url,cookie,"UTF-8",function(code,body,cookie,header)
-  juzi.Text = "\n"..body..""
-end)
-
 --Webview版本桌面壁纸
 桌面.loadUrl("https://dp.chimon.me/fapp/old.php?sort=电脑壁纸")--加载网页
 桌面.getSettings().setSupportZoom(false)--不支持缩放
@@ -2047,8 +2036,7 @@ end
 --几个变色
 function 自适应()
   Tujian.textColor=(转0x(TextColor))
-  sologen.textColor=(转0x(TextColor))
-  juzi.textColor=(转0x(TextColor))
+  sologen.textColor=(转0x(TextColor))  
   占位.BackgroundColor=(转0x("#42000000"))
   静态渐变((转0x(ThemeColor)),(转0x(ThemeColor)),_drawer_header,"横")
   activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS).setNavigationBarColor(转0x(ThemeColor));
@@ -2067,6 +2055,32 @@ if dq==os.date("%Y%m%d") then
  else
   Http.get("http://wz4.in/0tx4",nil,nil,nil,function(code,content,cookie,header)end)
   io.open("/sdcard/Android/data/ml.cerasus.pics/cachemain/add.tj","w+"):write("20190511"):close()
+end
+
+--句子函数
+function 句子()
+  local url="https://api.lwl12.com/hitokoto/v1?encode=text&charset=utf-8"
+  Http.get(url,cookie,"UTF-8",function(code,body,cookie,header)
+    if code==200 then
+      dialog=AlertDialog.Builder(this)
+      .setTitle("句子")
+      .setMessage(body)
+      .setPositiveButton("下一句",{onClick=function(v)
+          句子()
+        end})
+      .setNegativeButton("阅毕",nil)
+      .setNeutralButton("复制",{onClick=function(v)
+          import "android.content.*"
+          activity.getSystemService(Context.CLIPBOARD_SERVICE).setText(body)
+          SnakeBar("已复制到剪贴板")          
+        end})
+      .show()
+      dialog.getButton(dialog.BUTTON_POSITIVE).setTextColor(0xff000000)
+      dialog.getButton(dialog.BUTTON_NEGATIVE).setTextColor(0xff000000)
+      dialog.getButton(dialog.BUTTON_NEUTRAL).setTextColor(0xff000000)
+      dialog.create()
+    end
+  end)
 end
 
 --设置壁纸函数
@@ -2097,7 +2111,6 @@ function setWallpaper(biaoti)
     intent.setDataAndType(Uri.fromFile(File(path)),'image/*');
     activity.startActivity(intent);
   end
-
 end
 function setWallpaper1(url,title) --直接传入下载链接和标题就行
   require "import"
