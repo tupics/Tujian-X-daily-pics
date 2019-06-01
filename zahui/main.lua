@@ -163,6 +163,18 @@ layout2={--侧滑根布局
           layout_width="fill";
           layout_height="fill";
         };
+        {
+          LuaWebView;
+          id="杂烩归档";
+          layout_width="fill";
+          layout_height="fill";
+        };
+        {
+          LuaWebView;
+          id="插画归档";
+          layout_width="fill";
+          layout_height="fill";
+        };
       };
       {
         LinearLayout,
@@ -332,7 +344,7 @@ layout2={--侧滑根布局
             alpha="0.9";
             paddingTop="4dp";
             id="sologen";
-          };  
+          };
         };
       };
       {--无滚动列表
@@ -438,6 +450,7 @@ drawer_item={
 --列表适配器
 adp=LuaMultiAdapter(activity,drawer_item)
 adp.add{__type=3,iv={src="zahui/res/zahui.png"},tv="杂烩"}
+adp.add{__type=2,iv={src="zahui/res/archive.png"},tv="归档"}
 adp.add{__type=2,iv={src="zahui/res/chahua.png"},tv="插画"}
 adp.add{__type=2,iv={src="zahui/res/desktop.png"},tv="桌面"}
 adp.add{__type=2,iv={src="zahui/res/compass.png"},tv="随机"}
@@ -457,6 +470,7 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
     if s=="杂烩" then
       adp.clear()
       adp.add{__type=3,iv={src="zahui/res/zahui.png"},tv="杂烩"}
+      adp.add{__type=2,iv={src="zahui/res/archive.png"},tv="归档"}
       adp.add{__type=2,iv={src="zahui/res/chahua.png"},tv="插画"}
       adp.add{__type=2,iv={src="zahui/res/desktop.png"},tv="桌面"}
       adp.add{__type=2,iv={src="zahui/res/compass.png"},tv="随机"}
@@ -503,6 +517,8 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
                     控件可见(more)
                     控件隐藏(必应)
                     控件隐藏(桌面)
+                    控件隐藏(杂烩归档)
+                    控件隐藏(插画归档)
                     控件隐藏(bing)
                   end
                 end)
@@ -592,6 +608,8 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
               控件隐藏(loading)
               控件可见(more)
               控件隐藏(桌面)
+              控件隐藏(杂烩归档)
+              控件隐藏(插画归档)
               控件隐藏(必应)
               控件隐藏(bing)
             end
@@ -657,6 +675,8 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
       控件隐藏(more)
       控件隐藏(bing)
       控件隐藏(必应)
+      控件隐藏(杂烩归档)
+      控件隐藏(插画归档)
       控件隐藏(桌面)
       控件可见(loading)
       控件可见(subtitle)
@@ -665,6 +685,7 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
       adp.clear()
       adp.add{__type=2,iv={src="zahui/res/zahui.png"},tv="杂烩"}
       adp.add{__type=3,iv={src="zahui/res/chahua.png"},tv="插画"}
+      adp.add{__type=2,iv={src="zahui/res/archive.png"},tv="归档 "}
       adp.add{__type=2,iv={src="zahui/res/desktop.png"},tv="桌面"}
       adp.add{__type=2,iv={src="zahui/res/compass.png"},tv="随机"}
       adp.add{__type=2,iv={src="zahui/res/bing.png"},tv="必应"}
@@ -706,6 +727,8 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
                     alpha2.setDuration(256)--设置动画时间
                     alpha2.setInterpolator(DecelerateInterpolator())--设置动画插入器，减速
                     alpha2.start()
+                    控件隐藏(杂烩归档)
+                    控件隐藏(插画归档)
                     控件隐藏(桌面)
                     控件隐藏(bing)
                   end
@@ -795,6 +818,8 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
             alpha2.start()
             控件隐藏(必应)
             控件可见(more)
+            控件隐藏(杂烩归档)
+            控件隐藏(插画归档)
             控件隐藏(桌面)
             控件隐藏(bing)
           end
@@ -856,6 +881,8 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
       控件隐藏(img)
       控件隐藏(more)
       控件隐藏(bing)
+      控件隐藏(杂烩归档)
+      控件隐藏(插画归档)
       控件隐藏(桌面)
       控件可见(loading)
       控件隐藏(必应)
@@ -883,6 +910,8 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
       控件隐藏(loading)
       控件隐藏(img)
       控件隐藏(必应)
+      控件隐藏(杂烩归档)
+      控件隐藏(插画归档)
       控件隐藏(bing)
       控件可见(桌面)
       task(500,function()
@@ -894,6 +923,8 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
           控件隐藏(loading)
           控件隐藏(必应)
           控件隐藏(img)
+          控件隐藏(杂烩归档)
+          控件隐藏(插画归档)
           控件隐藏(bing)
           控件可见(桌面)
         end
@@ -943,6 +974,8 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
                     alpha2.start()
                     控件隐藏(桌面)
                     控件隐藏(bing)
+                    控件隐藏(杂烩归档)
+                    控件隐藏(插画归档)
                   end
                 end)
                 subtitle.Text = biaoti
@@ -1032,6 +1065,8 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
             控件可见(more)
             控件隐藏(桌面)
             控件隐藏(bing)
+            控件隐藏(杂烩归档)
+            控件隐藏(插画归档)
           end
           subtitle.Text = biaoti
           img.Enabled=true
@@ -1093,6 +1128,8 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
       控件隐藏(bing)
       控件隐藏(桌面)
       控件可见(loading)
+      控件隐藏(杂烩归档)
+      控件隐藏(插画归档)
       控件隐藏(必应)
       控件可见(subtitle)
       subtitle.Text = "加载中.."
@@ -1116,6 +1153,8 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
       控件隐藏(subtitle)
       控件隐藏(img)
       控件隐藏(more)
+      控件隐藏(杂烩归档)
+      控件隐藏(插画归档)
       控件隐藏(桌面)
       控件隐藏(模糊)
       控件可见(loading)
@@ -1130,6 +1169,8 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
             控件隐藏(img)
             控件可见(bing)
             控件隐藏(subtitle)
+            控件隐藏(杂烩归档)
+            控件隐藏(插画归档)
             控件隐藏(桌面)
             控件隐藏(模糊)
             控件隐藏(more)
@@ -1163,6 +1204,8 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
                   alpha2.start()
                   控件隐藏(subtitle)
                   控件隐藏(img)
+                  控件隐藏(杂烩归档)
+                  控件隐藏(插画归档)
                   控件隐藏(模糊)
                   控件隐藏(桌面)
                   控件隐藏(more)
@@ -1285,6 +1328,8 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
             控件隐藏(img)
             控件可见(bing)
             控件隐藏(loading)
+            控件隐藏(杂烩归档)
+            控件隐藏(插画归档)
             控件隐藏(subtitle)
             控件隐藏(桌面)
             控件可见(必应)
@@ -1350,14 +1395,94 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
       控件隐藏(img)
       控件隐藏(必应)
       控件可见(loading)
+     elseif s=="归档" then
+      --杂烩归档设置开始
+      adp.clear()
+      adp.add{__type=2,iv={src="zahui/res/zahui.png"},tv="杂烩"}
+      adp.add{__type=3,iv={src="zahui/res/archive.png"},tv="归档"}
+      adp.add{__type=2,iv={src="zahui/res/chahua.png"},tv="插画"}
+      adp.add{__type=2,iv={src="zahui/res/desktop.png"},tv="桌面"}
+      adp.add{__type=2,iv={src="zahui/res/compass.png"},tv="随机"}
+      adp.add{__type=2,iv={src="zahui/res/bing.png"},tv="必应"}
+      adp.add{__type=1,title="更多"}
+      adp.add{__type=2,iv={src="zahui/res/text.png"},tv="句子"}
+      adp.add{__type=2,iv={src="zahui/res/upload.png"},tv="投稿"}
+      --      adp.add{__type=2,iv={src="zahui/res/setting.png"},tv="设置"}
+      adp.add{__type=2,iv={src="zahui/res/info.png"},tv="关于"}
+      _drawer.closeDrawer(3)
+      _title.Text = "归档"
+      控件隐藏(subtitle)
+      控件隐藏(more)
+      控件隐藏(loading)
+      控件隐藏(img)
+      控件隐藏(必应)
+      控件可见(杂烩归档)
+      控件隐藏(插画归档)
+      控件隐藏(bing)
+      控件隐藏(桌面)
+      task(500,function()
+        if
+          _title.Text == "归档"
+          then
+          控件隐藏(more)
+          控件隐藏(loading)
+          控件隐藏(img)
+          控件隐藏(subtitle)
+          控件隐藏(必应)
+          控件可见(杂烩归档)
+          控件隐藏(插画归档)
+          控件隐藏(bing)
+          控件隐藏(桌面)
+        end
+      end)
+     elseif s=="归档 " then
+      --插画归档设置开始
+      adp.clear()
+      adp.add{__type=2,iv={src="zahui/res/zahui.png"},tv="杂烩"}
+      adp.add{__type=2,iv={src="zahui/res/chahua.png"},tv="插画"}
+      adp.add{__type=3,iv={src="zahui/res/archive.png"},tv="归档 "}
+      adp.add{__type=2,iv={src="zahui/res/desktop.png"},tv="桌面"}
+      adp.add{__type=2,iv={src="zahui/res/compass.png"},tv="随机"}
+      adp.add{__type=2,iv={src="zahui/res/bing.png"},tv="必应"}
+      adp.add{__type=1,title="更多"}
+      adp.add{__type=2,iv={src="zahui/res/text.png"},tv="句子"}
+      adp.add{__type=2,iv={src="zahui/res/upload.png"},tv="投稿"}
+      --      adp.add{__type=2,iv={src="zahui/res/setting.png"},tv="设置"}
+      adp.add{__type=2,iv={src="zahui/res/info.png"},tv="关于"}
+      _drawer.closeDrawer(3)
+      _title.Text = "归档"
+      控件隐藏(subtitle)
+      控件隐藏(more)
+      控件隐藏(loading)
+      控件隐藏(img)
+      控件隐藏(必应)
+      控件隐藏(杂烩归档)
+      控件可见(插画归档)
+      控件隐藏(bing)
+      控件隐藏(桌面)
+      task(500,function()
+        if
+          _title.Text == "归档"
+          then
+          控件隐藏(more)
+          控件隐藏(subtitle)
+          控件隐藏(loading)
+          控件隐藏(img)
+          控件隐藏(必应)
+          控件隐藏(杂烩归档)
+          控件可见(插画归档)
+          控件隐藏(bing)
+          控件隐藏(桌面)
+        end
+      end)
      elseif s=="关于" then
       --[[
       kbl="空变量"--设置这个是为了进入退出动画
-      activity.newActivity("ceshi/main.lua",android.R.anim.fade_in,android.R.anim.fade_out,{kbl})
+      activity.newActivity("guanyu/main.lua",android.R.anim.fade_in,android.R.anim.fade_out,{kbl})
       activity.finish()      
       ]]
       --代码不稳定，未开放，可以自己了解
-      activity.newActivity("ceshi/main.lua",{ThemeColor,TextColor})
+      activity.newActivity("guanyu/main.lua",{ThemeColor,TextColor})
      elseif s=="句子" then
       句子()
      elseif s=="投稿" then
@@ -1438,6 +1563,8 @@ Http.get(pxinxi,nil,"UTF-8",UA,function(http_code,content)
               alpha2.setInterpolator(DecelerateInterpolator())--设置动画插入器，减速
               alpha2.start()
               控件可见(more)
+              控件隐藏(杂烩归档)
+              控件隐藏(插画归档)
               控件隐藏(必应)
               控件隐藏(桌面)
               控件隐藏(bing)
@@ -1715,6 +1842,8 @@ end
 控件隐藏(more)
 控件隐藏(bing)
 控件隐藏(img)
+控件隐藏(杂烩归档)
+控件隐藏(插画归档)
 控件可见(subtitle)
 
 模糊.onClick=function()
@@ -1863,6 +1992,73 @@ loading.IndeterminateDrawable.setColorFilter(PorterDuffColorFilter(0xff000000,Po
 --隐藏导航栏
 activity.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION|View.SYSTEM_UI_FLAG_IMMERSIVE)
 
+--杂烩归档设置
+杂烩归档.loadUrl("https://dp.chimon.me/fapp/old.php?sort=杂烩")--加载网页
+杂烩归档.getSettings().setSupportZoom(false)--不支持缩放
+杂烩归档.getSettings().setJavaScriptEnabled(true)--设置支持JS，备用
+杂烩归档.getSettings().setUserAgentString("Tujian @Createlite");--辨识UA
+杂烩归档.removeView(杂烩归档.getChildAt(0))--隐藏进度显示
+
+杂烩归档.onLongClick=function()
+  hitTestResult = 杂烩归档.getHitTestResult()
+  if
+    (hitTestResult.getType() == 杂烩归档.HitTestResult.IMAGE_TYPE
+    or
+    hitTestResult.getType() == 杂烩归档.HitTestResult.SRC_IMAGE_ANCHOR_TYPE)
+    then
+    picUrl = hitTestResult.getExtra()
+    project = {"保存图片","设为壁纸"}
+    actionListener =
+    {
+      onClick=function(dialog,which)
+        if(which== 0) then
+          归档保存图片("杂烩")--函数在后面，这里是为了方便
+        end
+        if(which== 1) then
+          setWallpaper1(""..picUrl.."","杂烩-"..math.random(1,999999999999)..".png")
+        end
+      end
+    }
+    AlertDialog.Builder(this)
+    .setItems(project,actionListener)
+    .show();
+  end
+end
+
+--插画归档设置
+插画归档.loadUrl("https://dp.chimon.me/fapp/old.php?sort=插画")--加载网页
+插画归档.getSettings().setSupportZoom(false)--不支持缩放
+插画归档.getSettings().setJavaScriptEnabled(true)--设置支持JS，备用
+插画归档.getSettings().setUserAgentString("Tujian @Createlite");--辨识UA
+插画归档.removeView(插画归档.getChildAt(0))--隐藏进度显示
+
+插画归档.onLongClick=function()
+  hitTestResult = 插画归档.getHitTestResult()
+  if
+    (hitTestResult.getType() == 插画归档.HitTestResult.IMAGE_TYPE
+    or
+    hitTestResult.getType() == 插画归档.HitTestResult.SRC_IMAGE_ANCHOR_TYPE)
+    then
+    picUrl = hitTestResult.getExtra()
+    project = {"保存图片","设为壁纸"}
+    actionListener =
+    {
+      onClick=function(dialog,which)
+        if(which== 0)
+          then
+          归档保存图片("插画")--函数在后面，这里是为了方便
+        end
+        if(which== 1) then
+          setWallpaper1(""..picUrl.."","插画-"..math.random(1,999999999999)..".png")
+        end
+      end
+    }
+    AlertDialog.Builder(this)
+    .setItems(project,actionListener)
+    .show();
+  end
+end
+
 --Webview版本桌面壁纸
 桌面.loadUrl("https://dp.chimon.me/fapp/old.php?sort=电脑壁纸")--加载网页
 桌面.getSettings().setSupportZoom(false)--不支持缩放
@@ -1882,50 +2078,7 @@ activity.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATIO
     {
       onClick=function(dialog,which)
         if(which== 0) then
-          判定=Uri.parse(picUrl:sub(1,16));
-          if 判定 == "https://img.dpic"then
-            if sdk <= 28 == false
-              then
-              downloadManager=activity.getSystemService(Context.DOWNLOAD_SERVICE);
-              url=Uri.parse(picUrl:sub(1,53));
-              request=DownloadManager.Request(url);
-              request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE|DownloadManager.Request.NETWORK_WIFI);
-              request.setDestinationInExternalPublicDir("Android/media/ml.cerasus.pics/Tujian","桌面-"..math.random(1,999999999999)..".png");
-              request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-              downloadManager.enqueue(request);
-              SnakeBar("开始保存图片至此设备")
-             else
-              downloadManager=activity.getSystemService(Context.DOWNLOAD_SERVICE);
-              url=Uri.parse(picUrl:sub(1,53));
-              request=DownloadManager.Request(url);
-              request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE|DownloadManager.Request.NETWORK_WIFI);
-              request.setDestinationInExternalPublicDir("Pictures/Tujian","桌面-"..math.random(1,999999999999)..".png");
-              request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-              downloadManager.enqueue(request);
-              SnakeBar("开始保存图片至此设备")
-            end
-           else
-            if sdk <= 28 == false
-              then
-              downloadManager=activity.getSystemService(Context.DOWNLOAD_SERVICE);
-              url=Uri.parse(picUrl);
-              request=DownloadManager.Request(url);
-              request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE|DownloadManager.Request.NETWORK_WIFI);
-              request.setDestinationInExternalPublicDir("Android/media/ml.cerasus.pics/Tujian","桌面-"..math.random(1,999999999999)..".png");
-              request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-              downloadManager.enqueue(request);
-              SnakeBar("开始保存图片至此设备")
-             else
-              downloadManager=activity.getSystemService(Context.DOWNLOAD_SERVICE);
-              url=Uri.parse(picUrl);
-              request=DownloadManager.Request(url);
-              request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE|DownloadManager.Request.NETWORK_WIFI);
-              request.setDestinationInExternalPublicDir("Pictures/Tujian","桌面-"..math.random(1,999999999999)..".png");
-              request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-              downloadManager.enqueue(request);
-              SnakeBar("开始保存图片至此设备")
-            end
-          end
+          归档保存图片("桌面")
         end
         if(which== 1) then
           setWallpaper1(tostring(picUrl),"桌面-"..math.random(1,999999999999)..".png")
@@ -1967,7 +2120,7 @@ Http.get(check_update_url,nil,"UTF-8",UA,function(http_code,content)
           url="https://www.coolapk.com/apk/ml.cerasus.pics"
           viewIntent = Intent("android.intent.action.VIEW",Uri.parse(url))
           activity.startActivity(viewIntent) end})
-      .setNeutralButton("取消",{onClick=function()
+      .setNeutralButton("了解",{onClick=function()
         end})
       .show()
       dialog.getButton(dialog.BUTTON_POSITIVE).setTextColor(0xff000000)
@@ -1983,11 +2136,25 @@ function 归档引导()
   file,err=io.open("/sdcard/Android/data/ml.cerasus.pics/cachemain/a.tj")
   if err==nil==false
     then
-    _drawer.closeDrawer(3)
+    _drawer.openDrawer(3)
     dialog10=AlertDialog.Builder(this)
     .setTitle("操作说明")
-    .setMessage("现在你已经成功的加载了 Tujian 中的第一张图片，点按右上角的菜单栏可查看归档或设为壁纸。")
-    .setNegativeButton("了解",nil)
+    .setMessage[[现在你已经成功的加载了 Tujian 中的第一张图片，下面是常见问题：
+
+• 为什么只有一个图？在哪里查看归档？
+
+点击侧栏中的“归档”可以查看本分类的归档图片。首页图片为今日本分类图片。
+
+• 能快捷设置壁纸吗？
+
+图片加载完毕后，首页会出现右上角的菜单栏。点按即可设为壁纸。
+
+• 什么时候支持每日自动设置壁纸？Tile、Shortcut 或小部件会有吗？
+
+这些功能正在测试中，后续会添加。]]
+    .setPositiveButton("了解",{onClick=function()
+        _drawer.openDrawer(3)
+      end})
     .setCancelable(false)
     .show()
     dialog10.getButton(dialog10.BUTTON_POSITIVE).setTextColor(0xff000000)
@@ -2036,7 +2203,7 @@ end
 --几个变色
 function 自适应()
   Tujian.textColor=(转0x(TextColor))
-  sologen.textColor=(转0x(TextColor))  
+  sologen.textColor=(转0x(TextColor))
   占位.BackgroundColor=(转0x("#42000000"))
   静态渐变((转0x(ThemeColor)),(转0x(ThemeColor)),_drawer_header,"横")
   activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS).setNavigationBarColor(转0x(ThemeColor));
@@ -2057,6 +2224,54 @@ if dq==os.date("%Y%m%d") then
   io.open("/sdcard/Android/data/ml.cerasus.pics/cachemain/add.tj","w+"):write("20190511"):close()
 end
 
+--保存图片函数
+function 归档保存图片(sort)
+  判定=Uri.parse(picUrl:sub(1,16));
+  if 判定 == "https://img.dpic"then
+    if sdk <= 28 == false
+      then
+      downloadManager=activity.getSystemService(Context.DOWNLOAD_SERVICE);
+      url=Uri.parse(picUrl:sub(1,53));
+      request=DownloadManager.Request(url);
+      request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE|DownloadManager.Request.NETWORK_WIFI);
+      request.setDestinationInExternalPublicDir("Android/media/ml.cerasus.pics/Tujian",""..sort.."-"..math.random(1,999999999999)..".png");
+      request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+      downloadManager.enqueue(request);
+      SnakeBar("开始保存图片至此设备")
+     else
+      downloadManager=activity.getSystemService(Context.DOWNLOAD_SERVICE);
+      url=Uri.parse(picUrl:sub(1,53));
+      request=DownloadManager.Request(url);
+      request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE|DownloadManager.Request.NETWORK_WIFI);
+      request.setDestinationInExternalPublicDir("Pictures/Tujian",""..sort.."-"..math.random(1,999999999999)..".png");
+      request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+      downloadManager.enqueue(request);
+      SnakeBar("开始保存图片至此设备")
+    end
+   else
+    if sdk <= 28 == false
+      then
+      downloadManager=activity.getSystemService(Context.DOWNLOAD_SERVICE);
+      url=Uri.parse(picUrl);
+      request=DownloadManager.Request(url);
+      request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE|DownloadManager.Request.NETWORK_WIFI);
+      request.setDestinationInExternalPublicDir("Android/media/ml.cerasus.pics/Tujian",""..sort.."-"..math.random(1,999999999999)..".png");
+      request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+      downloadManager.enqueue(request);
+      SnakeBar("开始保存图片至此设备")
+     else
+      downloadManager=activity.getSystemService(Context.DOWNLOAD_SERVICE);
+      url=Uri.parse(picUrl);
+      request=DownloadManager.Request(url);
+      request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE|DownloadManager.Request.NETWORK_WIFI);
+      request.setDestinationInExternalPublicDir("Pictures/Tujian",""..sort.."-"..math.random(1,999999999999)..".png");
+      request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+      downloadManager.enqueue(request);
+      SnakeBar("开始保存图片至此设备")
+    end
+  end
+end
+
 --句子函数
 function 句子()
   local url="https://api.lwl12.com/hitokoto/v1?encode=text&charset=utf-8"
@@ -2072,7 +2287,7 @@ function 句子()
       .setNeutralButton("复制",{onClick=function(v)
           import "android.content.*"
           activity.getSystemService(Context.CLIPBOARD_SERVICE).setText(body)
-          SnakeBar("已复制到剪贴板")          
+          SnakeBar("已复制到剪贴板")
         end})
       .show()
       dialog.getButton(dialog.BUTTON_POSITIVE).setTextColor(0xff000000)
@@ -2108,7 +2323,9 @@ function setWallpaper(biaoti)
    else
     --其他
     local intent = Intent(Intent.ACTION_ATTACH_DATA);
+    intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
     intent.setDataAndType(Uri.fromFile(File(path)),'image/*');
+    intent.putExtra("mimeType", "image/*");
     activity.startActivity(intent);
   end
 end

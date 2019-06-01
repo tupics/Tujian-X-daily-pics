@@ -418,7 +418,7 @@ end
 ]]
 --动画代码不稳定，未开放
 
---杂烩设置
+--杂烩归档设置
 杂烩.loadUrl("https://dp.chimon.me/fapp/old.php?sort=杂烩")--加载网页
 杂烩.getSettings().setSupportZoom(false)--不支持缩放
 杂烩.getSettings().setJavaScriptEnabled(true)--设置支持JS，备用
@@ -459,7 +459,7 @@ end
     控件隐藏(subtitle)
   end}
 
---插画设置
+--插画归档设置
 控件可见(subtitle)
 插画.loadUrl("https://dp.chimon.me/fapp/old.php?sort=插画")--加载网页
 插画.getSettings().setSupportZoom(false)--不支持缩放

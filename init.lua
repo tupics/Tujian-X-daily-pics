@@ -1,14 +1,14 @@
 appname="Tujian X"
 appver="3.1.5"
 appcode="1"
-appsdk="29"
+appsdk="21"
 path_pattern=""
 packagename="ml.cerasus.pics"
 theme="Theme_DeviceDefault_Light"
 app_key=""
 app_channel=""
 developer="Createlite"
-description="描述"
+description="Tujian X Official Application"
 debugmode=false
 user_permission={
   "INTERNET",

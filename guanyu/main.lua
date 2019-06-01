@@ -18,7 +18,7 @@ import "android.app.*"
 import "android.os.*"
 import "android.widget.*"
 import "android.view.*"
-import "ceshi.mluafloatingbutton"--此悬浮按钮最好一个页面只放一个(打脸滑稽
+import "guanyu.mluafloatingbutton"--此悬浮按钮最好一个页面只放一个(打脸滑稽
 import "com.github.ksoichiro.android.observablescrollview.*"--导入ObservableScrollView，容易监听滑动
 import "muk"--配合 Mlua 使用（酷安搜索下载，否则本项目会报错）
 import "android.graphics.Paint"
@@ -106,7 +106,7 @@ layout={
               ImageView;
               layout_height="-1";
               layout_width="-1";
-              src="ceshi/res/photo.png";
+              src="guanyu/res/photo.png";
               scaleType="centerCrop";
               id="pho_top";
               ColorFilter=ThemeColor；
@@ -502,7 +502,7 @@ layout={
             layout_height="56dp";
             padding="16dp";
             ColorFilter=TextColor;
-            src="ceshi/res/back";
+            src="guanyu/res/back";
             onClick=function()
               关闭页面()
             end;
@@ -542,7 +542,7 @@ layout={
           elevation="4dp";
           elevationClick="10dp";
           id="_mfb";
-          src="ceshi/res/open";
+          src="guanyu/res/open";
           iconColor=w;
           rippleColor="#3fffffff";
         };
