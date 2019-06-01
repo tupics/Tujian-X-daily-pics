@@ -1,6 +1,6 @@
 appname="Tujian X"
 appver="3.1.5"
-appcode="1"
+appcode="190601"
 appsdk="21"
 path_pattern=""
 packagename="ml.cerasus.pics"

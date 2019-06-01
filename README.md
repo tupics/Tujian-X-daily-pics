@@ -5,10 +5,10 @@ Tujian X Offical application on Android,editing with Lua
 
 *开源协议：[Apache License,Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.html)*
 
-It was written with [Mlua](https://www.coolapk.com/apk/com.mlua)
-and requires some Chinese functions in it so  **you must edit the Project with Mlua.**
+It was written with [MyAndrolua+](https://jq.qq.com/?_wv=1027&k=5U77xDY)
+and requires Android support v4、v7 so  **you must edit the Project with an Lua Editor with v4 and v7.**
 
-***请务必使用[Mlua](https://www.coolapk.com/apk/com.mlua)编辑*** *因为本项目使用到了部分中文函数，否则会运行失败*
+***使用了[MyAndrolua+](https://jq.qq.com/?_wv=1027&k=5U77xDY)编辑*** *因为本项目使用到了其中的 v4、v7 库，否则会运行失败（用其他支持 v4、v7 的编辑也也可）*
 
 From the [Tujian X](https://www.coolapk.com/apk/ml.cerasus.pics) App,you can get it on Coolapk:
 [https://www.coolapk.com/apk/ml.cerasus.pics](https://www.coolapk.com/apk/ml.cerasus.pics)

@@ -198,4 +198,3 @@ local frx,p,v,fx=0,0,0,0
   })
   return mSnackerBar
 end
-

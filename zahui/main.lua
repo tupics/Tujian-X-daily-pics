@@ -35,7 +35,7 @@ import "android.renderscript.Allocation"
 import "android.renderscript.Element"
 import "android.renderscript.ScriptIntrinsicBlur"
 import "android.renderscript.RenderScript"
-import "muk"--配合 Mlua 使用（酷安搜索下载，否则本项目会报错）
+import "muk"
 import "android.graphics.Paint"
 import "android.content.Context"
 import "android.net.Uri"
@@ -61,11 +61,9 @@ import "android.graphics.PorterDuffColorFilter"
 import "android.graphics.PorterDuff"
 import "com.androlua.LuaUtil"
 import 'android.graphics.drawable.*'
-import "Createlite@Tujian@SnakerBar"
 import "android.content.pm.ActivityInfo"
 import 'ml.cerasus.RomUtil.*'
-
-
+import "Createlite@Tujian@SnakerBar"
 
 隐藏标题栏()
 
@@ -2178,11 +2176,7 @@ function onKeyDown(code,event)
     if 参数+2 > tonumber(os.time()) then
       activity.finish()
      else
-      SnackerBar.build()
-      :msg("再按一次返回键退出")
-      :actionText("")
-      :action(function() end)
-      :show()
+      SnakeBar("再按一次返回退出")
       _drawer.closeDrawer(3)
       参数=tonumber(os.time())
     end
@@ -2191,12 +2185,11 @@ function onKeyDown(code,event)
 end
 
 
---Snakebar函数，具体代码请见根目录Snakebar.lua
+--Snakebar函数，需要导入 import"Createlite@Tujian@SnakerBar"
 function SnakeBar(fill)
   SnackerBar.build()
-  :msg(fill)
-  :actionText("")
-  :action(function() end)
+  :msg(fill):actionText("")
+  :action()
   :show()
 end
 

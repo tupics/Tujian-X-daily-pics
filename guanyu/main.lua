@@ -20,7 +20,7 @@ import "android.widget.*"
 import "android.view.*"
 import "guanyu.mluafloatingbutton"--此悬浮按钮最好一个页面只放一个(打脸滑稽
 import "com.github.ksoichiro.android.observablescrollview.*"--导入ObservableScrollView，容易监听滑动
-import "muk"--配合 Mlua 使用（酷安搜索下载，否则本项目会报错）
+import "muk"
 import "android.graphics.Paint"
 import "android.graphics.*"
 import "android.graphics.drawable.*"
