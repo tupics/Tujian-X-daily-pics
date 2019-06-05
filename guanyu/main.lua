@@ -909,6 +909,12 @@ end
 --隐藏导航栏
 activity.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION|View.SYSTEM_UI_FLAG_IMMERSIVE)
 
+--针对（可能）锤子水波纹问题
+sdk = tointeger(Build.VERSION.SDK)
+if sdk < 28 then
+  activity.setTheme(android.R.style.Theme_Material_Light)
+end
+
 --Snakebar函数，具体代码请见根目录Snakebar.lua
 function SnakeBar(fill)
   SnackerBar.build()

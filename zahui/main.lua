@@ -455,6 +455,7 @@ adp.add{__type=2,iv={src="zahui/res/compass.png"},tv="随机"}
 adp.add{__type=2,iv={src="zahui/res/bing.png"},tv="必应"}
 adp.add{__type=1,title="更多"}
 adp.add{__type=2,iv={src="zahui/res/text.png"},tv="句子"}
+adp.add{__type=2,iv={src="zahui/res/right.png"},tv="捷径"}
 adp.add{__type=2,iv={src="zahui/res/upload.png"},tv="投稿"}
 --adp.add{__type=2,iv={src="zahui/res/setting.png"},tv="设置"}
 adp.add{__type=2,iv={src="zahui/res/info.png"},tv="关于"}
@@ -475,6 +476,7 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
       adp.add{__type=2,iv={src="zahui/res/bing.png"},tv="必应"}
       adp.add{__type=1,title="更多"}
       adp.add{__type=2,iv={src="zahui/res/text.png"},tv="句子"}
+      adp.add{__type=2,iv={src="zahui/res/right.png"},tv="捷径"}
       adp.add{__type=2,iv={src="zahui/res/upload.png"},tv="投稿"}
       --    adp.add{__type=2,iv={src="zahui/res/setting.png"},tv="设置"}
       adp.add{__type=2,iv={src="zahui/res/info.png"},tv="关于"}
@@ -486,7 +488,7 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
         xinxi = string.gsub(xinxi1,[[\/\/]],'//')
         ThemeColor = string.gsub(string.match(content,'"ThemeColor":"(.-)"'),'',"")
         TextColor = string.gsub(string.match(content,'"TextColor":"(.-)"'),'',"")
-
+        自适应()
         加载菜单()
         activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         import "java.io.File"--导入File类
@@ -505,7 +507,6 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
                     _title.Text == "插画"
                     then
                     控件可见(img)
-
                     alpha2 = ObjectAnimator.ofFloat(img, "alpha", {0, 1})
                     alpha2.setDuration(256)--设置动画时间
                     alpha2.setInterpolator(DecelerateInterpolator())--设置动画插入器，减速
@@ -689,6 +690,7 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
       adp.add{__type=2,iv={src="zahui/res/bing.png"},tv="必应"}
       adp.add{__type=1,title="更多"}
       adp.add{__type=2,iv={src="zahui/res/text.png"},tv="句子"}
+      adp.add{__type=2,iv={src="zahui/res/right.png"},tv="捷径"}
       adp.add{__type=2,iv={src="zahui/res/upload.png"},tv="投稿"}
       --      adp.add{__type=2,iv={src="zahui/res/setting.png"},tv="设置"}
       adp.add{__type=2,iv={src="zahui/res/info.png"},tv="关于"}
@@ -700,7 +702,7 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
         xinxi = string.gsub(xinxi1,[[\/\/]],'//')
         ThemeColor = string.gsub(string.match(content,'"ThemeColor":"(.-)"'),'',"")
         TextColor = string.gsub(string.match(content,'"TextColor":"(.-)"'),'',"")
-
+        自适应()
         加载菜单()
         import "java.io.File"--导入File类
         if File("sdcard/Android/data/ml.cerasus.pics/cache/"..biaoti..".jpg").exists() == false then
@@ -898,6 +900,7 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
       adp.add{__type=2,iv={src="zahui/res/bing.png"},tv="必应"}
       adp.add{__type=1,title="更多"}
       adp.add{__type=2,iv={src="zahui/res/text.png"},tv="句子"}
+      adp.add{__type=2,iv={src="zahui/res/right.png"},tv="捷径"}
       adp.add{__type=2,iv={src="zahui/res/upload.png"},tv="投稿"}
       --      adp.add{__type=2,iv={src="zahui/res/setting.png"},tv="设置"}
       adp.add{__type=2,iv={src="zahui/res/info.png"},tv="关于"}
@@ -937,6 +940,7 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
       adp.add{__type=2,iv={src="zahui/res/bing.png"},tv="必应"}
       adp.add{__type=1,title="更多"}
       adp.add{__type=2,iv={src="zahui/res/text.png"},tv="句子"}
+      adp.add{__type=2,iv={src="zahui/res/right.png"},tv="捷径"}
       adp.add{__type=2,iv={src="zahui/res/upload.png"},tv="投稿"}
       --      adp.add{__type=2,iv={src="zahui/res/setting.png"},tv="设置"}
       adp.add{__type=2,iv={src="zahui/res/info.png"},tv="关于"}
@@ -1144,6 +1148,7 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
       adp.add{__type=3,iv={src="zahui/res/bing.png"},tv="必应"}
       adp.add{__type=1,title="更多"}
       adp.add{__type=2,iv={src="zahui/res/text.png"},tv="句子"}
+      adp.add{__type=2,iv={src="zahui/res/right.png"},tv="捷径"}
       adp.add{__type=2,iv={src="zahui/res/upload.png"},tv="投稿"}
       --          adp.add{__type=2,iv={src="zahui/res/setting.png"},tv="设置"}
       adp.add{__type=2,iv={src="zahui/res/info.png"},tv="关于"}
@@ -1404,6 +1409,7 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
       adp.add{__type=2,iv={src="zahui/res/bing.png"},tv="必应"}
       adp.add{__type=1,title="更多"}
       adp.add{__type=2,iv={src="zahui/res/text.png"},tv="句子"}
+      adp.add{__type=2,iv={src="zahui/res/right.png"},tv="捷径"}
       adp.add{__type=2,iv={src="zahui/res/upload.png"},tv="投稿"}
       --      adp.add{__type=2,iv={src="zahui/res/setting.png"},tv="设置"}
       adp.add{__type=2,iv={src="zahui/res/info.png"},tv="关于"}
@@ -1444,6 +1450,7 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
       adp.add{__type=2,iv={src="zahui/res/bing.png"},tv="必应"}
       adp.add{__type=1,title="更多"}
       adp.add{__type=2,iv={src="zahui/res/text.png"},tv="句子"}
+      adp.add{__type=2,iv={src="zahui/res/right.png"},tv="捷径"}
       adp.add{__type=2,iv={src="zahui/res/upload.png"},tv="投稿"}
       --      adp.add{__type=2,iv={src="zahui/res/setting.png"},tv="设置"}
       adp.add{__type=2,iv={src="zahui/res/info.png"},tv="关于"}
@@ -1489,20 +1496,47 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
       activity.startActivity(viewIntent)
      elseif s=="设置" then
       SnakeBar("敬请期待..")
+     elseif s=="捷径" then
+      --[[
+      if RomUtil.isInstalledByPkgName(activity,'ml.cerasus.dependence') then
+        捷径="已启用"
+        dialog11=AlertDialog.Builder(this)
+        .setTitle("捷径")
+        .setMessage("捷径功能当前状态："..捷径.."\n\n为了能够更加方便的设置 Tujian 图片为壁纸，您可以通过启用「捷径」功能来开启桌面小部件功能、Tile 功能以及 Muzei 壁纸插件功能。\n\n注：开启这些功能需要额外加载 Tujian 依赖包，Tile 功能仅在支持本功能的设备上显示。")
+        .setNeutralButton("关闭「捷径」",{onClick=function()
+          end})
+        .setPositiveButton("了解",{onClick=function()
+          end})
+        .show()
+        dialog11.getButton(dialog11.BUTTON_POSITIVE).setTextColor(0xff000000)
+        dialog11.getButton(dialog11.BUTTON_NEGATIVE).setTextColor(0xff000000)
+        dialog11.getButton(dialog11.BUTTON_NEUTRAL).setTextColor(0xff000000)
+        dialog11.create()
+       else
+        捷径="未启用"
+        dialog11=AlertDialog.Builder(this)
+        .setTitle("捷径")
+        .setMessage("捷径功能当前状态："..捷径.."\n\n为了能够更加方便的设置 Tujian 图片为壁纸，您可以通过启用「捷径」功能来开启桌面小部件功能、Tile 功能以及 Muzei 壁纸插件功能。\n\n注：开启这些功能需要额外加载 Tujian 依赖包，Tile 功能仅在支持本功能的设备上显示。")
+        .setPositiveButton("启用「捷径」",{onClick=function()
+          end})
+        .setNeutralButton("了解",{onClick=function()
+          end})
+        .show()
+        dialog11.getButton(dialog11.BUTTON_POSITIVE).setTextColor(0xff000000)
+        dialog11.getButton(dialog11.BUTTON_NEGATIVE).setTextColor(0xff000000)
+        dialog11.getButton(dialog11.BUTTON_NEUTRAL).setTextColor(0xff000000)
+        dialog11.create()
+      end
+]]
+      SnakeBar("敬请期待..")
      else
       SnakeBar("功能暂不可用")
     end
   end})
 
 --[[
-
-
 MLua模板 by MUK
-
-
-
 ]]
-
 
 --[[
 动画代码不稳定，未开放
@@ -1536,6 +1570,7 @@ Http.get(pxinxi,nil,"UTF-8",UA,function(http_code,content)
   ThemeColor = string.gsub(string.match(content,'"ThemeColor":"(.-)"'),'',"")
   TextColor = string.gsub(string.match(content,'"TextColor":"(.-)"'),'',"")
   加载菜单()
+  自适应()
   activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
   import "java.io.File"--导入File类
   if File("sdcard/Android/data/ml.cerasus.pics/cache/"..biaoti..".jpg").exists() == false then
@@ -1729,6 +1764,11 @@ function 黑色模式()
   TextColor="#FFFFFFFF"
 end
 
+--针对（可能）锤子水波纹问题
+if sdk < 28 then
+  activity.setTheme(android.R.style.Theme_Material_Light)
+end
+
 --查看图片信息img
 img.onClick=function()
   控件可见(模糊)
@@ -1758,17 +1798,13 @@ img.onClick=function()
           if emm == "https://img.dpic"then
             SnakeBar("开始保存图片至此设备")
             downloadManager=activity.getSystemService(Context.DOWNLOAD_SERVICE);
-            url=Uri.parse(p_link);
+            url=Uri.parse(p_link.."?p=0");
             request=DownloadManager.Request(url);
             request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE|DownloadManager.Request.NETWORK_WIFI);
             request.setDestinationInExternalPublicDir("Pictures/Tujian",""..biaoti..".jpg");
             request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
             downloadManager.enqueue(request);
-            import "java.io.*" --先导入io包
-            file,err=io.open("/sdcard/Pictures/Tujian/"..biaoti..".jpg")
-            if err==nil then
-              SnakeBar("图片已保存至此设备")
-            end
+            import "java.io.*" --先导入io包 
            else
             LuaUtil.copyDir("/sdcard/Android/data/ml.cerasus.pics/cache/"..biaoti..".jpg","/sdcard/Pictures/Tujian/"..biaoti..".jpg")
             SnakeBar("图片已保存至此设备")
@@ -1788,17 +1824,13 @@ img.onClick=function()
           if emm == "https://img.dpic"then
             SnakeBar("开始保存图片至此设备")
             downloadManager=activity.getSystemService(Context.DOWNLOAD_SERVICE);
-            url=Uri.parse(p_link);
+            url=Uri.parse(p_link.."?p=0");
             request=DownloadManager.Request(url);
             request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE|DownloadManager.Request.NETWORK_WIFI);
             request.setDestinationInExternalPublicDir("Android/media/ml.cerasus.pics/Tujian",""..biaoti..".jpg");
             request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
             downloadManager.enqueue(request);
-            import "java.io.*" --先导入io包
-            file,err=io.open("/sdcard/Android/media/ml.cerasus.pics/Tujian/"..biaoti..".jpg")
-            if err==nil then
-              SnakeBar("图片已保存至此设备")
-            end
+            import "java.io.*" --先导入io包   
           end
          else
           LuaUtil.copyDir("/sdcard/Android/data/ml.cerasus.pics/cache/"..biaoti..".jpg","/sdcard/Android/media/ml.cerasus.pics/Tujian/"..biaoti..".jpg")
@@ -2147,9 +2179,9 @@ function 归档引导()
 
 图片加载完毕后，首页会出现右上角的菜单栏。点按即可设为壁纸。
 
-• 什么时候支持每日自动设置壁纸？Tile、Shortcut 或小部件会有吗？
+• 什么时候支持每日自动设置壁纸？Tile、每日自动更换壁纸或小部件会有吗？
 
-这些功能正在测试中，后续会添加。]]
+侧栏中点按「捷径」可以启用这些快捷功能。]]
     .setPositiveButton("了解",{onClick=function()
         _drawer.openDrawer(3)
       end})
@@ -2184,7 +2216,6 @@ function onKeyDown(code,event)
   end
 end
 
-
 --Snakebar函数，需要导入 import"Createlite@Tujian@SnakerBar"
 function SnakeBar(fill)
   SnackerBar.build()
@@ -2199,9 +2230,18 @@ function 自适应()
   sologen.textColor=(转0x(TextColor))
   占位.BackgroundColor=(转0x("#42000000"))
   静态渐变((转0x(ThemeColor)),(转0x(ThemeColor)),_drawer_header,"横")
-  activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS).setNavigationBarColor(转0x(ThemeColor));
+  activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS).setStatusBarColor(0x00000000);
 end
-activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS).setNavigationBarColor(转0x(ThemeColor));
+activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS).setStatusBarColor(0x00000000);
+
+--动态 Shortcut
+--[[
+PS：Tujian X 的静态 Shortcut 是根据 Google 官方提供的办法魔改的
+在 Androidmianfest.xml 声明，在 arsc 里添加资源，在xml文件夹里新建 shortcut.xml 并配置
+Activity 填写 com.Androlua.Welcome 即可
+具体可以百度、CSDN等等
+]]
+
 
 --统计代码
 import "java.io.*"
@@ -2224,7 +2264,8 @@ function 归档保存图片(sort)
     if sdk <= 28 == false
       then
       downloadManager=activity.getSystemService(Context.DOWNLOAD_SERVICE);
-      url=Uri.parse(picUrl:sub(1,53));
+      url1=Uri.parse(picUrl:sub(1,53));
+      url=url1.."?p=0"
       request=DownloadManager.Request(url);
       request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE|DownloadManager.Request.NETWORK_WIFI);
       request.setDestinationInExternalPublicDir("Android/media/ml.cerasus.pics/Tujian",""..sort.."-"..math.random(1,999999999999)..".png");
@@ -2233,7 +2274,8 @@ function 归档保存图片(sort)
       SnakeBar("开始保存图片至此设备")
      else
       downloadManager=activity.getSystemService(Context.DOWNLOAD_SERVICE);
-      url=Uri.parse(picUrl:sub(1,53));
+      url1=Uri.parse(picUrl:sub(1,53));
+      url=url1.."?p=0"
       request=DownloadManager.Request(url);
       request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE|DownloadManager.Request.NETWORK_WIFI);
       request.setDestinationInExternalPublicDir("Pictures/Tujian",""..sort.."-"..math.random(1,999999999999)..".png");

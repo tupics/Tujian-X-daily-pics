@@ -1,6 +1,6 @@
 appname="Tujian X"
-appver="3.1.5"
-appcode="190601"
+appver="3.1.6"
+appcode="190602"
 appsdk="21"
 path_pattern=""
 packagename="ml.cerasus.pics"
@@ -9,7 +9,7 @@ app_key=""
 app_channel=""
 developer="Createlite"
 description="Tujian X Official Application"
-debugmode=false
+debugmode=true
 user_permission={
   "INTERNET",
   "SET_WALLPAPER",

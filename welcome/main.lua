@@ -444,6 +444,12 @@ Tujian.getPaint().setTextSkewX(-0.2)
 Tujian3.getPaint().setFakeBoldText(true)
 Tujian3.getPaint().setTextSkewX(-0.2)
 
+--针对（可能）锤子水波纹问题
+sdk = tointeger(Build.VERSION.SDK)
+if sdk < 28 then
+  activity.setTheme(android.R.style.Theme_Material_Light)
+end
+
 --Snakebar函数，具体代码请见根目录Snakebar.lua
 function SnakeBar(fill)
   SnackerBar.build()

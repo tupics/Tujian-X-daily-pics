@@ -512,7 +512,8 @@ function 保存图片(sort)
     if sdk <= 28 == false
       then
       downloadManager=activity.getSystemService(Context.DOWNLOAD_SERVICE);
-      url=Uri.parse(picUrl:sub(1,53));
+      url1=Uri.parse(picUrl:sub(1,53));
+      url=url1.."?p=0"
       request=DownloadManager.Request(url);
       request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE|DownloadManager.Request.NETWORK_WIFI);
       request.setDestinationInExternalPublicDir("Android/media/ml.cerasus.pics/Tujian",""..sort.."-"..math.random(1,999999999999)..".png");
@@ -521,7 +522,8 @@ function 保存图片(sort)
       SnakeBar("开始保存图片至此设备")
      else
       downloadManager=activity.getSystemService(Context.DOWNLOAD_SERVICE);
-      url=Uri.parse(picUrl:sub(1,53));
+      url1=Uri.parse(picUrl:sub(1,53));
+      url=url1.."?p=0"
       request=DownloadManager.Request(url);
       request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE|DownloadManager.Request.NETWORK_WIFI);
       request.setDestinationInExternalPublicDir("Pictures/Tujian",""..sort.."-"..math.random(1,999999999999)..".png");
@@ -533,7 +535,7 @@ function 保存图片(sort)
     if sdk <= 28 == false
       then
       downloadManager=activity.getSystemService(Context.DOWNLOAD_SERVICE);
-      url=Uri.parse(picUrl);
+      url=Uri.parse(picUrl);   
       request=DownloadManager.Request(url);
       request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE|DownloadManager.Request.NETWORK_WIFI);
       request.setDestinationInExternalPublicDir("Android/media/ml.cerasus.pics/Tujian",""..sort.."-"..math.random(1,999999999999)..".png");
@@ -643,6 +645,11 @@ function setWallpaper(url,title) --直接传入下载链接和标题就行
     down(url,path)
   end
   download(url,filePath)
+end
+
+--针对（可能）锤子水波纹问题
+if sdk < 28 then
+  activity.setTheme(android.R.style.Theme_Material_Light)
 end
 
 --控件点击波纹函数

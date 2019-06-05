@@ -35,6 +35,11 @@ activity.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATIO
 
 sdk = tointeger(Build.VERSION.SDK)
 
+--针对（可能）锤子水波纹问题
+if sdk < 28 then
+  activity.setTheme(android.R.style.Theme_Material_Light)
+end
+
 --检测是否启动过了，打开welcome.lua
 import "java.io.File"--导入File类
 if File("/sdcard/Android/data/ml.cerasus.pics/cachemain/welcome.tj").exists() ==false
