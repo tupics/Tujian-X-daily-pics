@@ -1407,7 +1407,7 @@ function 归档引导()
 
 • 什么时候支持每日自动设置壁纸？Tile、每日自动更换壁纸或小部件会有吗？
 
-侧栏中点按「捷径」可以启用这些快捷功能。]]
+暂时未完工，会在后续版本添加。]]
     .setPositiveButton("了解",{onClick=function()
         _drawer.openDrawer(3)
       end})

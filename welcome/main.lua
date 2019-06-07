@@ -40,11 +40,6 @@ import "Createlite@Tujian@SnakerBar"
 
 sdk = tointeger(Build.VERSION.SDK)
 
-if tointeger(sdk) <= 28
-  then
-  申请权限({Manifest.permission.WRITE_EXTERNAL_STORAGE})
-end
-
 activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)--禁止横屏
 
 activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
@@ -425,6 +420,10 @@ button.onClick=function()
   if (pag==1 and tonumber(ppg)>=0.1 or pag==2)then--1和2为页面数，可修改
     activity.finish()
     activity.newActivity("zahui/main.lua",{"nil"})
+    if tointeger(sdk) <= 28
+      then
+      申请权限({Manifest.permission.WRITE_EXTERNAL_STORAGE})
+    end
   end
   hd.showPage(pag+1)
   pag=pag+1

@@ -41,9 +41,13 @@ if sdk < 28 then
 end
 
 --检测是否启动过了，打开welcome.lua
-import "java.io.File"--导入File类
-if File("/sdcard/Android/data/ml.cerasus.pics/cachemain/welcome.tj").exists() ==false
-  then
+--判断你的第一次
+import 'android.content.SharedPreferences'
+local Package_Name='ml.cerasus.pics'--你的包名
+local setting = activity.getSharedPreferences(Package_Name,0);
+local user_first = setting.getBoolean('FIRST_OPEN',true);
+if (user_first) then
+  setting.edit().putBoolean('FIRST_OPEN',false).commit();
   if tointeger(sdk) <= 28
     then
     申请权限({Manifest.permission.WRITE_EXTERNAL_STORAGE})
@@ -67,6 +71,7 @@ if File("/sdcard/Android/data/ml.cerasus.pics/cachemain/welcome.tj").exists() ==
       activity.finish()
     end
   end
+  return true
  else
   function onNewIntent(intent)
     --获得传递过来的数据并转化为字符串
@@ -85,6 +90,7 @@ if File("/sdcard/Android/data/ml.cerasus.pics/cachemain/welcome.tj").exists() ==
       activity.finish()
     end
   end
+  return false
 end
 
 activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)--禁止横屏
