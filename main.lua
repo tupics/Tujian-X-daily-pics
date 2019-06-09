@@ -35,6 +35,7 @@ activity.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATIO
 
 sdk = tointeger(Build.VERSION.SDK)
 
+
 --针对（可能）锤子水波纹问题
 if sdk < 28 then
   activity.setTheme(android.R.style.Theme_Material_Light)
@@ -92,6 +93,7 @@ if (user_first) then
   end
   return false
 end
+
 
 activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)--禁止横屏
 

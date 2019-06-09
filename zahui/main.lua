@@ -69,8 +69,13 @@ import "Createlite@Tujian@SnakerBar"
 界面传入参数=...
 
 
-
 隐藏标题栏()
+
+if RomUtil.isInstalledByPkgName(activity,'ml.cerasus.tujian.plugin') then
+  捷径="已启用"
+ else
+  捷径="未启用"
+end
 
 sdk = tointeger(Build.VERSION.SDK)
 if tointeger(sdk) <= 28
@@ -877,13 +882,16 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
      elseif s=="设置" then
       SnakeBar("敬请期待..")
      elseif s=="捷径" then
-      --[[
-      if RomUtil.isInstalledByPkgName(activity,'ml.cerasus.dependence') then
-        捷径="已启用"
+      if 捷径=="已启用" then
         dialog11=AlertDialog.Builder(this)
         .setTitle("捷径")
         .setMessage("捷径功能当前状态："..捷径.."\n\n为了能够更加方便的设置 Tujian 图片为壁纸，您可以通过启用「捷径」功能来开启桌面小部件功能、Tile 功能以及 Muzei 壁纸插件功能。\n\n注：开启这些功能需要额外加载 Tujian 依赖包，Tile 功能仅在支持本功能的设备上显示。")
         .setNeutralButton("关闭「捷径」",{onClick=function()
+            包名="ml.cerasus.tujian.plugin"
+            uri = Uri.parse("package:"..包名)
+            intent = Intent(Intent.ACTION_DELETE,uri)
+            activity.startActivity(intent)
+            判断捷径状态()
           end})
         .setPositiveButton("了解",{onClick=function()
           end})
@@ -892,12 +900,12 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
         dialog11.getButton(dialog11.BUTTON_NEGATIVE).setTextColor(0xff000000)
         dialog11.getButton(dialog11.BUTTON_NEUTRAL).setTextColor(0xff000000)
         dialog11.create()
-       else
-        捷径="未启用"
+       elseif 捷径=="未启用" then
         dialog11=AlertDialog.Builder(this)
         .setTitle("捷径")
         .setMessage("捷径功能当前状态："..捷径.."\n\n为了能够更加方便的设置 Tujian 图片为壁纸，您可以通过启用「捷径」功能来开启桌面小部件功能、Tile 功能以及 Muzei 壁纸插件功能。\n\n注：开启这些功能需要额外加载 Tujian 依赖包，Tile 功能仅在支持本功能的设备上显示。")
         .setPositiveButton("启用「捷径」",{onClick=function()
+            安装捷径()            
           end})
         .setNeutralButton("了解",{onClick=function()
           end})
@@ -907,8 +915,6 @@ drawer_lv.setOnItemClickListener(AdapterView.OnItemClickListener{
         dialog11.getButton(dialog11.BUTTON_NEUTRAL).setTextColor(0xff000000)
         dialog11.create()
       end
-]]
-      SnakeBar("敬请期待..")
      else
       SnakeBar("功能暂不可用")
     end
@@ -1248,6 +1254,37 @@ loading.IndeterminateDrawable.setColorFilter(PorterDuffColorFilter(0xff000000,Po
 --隐藏导航栏
 activity.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION|View.SYSTEM_UI_FLAG_IMMERSIVE)
 
+
+--判断捷径状态
+function 判断捷径状态()
+  if RomUtil.isInstalledByPkgName(activity,'ml.cerasus.tujian.plugin') then
+    捷径="已启用"
+   else
+    捷径="未启用"
+  end
+  task(500,function()
+    if RomUtil.isInstalledByPkgName(activity,'ml.cerasus.tujian.plugin') then
+      捷径="已启用"
+     else
+      捷径="未启用"
+    end
+    task(500,function()
+      if RomUtil.isInstalledByPkgName(activity,'ml.cerasus.tujian.plugin') then
+        捷径="已启用"
+       else
+        捷径="未启用"
+      end
+      task(1500,function()
+        if RomUtil.isInstalledByPkgName(activity,'ml.cerasus.tujian.plugin') then
+          捷径="已启用"
+         else
+          捷径="未启用"
+        end
+      end)
+    end)
+  end)
+end
+
 --杂烩归档设置
 杂烩归档.loadUrl("https://dp.chimon.me/fapp/old.php?sort=杂烩")--加载网页
 杂烩归档.getSettings().setSupportZoom(false)--不支持缩放
@@ -1349,7 +1386,7 @@ end
 
 
 
---检测更新
+--检测更新（主程序）
 local packinfo = this.getPackageManager().getPackageInfo(this.getPackageName(),((32552732/2/2-8183)/10000-6-231)/9)
 local appinfo = this.getPackageManager().getApplicationInfo(this.getPackageName(),0)
 local versionName = tostring(packinfo.versionName)
@@ -1387,6 +1424,46 @@ Http.get(check_update_url,nil,"UTF-8",UA,function(http_code,content)
   end
 end)
 
+--检测更新（捷径）
+local packinfo = this.getPackageManager().getPackageInfo(this.getPackageName(),((32552732/2/2-8183)/10000-6-231)/9)
+local appinfo = this.getPackageManager().getApplicationInfo(this.getPackageName(),0)
+local versionCode = tonumber(版本号)
+local check_update_url = "https://aus.nowtime.cc/api/query/update?appid=11155"
+Http.get(check_update_url,nil,"UTF-8",UA,function(http_code,content)
+  code = tonumber(string.match(content,'"code":(.-),'))-- 状态码
+  msg = string.match(content,'"msg":"(.-)"')-- 消息
+  if 捷径=="已启用"then
+    versionName = tostring(packinfo.versionName)
+    版本号 = activity.getPackageManager().getPackageInfo('ml.cerasus.tujian.plugin', 0).versionName
+   else
+    versionName = "1"
+  end
+  if(code == 200) then
+    new_versionCode = tonumber(string.match(content,'"version_code":(.-),'))--版本号
+    new_versionName = string.match(content,'"version_name":"(.-)"')--版本名
+    apk_url = string.gsub(string.match(content,'"apk_url":"(.-)"'),'\\','')--下载地址
+    update_log1 = string.gsub(string.match(content,'"update_log":"(.-)"'),'\\n',"\n")--更新日志
+    update_log = string.gsub(update_log1,[[\/]],'/')
+    apk_url = 捷径url
+
+    if (new_versionCode > versionCode) and 捷径=="已启用" then
+      dialog=AlertDialog.Builder(this)
+      .setTitle("发现可用更新-"..new_versionName.."")
+      .setMessage(update_log)
+      .setPositiveButton("立即更新",{onClick=function()
+          安装捷径()
+        end})
+      .setNeutralButton("了解",{onClick=function()
+        end})
+      .show()
+      dialog.getButton(dialog.BUTTON_POSITIVE).setTextColor(0xff000000)
+      dialog.getButton(dialog.BUTTON_NEGATIVE).setTextColor(0xff000000)
+      dialog.getButton(dialog.BUTTON_NEUTRAL).setTextColor(0xff000000)
+      dialog.create()
+    end
+  end
+end)
+
 --归档引导函数
 function 归档引导()
   file,err=io.open("/sdcard/Android/data/ml.cerasus.pics/cachemain/a.tj")
@@ -1407,7 +1484,7 @@ function 归档引导()
 
 • 什么时候支持每日自动设置壁纸？Tile、每日自动更换壁纸或小部件会有吗？
 
-暂时未完工，会在后续版本添加。]]
+在侧栏中点按「捷径」，并开启该功能即可。本功能仅支持部分设备。]]
     .setPositiveButton("了解",{onClick=function()
         _drawer.openDrawer(3)
       end})
@@ -1510,8 +1587,6 @@ end
 
 --添加快捷方式
 scm.setDynamicShortcuts(infos);
-
-
 
 
 --统计代码
@@ -2243,10 +2318,6 @@ function 加载杂烩()
   控件可见(subtitle)
 end
 
---写入目录：已启动
-f=File(tostring(File(tostring("/sdcard/Android/data/ml.cerasus.pics/cachemain/welcome.tj")).getParentFile())).mkdirs()
-io.open(tostring("/sdcard/Android/data/ml.cerasus.pics/cachemain/welcome.tj"),"w"):write(tostring("Welcome to use Tujian X")):close()
-
 --设置壁纸函数
 function setWallpaper(biaoti)
   path="/sdcard/Android/data/ml.cerasus.pics/cache/"..biaoti..".jpg"
@@ -2355,6 +2426,67 @@ function setWallpaper1(url,title) --直接传入下载链接和标题就行
   end
   function download(url,path)
     dialog6.show()
+    import "java.net.URL"
+    realUrl = URL(url)
+    -- 打开和URL之间的连接
+    con = realUrl.openConnection();
+    -- 设置通用的请求属性
+    con.setRequestProperty("accept", "*/*");
+    con.setRequestProperty("connection", "Keep-Alive");
+    con.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+    lens=con.getContentLength()
+    down(url,path)
+  end
+  download(url,filePath)
+end
+
+--开启捷径/升级功能
+function 安装捷径()
+  dialog10=ProgressDialog(this)
+  dialog10.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+  --设置进度条的形式为水平进度条
+  dialog10.setTitle("启用「捷径」")
+  dialog10.setCancelable(false)--设置是否可以通过点击Back键取消
+  dialog10.setCanceledOnTouchOutside(false)--设置在点击Dialog外是否取消Dialog进度条
+  url=捷径url
+  if 捷径url==nil then
+    url="https://github.com/chimon89/chimon89.github.io/raw/master/plugin-release2.apk"
+  end
+  filePath="/sdcard/Android/data/ml.cerasus.pics/cache/捷径.apk"
+  path=filePath
+  function down(url,path)
+    tt=Ticker()
+    tt.Period=10
+    tt.start()
+    Http.download(url,path,nil,UA,function(code,content)
+      if code==200 then
+        import "java.io.*" --先导入io包
+        file,err=io.open(path)
+        --SnakeBar(content,file,err)
+        if err==nil then
+          tt.stop()
+          intent = Intent(Intent.ACTION_VIEW)
+          安装包路径=path
+          intent.setDataAndType(Uri.parse("file://"..安装包路径), "application/vnd.android.package-archive")
+          intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+          activity.startActivity(intent)
+          dialog10.hide()
+          dialog10.dismiss()
+          判断捷径状态()
+        end
+      end
+    end)
+    function tt.onTick()
+      f=io.open(path,"r")
+      if f~=nil then
+        len=f:read("a")
+        s=#len/lens
+        dialog10.setProgress(s*100)
+      end
+    end
+  end
+  function download(url,path)
+    dialog10.show()
     import "java.net.URL"
     realUrl = URL(url)
     -- 打开和URL之间的连接

@@ -1,6 +1,6 @@
 appname="Tujian X"
 appver="3.2.0"
-appcode="190607"
+appcode="190608"
 appsdk="21"
 path_pattern=""
 packagename="ml.cerasus.pics"
@@ -12,6 +12,6 @@ description="Tujian X Official Application"
 debugmode=false
 user_permission={
   "INTERNET",
-  "SET_WALLPAPER",
+  "REQUEST_INSTALL_PACKAGES",
   "WRITE_EXTERNAL_STORAGE"
 }
